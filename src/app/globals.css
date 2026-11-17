@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+/* ---------- Midnight Ledger tokens ---------- */
+:root {
+  --bg: #0b0d10;
+  --surface: #12161b;
+  --surface-2: #171c22;
+  --line: #222a33;
+  --text: #e8ecef;
+  --muted: #8f9aa5;
+  --accent: #2ee6c5;
+  --accent-ink: #04201b;
+  --accent-2: #6c8cff;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-2: var(--accent-2);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-grotesk);
+  --font-mono: var(--font-jetbrains);
+}
+
+html {
+  background: var(--bg);
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Custom cursor: hide the native one only when ours is active */
+html.has-custom-cursor,
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor [data-cursor] {
+  cursor: none;
+}
+html.has-custom-cursor input,
+html.has-custom-cursor textarea {
+  cursor: text;
+}
+
+/* SplitType line masks */
+.split-line {
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+/* Grain */
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+
+/* Hero aurora — transform-only animation */
+@keyframes drift-a {
+  0%, 100% { transform: translate3d(-10%, -6%, 0) scale(1); }
+  50% { transform: translate3d(8%, 6%, 0) scale(1.15); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate3d(10%, 8%, 0) scale(1.1); }
+  50% { transform: translate3d(-6%, -8%, 0) scale(0.95); }
+}
+@keyframes drift-c {
+  0%, 100% { transform: translate3d(0, 10%, 0) scale(0.9); }
+  50% { transform: translate3d(-12%, -4%, 0) scale(1.1); }
+}
+.aurora-a { animation: drift-a 18s var(--ease-out) infinite; }
+.aurora-b { animation: drift-b 22s var(--ease-out) infinite; }
+.aurora-c { animation: drift-c 26s var(--ease-out) infinite; }
+
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.marquee-track { animation: marquee 40s linear infinite; }
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.8); opacity: 0; }
+}
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: pulse-dot 2s ease-out infinite;
+}
+
+@keyframes dash {
+  to { stroke-dashoffset: -24; }
+}
+.flow-dash { animation: dash 1.2s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+html.intro-seen [data-loader] { display: none !important; }
