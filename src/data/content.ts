@@ -9,7 +9,7 @@ export const site = {
   email: "muzzammil.ahmed835@gmail.com",
   linkedin: "https://www.linkedin.com/in/muzzammil-ahmed2",
   github: "https://github.com/MuzzammilAhmed2",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://muzzammil-ahmed.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://muzzammilahmed2.github.io",
   heroLine: "I turn messy enterprise data into decisions — and build AI that's safe enough for banks.",
   description:
     "Data Engineer, BI Developer and Data & AI Consultant at Innolytix, Karachi. Data platforms on Microsoft Fabric, Azure, AWS and Snowflake, Power BI analytics, and governed GenAI / RAG solutions. DP-700 + PL-300 certified.",

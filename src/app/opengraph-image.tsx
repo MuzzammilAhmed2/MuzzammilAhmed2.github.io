@@ -39,3 +39,5 @@ export default function OG() {
     size,
   );
 }
+
+export const dynamic = "force-static";
