@@ -92,7 +92,6 @@ export default function Projects() {
               href={`/work/${p.slug}`}
               data-cursor="view"
               className="glow-card block rounded-3xl border border-line bg-surface p-3 transition-colors duration-500 hover:border-[color:var(--accent)]/40"
-              aria-label={`${p.name} — ${p.sector}. Read case study`}
             >
               <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
                 <div data-img className="absolute inset-0 transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] will-change-transform">

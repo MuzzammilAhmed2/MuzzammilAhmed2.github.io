@@ -113,7 +113,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
                   aria-current={pinned && i === active ? "step" : undefined}
                   className={`rounded-2xl border transition-[opacity,transform,border-color] duration-500 ${
                     pinned
-                      ? `${on ? "translate-x-2 border-line bg-surface/60 opacity-100" : "translate-x-0 border-transparent opacity-35"} px-5 py-2.5`
+                      ? `${on ? "translate-x-2 border-line bg-surface/60 opacity-100" : "translate-x-0 border-transparent opacity-65"} px-5 py-2.5`
                       : "glow-card w-[82%] shrink-0 snap-start overflow-hidden border-line bg-surface sm:w-auto"
                   }`}
                 >

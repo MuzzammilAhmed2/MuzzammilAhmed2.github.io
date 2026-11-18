@@ -74,7 +74,7 @@ export const banksphere = {
       title: "KYC decisions in one pass",
       body: "ID-card OCR, card checks, watchlist screening and a risk score decide the outcome: approve, send to officer review, or ask the customer to resubmit.",
       art: "decision",
-      media: "kyc.png",
+      media: "kyc.webp",
     },
     {
       id: "detective",
@@ -82,7 +82,7 @@ export const banksphere = {
       title: "AI Compliance Detective",
       body: "Officers ask questions about a case and get grounded answers with citations back to the evidence — not free-floating model output.",
       art: "detective",
-      media: "detective.png",
+      media: "detective.webp",
     },
     {
       id: "challenge",
@@ -122,7 +122,7 @@ export const banksphere = {
       title: "Tamper-evident audit trail",
       body: "Every action lands in a hash-chained audit log with write-once checkpoints, so any after-the-fact edit is detectable.",
       art: "audit",
-      media: "audit.png",
+      media: "audit.webp",
     },
     {
       id: "redteam",

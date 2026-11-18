@@ -20,12 +20,18 @@ export default function RevealText({ as: Tag = "h2", children, className, mode =
   const ref = useRef<HTMLElement>(null);
   const split = useRef<SplitType | null>(null);
   const tween = useRef<gsap.core.Tween | null>(null);
+  const playRef = useRef(play);
+  playRef.current = play;
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const mm = gsap.matchMedia();
     mm.add(MOTION_OK, () => {
+      let cancelled = false;
+      let io: IntersectionObserver | null = null;
+      const setup = () => {
+      if (cancelled || split.current) return;
       split.current = new SplitType(el, { types: `lines,${by}`, lineClass: "split-line" });
       const targets = by === "chars" ? split.current.chars : split.current.words;
       gsap.set(targets, { yPercent: 110 });
@@ -40,10 +46,26 @@ export default function RevealText({ as: Tag = "h2", children, className, mode =
         ...(mode === "scroll" ? { scrollTrigger: { trigger: el, start: "top 85%", once: true } } : {}),
       });
       if (mode === "scroll") tween.current.paused(false);
+      else if (playRef.current) tween.current.play();
+      };
+      // Splitting measures layout, so do it once fonts are in and (for scroll reveals) only as the text nears the viewport.
+      // The hero (manual) splits straight away, while the loader still covers it, so it never flashes.
+      if (mode === "manual") setup();
+      const fonts = document.fonts?.ready ?? Promise.resolve();
+      if (mode === "scroll") fonts.then(() => {
+        if (cancelled) return;
+        io = new IntersectionObserver((entries) => {
+          if (entries.some((e) => e.isIntersecting)) { io?.disconnect(); setup(); }
+        }, { rootMargin: "0px 0px 30% 0px" });
+        io.observe(el);
+      });
       return () => {
+        cancelled = true;
+        io?.disconnect();
         tween.current?.scrollTrigger?.kill();
         tween.current?.kill();
         split.current?.revert();
+        split.current = null;
       };
     });
     return () => mm.revert();

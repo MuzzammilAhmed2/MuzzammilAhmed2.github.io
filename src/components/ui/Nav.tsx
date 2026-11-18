@@ -42,7 +42,8 @@ export default function Nav() {
         }`}
       >
         <div className="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-4 sm:px-6 md:px-10 md:py-6">
-          <Link href="/" className="group flex items-center gap-3" aria-label={`${site.name} — home`}>
+          <Link href="/" className="group flex items-center gap-3">
+            <span className="sr-only">{site.name} — home</span>
             <span className="grid h-9 w-9 place-items-center rounded-full border border-line bg-surface font-display text-sm font-semibold text-text transition-colors group-hover:border-accent">
               MA
             </span>

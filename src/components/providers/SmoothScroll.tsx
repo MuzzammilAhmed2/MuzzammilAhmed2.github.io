@@ -11,7 +11,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
+    // Touch screens keep native scrolling (smoother there, and less main-thread work)
+    const touch = window.matchMedia("(pointer: coarse)").matches;
+    if (reduce || touch) return;
 
     const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
     setLenis(lenis);
