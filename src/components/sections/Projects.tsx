@@ -91,7 +91,7 @@ export default function Projects() {
             <Link
               href={`/work/${p.slug}`}
               data-cursor="view"
-              className="block rounded-3xl border border-line bg-surface p-3 transition-colors duration-500 hover:border-[color:var(--accent)]/40"
+              className="glow-card block rounded-3xl border border-line bg-surface p-3 transition-colors duration-500 hover:border-[color:var(--accent)]/40"
               aria-label={`${p.name} — ${p.sector}. Read case study`}
             >
               <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">

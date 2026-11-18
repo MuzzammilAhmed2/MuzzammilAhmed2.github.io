@@ -23,21 +23,29 @@ export default function Cursor() {
     const ry = gsap.quickTo(ring.current, "y", { duration: 0.45, ease: "power3" });
 
     let state = "";
+    // Read theme colours at hover time so the cursor follows the active theme
+    const css = (v: string) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+    const acc = (a: number) => `rgba(${css("--accent-rgb").split(/\s+/).join(",")},${a})`;
+    const txt = (a: number) => {
+      const h = css("--text").replace("#", "");
+      const n = parseInt(h.length === 3 ? h.replace(/./g, "$&$&") : h, 16);
+      return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+    };
     const setState = (next: string, text = "") => {
       if (next === state) return;
       state = next;
       if (label.current) label.current.textContent = text;
       const r = ring.current!;
       if (next === "view") {
-        gsap.to(r, { scale: 2.6, backgroundColor: "rgba(46,230,197,1)", borderColor: "rgba(46,230,197,0)", duration: 0.35, ease: "power3.out" });
+        gsap.to(r, { scale: 2.6, backgroundColor: acc(1), borderColor: acc(0), duration: 0.35, ease: "power3.out" });
         gsap.to(label.current, { opacity: 1, scale: 1 / 2.6, duration: 0.25 });
         gsap.to(dot.current, { scale: 0, duration: 0.2 });
       } else if (next === "link") {
-        gsap.to(r, { scale: 1.7, backgroundColor: "rgba(46,230,197,0.12)", borderColor: "rgba(46,230,197,0.9)", duration: 0.3, ease: "power3.out" });
+        gsap.to(r, { scale: 1.7, backgroundColor: acc(0.12), borderColor: acc(0.9), duration: 0.3, ease: "power3.out" });
         gsap.to(label.current, { opacity: 0, duration: 0.15 });
         gsap.to(dot.current, { scale: 0.5, duration: 0.2 });
       } else {
-        gsap.to(r, { scale: 1, backgroundColor: "rgba(46,230,197,0)", borderColor: "rgba(232,236,239,0.35)", duration: 0.3, ease: "power3.out" });
+        gsap.to(r, { scale: 1, backgroundColor: acc(0), borderColor: txt(0.35), duration: 0.3, ease: "power3.out" });
         gsap.to(label.current, { opacity: 0, duration: 0.15 });
         gsap.to(dot.current, { scale: 1, duration: 0.2 });
       }
@@ -70,7 +78,7 @@ export default function Cursor() {
     <div aria-hidden className="pointer-events-none fixed inset-0 z-[90] hidden [@media(hover:hover)_and_(pointer:fine)]:block">
       <div
         ref={ring}
-        className="fixed left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(232,236,239,0.35)] will-change-transform"
+        className="fixed left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--text)_35%,transparent)] will-change-transform"
       >
         <span ref={label} className="font-mono text-[11px] font-semibold uppercase tracking-widest text-accent-ink opacity-0" />
       </div>

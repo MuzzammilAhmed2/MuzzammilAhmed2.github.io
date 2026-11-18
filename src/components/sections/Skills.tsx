@@ -47,7 +47,7 @@ export default function Skills() {
         {coreSkills.map((c) => (
           <li
             key={c.name}
-            className="rounded-2xl border border-accent/30 bg-surface p-5 transition-colors duration-300 hover:border-accent md:p-6"
+            className="glow-card rounded-2xl border border-accent/30 bg-surface p-5 transition-colors duration-300 hover:border-accent md:p-6"
           >
             <p className="font-display text-2xl font-medium tracking-tight md:text-3xl">{c.name}</p>
             <p className="mt-2 text-sm leading-relaxed text-muted">{c.note}</p>

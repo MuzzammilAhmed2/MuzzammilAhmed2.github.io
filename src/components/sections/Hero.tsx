@@ -47,11 +47,12 @@ export default function Hero() {
     <section ref={root} aria-labelledby="hero-title" className="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
       {/* Animated gradient + grain */}
       <div ref={aurora} aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="aurora-a absolute -left-[10%] top-[5%] h-[70vmax] w-[70vmax] rounded-full bg-[radial-gradient(circle_at_center,rgba(46,230,197,0.22),transparent_60%)] will-change-transform" />
-        <div className="aurora-b absolute -right-[20%] top-[20%] h-[60vmax] w-[60vmax] rounded-full bg-[radial-gradient(circle_at_center,rgba(108,140,255,0.20),transparent_60%)] will-change-transform" />
-        <div className="aurora-c absolute bottom-[-30%] left-[25%] h-[50vmax] w-[50vmax] rounded-full bg-[radial-gradient(circle_at_center,rgba(46,230,197,0.10),transparent_60%)] will-change-transform" />
-        <div className="noise absolute inset-0 opacity-[0.07] mix-blend-overlay" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
+        <div className="aurora-a absolute -left-[10%] top-[5%] h-[70vmax] w-[70vmax] rounded-full will-change-transform" style={{ background: "radial-gradient(circle at center, rgb(var(--accent-rgb) / calc(0.22 * var(--aurora-strength))), transparent 60%)" }} />
+        <div className="aurora-b absolute -right-[20%] top-[20%] h-[60vmax] w-[60vmax] rounded-full will-change-transform" style={{ background: "radial-gradient(circle at center, rgb(var(--accent-2-rgb) / calc(0.20 * var(--aurora-strength))), transparent 60%)" }} />
+        <div className="aurora-c absolute bottom-[-30%] left-[25%] h-[50vmax] w-[50vmax] rounded-full will-change-transform" style={{ background: "radial-gradient(circle at center, rgb(var(--accent-rgb) / calc(0.10 * var(--aurora-strength))), transparent 60%)" }} />
+        <div className="hero-arc absolute -inset-x-[10%] -bottom-[70%] top-[35%] hidden will-change-transform md:block" />
+        <div className="noise absolute inset-0 mix-blend-overlay" style={{ opacity: "var(--noise-opacity)" }} />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-bg" />
       </div>
 

@@ -47,12 +47,12 @@ export default function Certifications() {
             key={c.code}
             data-cert
             data-spot
-            className="group relative overflow-hidden rounded-3xl border border-line bg-surface p-8 md:p-10"
+            className="glow-card group relative overflow-hidden rounded-3xl border border-line bg-surface p-8 md:p-10"
           >
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-              style={{ background: "radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(46,230,197,0.14), transparent 60%)" }}
+              style={{ background: "radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgb(var(--accent-rgb) / 0.14), transparent 60%)" }}
             />
             <div className="relative flex items-start justify-between gap-6">
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">{c.issuer}</p>

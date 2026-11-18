@@ -39,7 +39,7 @@ export default function Services() {
           <article
             key={s.title}
             data-svc
-            className="group relative flex flex-col overflow-hidden rounded-3xl border border-line bg-surface p-8 transition-[transform,border-color] duration-500 hover:-translate-y-1.5 hover:border-accent/50"
+            className="glow-card group relative flex flex-col overflow-hidden rounded-3xl border border-line bg-surface p-8 transition-[transform,border-color] duration-500 hover:-translate-y-1.5 hover:border-accent/50"
           >
             <span aria-hidden className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-accent transition-transform duration-700 group-hover:scale-x-100" />
             <span className="font-mono text-xs text-accent">0{i + 1}</span>

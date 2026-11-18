@@ -49,7 +49,7 @@ export default function Contact() {
 
   return (
     <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden border-t border-line">
-      <div aria-hidden className="pointer-events-none absolute -bottom-1/2 left-1/2 h-[80vmax] w-[80vmax] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(46,230,197,0.12),transparent_60%)]" />
+      <div aria-hidden className="pointer-events-none absolute -bottom-1/2 left-1/2 h-[80vmax] w-[80vmax] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgb(var(--accent-rgb)/0.12),transparent_60%)]" />
       <div className="relative mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
         <SectionLabel index="08">Contact</SectionLabel>
         <RevealText
@@ -129,7 +129,7 @@ export default function Contact() {
               <p role="status" aria-live="polite" className="text-sm">
                 {status === "sent" && <span className="text-accent">Thanks — your message is in. I&apos;ll get back to you soon.</span>}
                 {status === "error" && (
-                  <span className="text-[#ff8a8a]">
+                  <span className="text-[color:var(--danger)]">
                     Something went wrong. Please email me directly at {site.email}.
                   </span>
                 )}

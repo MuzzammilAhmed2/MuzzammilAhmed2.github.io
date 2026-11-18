@@ -114,7 +114,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
                   className={`rounded-2xl border transition-[opacity,transform,border-color] duration-500 ${
                     pinned
                       ? `${on ? "translate-x-2 border-line bg-surface/60 opacity-100" : "translate-x-0 border-transparent opacity-35"} px-5 py-2.5`
-                      : "w-[82%] shrink-0 snap-start overflow-hidden border-line bg-surface sm:w-auto"
+                      : "glow-card w-[82%] shrink-0 snap-start overflow-hidden border-line bg-surface sm:w-auto"
                   }`}
                 >
                   {!pinned && (
@@ -135,7 +135,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
           {/* Visual stage (desktop pinned only) */}
           {pinned && (
             <div data-bs-frame>
-            <div className="relative aspect-[16/11] w-full overflow-hidden rounded-3xl border border-line bg-surface shadow-[0_40px_120px_-40px_rgba(46,230,197,0.25)]">
+            <div className="relative aspect-[16/11] w-full overflow-hidden rounded-3xl border border-line bg-surface shadow-[var(--stage-shadow)]">
               <div className="flex items-center gap-2 border-b border-line px-5 py-3">
                 <span className="h-2.5 w-2.5 rounded-full bg-line" />
                 <span className="h-2.5 w-2.5 rounded-full bg-line" />
@@ -183,7 +183,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
           href={`/work/${banksphere.slug}#tour`}
           data-cursor="view"
           data-cursor-label="Watch"
-          className="group flex items-center gap-5 rounded-2xl border border-line bg-surface p-4 transition-colors hover:border-accent/60 md:p-5"
+          className="glow-card group flex items-center gap-5 rounded-2xl border border-line bg-surface p-4 transition-colors hover:border-accent/60 md:p-5"
         >
           <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-surface-2 md:h-20 md:w-20">
             <Image src="/projects/banksphere/tour/presenter.jpg" alt="" fill sizes="80px" className="object-cover" />
