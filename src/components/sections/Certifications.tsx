@@ -47,7 +47,7 @@ export default function Certifications() {
             key={c.code}
             data-cert
             data-spot
-            className="glow-card group relative overflow-hidden rounded-3xl border border-line bg-surface p-8 md:p-10"
+            className="group relative overflow-hidden rounded-3xl border border-line bg-surface p-8 md:p-10"
           >
             <div
               aria-hidden

@@ -35,8 +35,8 @@ export const about = {
     { value: 5, suffix: "", label: "Enterprise & cloud platforms delivered" },
     { value: 4, suffix: "", label: "Sectors: banking, insurance, logistics, retail" },
     { value: 4, suffix: "", label: "Cloud platforms: Fabric, Azure, AWS, Snowflake" },
-    // TODO: real split — how many unit / integration / evaluation tests? Then show e.g. "1,000+ automated tests (800 unit · 150 integration · 50 evaluation)".
-    { value: 1000, suffix: "+", label: "Automated tests on BankSphere AI (unit, integration & evaluation)" },
+    // 1,041 = `pytest --collect-only` on the BankSphere repo, 2026-11-18. Tests aren't tagged unit/integration/eval, so no split is shown.
+    { value: 1041, suffix: "", label: "Automated tests on BankSphere AI" },
   ],
 };
 
@@ -128,7 +128,7 @@ export const banksphere = {
       id: "redteam",
       kicker: "08 — Proof",
       title: "Red-team & evaluation suites",
-      body: "Adversarial red-team and evaluation suites run alongside 1,000+ automated tests to keep the AI honest as it changes.", // TODO: confirm with the real test split
+      body: "Adversarial red-team and evaluation suites run alongside 1,000+ automated tests to keep the AI honest as it changes.",
       art: "redteam",
       media: "tests.png",
     },
