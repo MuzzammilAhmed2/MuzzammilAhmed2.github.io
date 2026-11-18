@@ -62,7 +62,14 @@ export default function Nav() {
             ))}
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden items-center gap-2 md:flex">
+            <a
+              href={site.cv}
+              download
+              className="rounded-full border border-line px-4 py-2.5 font-mono text-xs uppercase tracking-[0.16em] text-muted transition-colors hover:border-text hover:text-text"
+            >
+              CV ↓
+            </a>
             <Magnetic>
               <Link
                 href="/#contact"
@@ -118,6 +125,7 @@ export default function Nav() {
               <a href={`mailto:${site.email}`} className="block break-all hover:text-accent">{site.email}</a>
               <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="block hover:text-accent">LinkedIn ↗</a>
               <a href={site.github} target="_blank" rel="noopener noreferrer" className="block hover:text-accent">GitHub ↗</a>
+              <a href={site.cv} download className="block hover:text-accent">Download CV ↓</a>
             </div>
           </motion.div>
         )}

@@ -45,8 +45,8 @@ export default function GuidedTour() {
   };
 
   return (
-    <div className="mx-auto max-w-[1440px] px-4 pb-16 sm:px-6 md:px-10">
-      <div className="border-t border-line pt-12">
+    <div id="tour" className="scroll-mt-28">
+      <div>
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-accent">Guided tour</p>

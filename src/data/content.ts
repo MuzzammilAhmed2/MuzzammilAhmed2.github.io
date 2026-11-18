@@ -10,7 +10,8 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/muzzammil-ahmed2",
   github: "https://github.com/MuzzammilAhmed2",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://muzzammilahmed2.github.io",
-  heroLine: "I turn messy enterprise data into decisions — and build AI that's safe enough for banks.",
+  heroLine: "I turn messy enterprise data into decisions — and build AI designed for regulated industries.",
+  cv: "/Muzzammil-Ahmed-CV.pdf", // TODO: add the PDF to /public (without phone number)
   description:
     "Data Engineer, BI Developer and Data & AI Consultant at Innolytix, Karachi. Data platforms on Microsoft Fabric, Azure, AWS and Snowflake, Power BI analytics, and governed GenAI / RAG solutions. DP-700 + PL-300 certified.",
 };
@@ -23,16 +24,18 @@ export const nav = [
 ];
 
 export const about = {
+  heading: "Data that leadership trusts. AI whose every decision can be traced.",
   story: [
-    "I'm a Data Engineer and BI Developer who likes the unglamorous part: taking ERP, CRM, core-banking and operational data that doesn't agree with itself, and turning it into governed, high-performance platforms people actually trust.",
+    "I'm a Data Engineer and BI Developer. I take ERP, CRM, core-banking and operational data that doesn't agree with itself and turn it into governed, high-performance platforms people actually trust.",
     "I started at Innolytix as a Data Engineering intern in September 2025 and was offered a full-time role three months later. Since then I've architected Medallion platforms on Microsoft Fabric and Azure, built enterprise Power BI semantic models, and delivered AI-powered document and search solutions across banking, insurance, logistics and retail.",
-    "On the side, I build BankSphere AI — governed AI for KYC and compliance — because I think AI in regulated industries has to be explainable, auditable and safe before it's clever.",
+    "On the side, I build BankSphere AI for KYC in banking, because AI in regulated industries has to explain itself before it's clever.",
   ],
   stats: [
     { value: 5, suffix: "", label: "Enterprise & cloud platforms delivered" },
     { value: 4, suffix: "", label: "Sectors: banking, insurance, logistics, retail" },
     { value: 4, suffix: "", label: "Cloud platforms: Fabric, Azure, AWS, Snowflake" },
-    { value: 1000, suffix: "+", label: "Automated tests on BankSphere AI" },
+    // TODO: real split — how many unit / integration / evaluation tests? Then show e.g. "1,000+ automated tests (800 unit · 150 integration · 50 evaluation)".
+    { value: 1000, suffix: "+", label: "Automated tests on BankSphere AI (unit, integration & evaluation)" },
   ],
 };
 
@@ -82,7 +85,7 @@ export const banksphere = {
     },
     {
       id: "challenge",
-      kicker: "03 — Human in charge",
+      kicker: "03 — Human oversight",
       title: "Challenge the AI",
       body: "An officer can push back on any AI conclusion and make it defend — or revise — its reasoning before a decision is made.",
       art: "challenge",
@@ -124,12 +127,26 @@ export const banksphere = {
       id: "redteam",
       kicker: "08 — Proof",
       title: "Red-team & evaluation suites",
-      body: "Adversarial red-team and evaluation suites run alongside 1000+ automated tests to keep the AI honest as it changes.",
+      body: "Adversarial red-team and evaluation suites run alongside 1,000+ automated tests to keep the AI honest as it changes.", // TODO: confirm with the real test split
       art: "redteam",
       media: "tests.png",
     },
   ] satisfies Feature[],
 };
+
+// Homepage shows 4 of the 8 features; the case study shows all of them.
+const byId = (id: string) => banksphere.features.find((f) => f.id === id)!;
+export const homeFeatures: Feature[] = [
+  { ...byId("kyc"), kicker: "01 — Onboarding" },
+  {
+    ...byId("detective"),
+    kicker: "02 — Officer desk",
+    title: "Ask the AI — then challenge it",
+    body: "Officers get answers with citations back to the evidence, and can push back on any conclusion before they make the call.",
+  },
+  { ...byId("audit"), kicker: "03 — Evidence" },
+  { ...byId("redteam"), kicker: "04 — Proof" },
+];
 
 export type Project = {
   slug: string;
@@ -270,6 +287,16 @@ export const skills: { group: string; items: string[] }[] = [
   },
 ];
 
+// Core tier, shown large. Everything else in `skills` appears under "Also worked with".
+export const coreSkills: { name: string; note: string; covers: string[] }[] = [
+  { name: "Microsoft Fabric", note: "Direct Lake, Data Factory, Eventstream, Eventhouse", covers: ["Microsoft Fabric"] },
+  { name: "Azure", note: "Data Factory, IoT Hub, DevOps CI/CD", covers: ["Microsoft Azure"] },
+  { name: "Power BI / DAX", note: "Semantic models, RLS / CLS, incremental refresh", covers: ["Power BI", "DAX", "Semantic modelling", "Incremental refresh", "RLS", "CLS"] },
+  { name: "SQL", note: "Star schemas, SCD Type 1 & 2, data warehouse design", covers: ["SQL", "Star schema modelling", "SCD Type 1 & 2", "Data warehouse design"] },
+  { name: "Python / PySpark", note: "ELT pipelines, Spark SQL, automation", covers: ["Python", "PySpark", "Spark SQL"] },
+  { name: "Medallion / ELT", note: "Metadata-driven pipelines, bronze → silver → gold", covers: ["Medallion architecture", "ELT / ETL pipelines", "Metadata-driven frameworks"] },
+];
+
 export const marquee = [
   "Microsoft Fabric",
   "Azure",
@@ -287,29 +314,37 @@ export const marquee = [
 
 export const experience = [
   {
-    period: "Dec 2025 — Present",
+    period: "Dec 2025 – Present",
     role: "Data Engineer / BI Developer",
     company: "Innolytix",
+    // Each bullet: action → what → result. Result numbers are TODOs until real figures are supplied.
     points: [
-      "Architected enterprise-scale analytics platforms on Microsoft Fabric and Azure, implementing Medallion architecture to integrate ERP, CRM and operational systems.",
-      "Developed metadata-driven ELT pipelines and dimensional / star-schema models for high-performance analytical workloads.",
-      "Implemented partitioning and optimization strategies to improve processing efficiency on high-volume datasets.",
-      "Built enterprise Power BI semantic models with complex DAX, time intelligence, variance analysis and rolling KPIs; configured incremental refresh, RLS and governed semantic layers.",
-      "Established Azure DevOps-driven CI/CD for analytics and BI solutions.",
+      // TODO: real figure — how many source systems, and data volume (rows or GB per month)?
+      "Architected Medallion analytics platforms on Microsoft Fabric and Azure, integrating ERP, CRM and operational systems into one governed source for reporting.",
+      // TODO: real figure — how many pipelines / sources run on the framework?
+      "Built metadata-driven ELT pipelines and star-schema models, so new sources are onboarded through configuration rather than new code.",
+      // TODO: real figure — refresh or processing time before → after?
+      "Applied partitioning and query optimization to high-volume datasets to shorten processing and refresh times.",
+      // TODO: real figure — number of reports / dashboards and users?
+      "Delivered Power BI semantic models with complex DAX (time intelligence, variance, rolling KPIs), incremental refresh and RLS for executive reporting.",
+      // TODO: real figure — release frequency or deployment time saved?
+      "Set up Azure DevOps CI/CD for analytics and BI, standardising how analytics and BI changes are deployed.",
     ],
   },
   {
-    period: "Sept 2025 — Nov 2025",
+    period: "Sep 2025 – Nov 2025",
     role: "Data Engineering Intern",
     company: "Innolytix",
     points: [
-      "Built and tested ELT pipelines and data validation workflows with the Data Engineering team.",
-      "Helped develop Power BI reports and dashboards for internal stakeholders.",
-      "Hands-on with Microsoft Fabric and Azure data engineering tools — leading to a full-time offer.",
+      // TODO: real figure — how many pipelines / validation checks?
+      "Built and tested ELT pipelines and data-validation workflows with the Data Engineering team to check data quality before it reached reports.",
+      // TODO: real figure — how many reports / stakeholders?
+      "Developed Power BI reports and dashboards for internal stakeholders.",
+      "Worked hands-on with Microsoft Fabric and Azure data tools, which led to a full-time offer after three months.",
     ],
   },
   {
-    period: "2021 — 2025",
+    period: "2021 – 2025",
     role: "BSCS, Computer Science",
     company: "Dawood University of Engineering & Technology",
     points: [
@@ -339,7 +374,7 @@ export const services = [
   },
   {
     title: "AI & RAG document solutions",
-    body: "Document processing and natural-language search over your files — grounded, cited and built with audit and compliance in mind.",
+    body: "Document processing and natural-language search over your files, with every answer cited back to its source.",
     points: ["OCR & classification", "RAG search", "Grounded, cited answers", "Audit-ready design"],
   },
 ];

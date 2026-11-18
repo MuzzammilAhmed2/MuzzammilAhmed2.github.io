@@ -4,6 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { banksphere, projects } from "@/data/content";
 import { banksphereMedia } from "@/lib/media";
+import GuidedTour from "@/components/ui/GuidedTour";
 import ProjectVisual from "@/components/ui/ProjectVisual";
 import FeatureArt from "@/components/ui/FeatureArt";
 
@@ -80,7 +81,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
       <Shell
         kicker="Featured · Banking · KYC & compliance"
         title={banksphere.name}
-        lead={`${banksphere.tagline} ID-card OCR, card checks, watchlist screening and a risk score decide approve / officer review / resubmit — with a human officer in charge and every action on a tamper-evident trail.`}
+        lead={`${banksphere.tagline} ID-card OCR, card checks, watchlist screening and a risk score decide approve / officer review / resubmit — with a human officer making every final call.`}
         stack={banksphere.stack}
         next={{ href: `/work/${first.slug}`, name: first.name }}
       >
@@ -89,8 +90,8 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
           {banksphere.honesty}
         </p>
 
-        <div className="relative mb-20 aspect-video overflow-hidden rounded-3xl border border-line bg-surface">
-          {media[banksphere.video] ? (
+        {media[banksphere.video] && (
+          <div className="relative mb-20 aspect-video overflow-hidden rounded-3xl border border-line bg-surface">
             <video
               src={`/projects/banksphere/${banksphere.video}`}
               controls
@@ -99,17 +100,11 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
               className="h-full w-full object-cover"
               aria-label="BankSphere AI screen recording"
             />
-          ) : (
-            <div className="absolute inset-0 grid place-items-center p-8 text-center">
-              <div>
-                <p className="font-display text-3xl font-medium md:text-4xl">Screen recording coming soon</p>
-                <p className="mt-3 text-muted">Or see it live — I&apos;m happy to do a walkthrough.</p>
-                <Link href="/#contact" className="mt-6 inline-flex rounded-full bg-accent px-6 py-3 font-medium text-accent-ink">
-                  Request a walkthrough
-                </Link>
-              </div>
-            </div>
-          )}
+          </div>
+        )}
+
+        <div className="mb-20">
+          <GuidedTour />
         </div>
 
         <div className="grid gap-x-10 gap-y-16 md:grid-cols-2">

@@ -4,14 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger, MOTION_OK } from "@/lib/gsap";
-import { banksphere } from "@/data/content";
+import { banksphere, homeFeatures } from "@/data/content";
 import FeatureArt from "@/components/ui/FeatureArt";
 import SectionLabel from "@/components/ui/SectionLabel";
 import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
-import GuidedTour from "@/components/ui/GuidedTour";
 
-const features = banksphere.features;
+const features = homeFeatures;
 
 function Visual({ i, media }: { i: number; media: Record<string, boolean> }) {
   const f = features[i];
@@ -85,8 +84,8 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
           </div>
           <div className="space-y-5">
             <p className="text-pretty text-lg leading-relaxed text-muted md:text-xl">
-              <span className="text-text">{banksphere.tagline}</span> An AI system that onboards customers, screens for financial crime and
-              explains every decision — with a human officer always in charge and every action on an evidence trail.
+              <span className="text-text">{banksphere.tagline}</span> It onboards customers, screens for financial crime and explains each
+              decision to the officer who makes the final call.
             </p>
             <p className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
@@ -100,7 +99,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
       <div ref={pin} className="relative">
         <div className={`mx-auto grid max-w-[1440px] gap-10 px-4 py-14 sm:px-6 md:px-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 ${pinned ? "lg:min-h-[100svh] lg:items-center lg:py-0" : ""}`}>
           {/* Feature list */}
-          <ol className={`relative ${pinned ? "space-y-1 pl-6" : "grid gap-4 sm:grid-cols-2 lg:col-span-2 xl:grid-cols-4"}`}>
+          <ol className={`relative ${pinned ? "space-y-1 pl-6" : "-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:col-span-2 xl:grid-cols-4"}`}>
             {pinned && (
               <span aria-hidden className="absolute left-0 top-0 h-full w-px bg-line">
                 <span data-bs-progress className="block h-full w-full origin-top scale-y-0 bg-accent" />
@@ -115,7 +114,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
                   className={`rounded-2xl border transition-[opacity,transform,border-color] duration-500 ${
                     pinned
                       ? `${on ? "translate-x-2 border-line bg-surface/60 opacity-100" : "translate-x-0 border-transparent opacity-35"} px-5 py-2.5`
-                      : "overflow-hidden border-line bg-surface"
+                      : "w-[82%] shrink-0 snap-start overflow-hidden border-line bg-surface sm:w-auto"
                   }`}
                 >
                   {!pinned && (
@@ -178,7 +177,35 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
         </div>
       </div>
 
-      <GuidedTour />
+      {/* See-all link + guided-tour card (the full tour lives on the case study) */}
+      <div className="mx-auto grid max-w-[1440px] gap-4 px-4 pb-14 sm:px-6 md:grid-cols-[1fr_auto] md:items-center md:px-10">
+        <Link
+          href={`/work/${banksphere.slug}#tour`}
+          data-cursor="view"
+          data-cursor-label="Watch"
+          className="group flex items-center gap-5 rounded-2xl border border-line bg-surface p-4 transition-colors hover:border-accent/60 md:p-5"
+        >
+          <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-surface-2 md:h-20 md:w-20">
+            <Image src="/projects/banksphere/tour/presenter.jpg" alt="" fill sizes="80px" className="object-cover" />
+            <span className="absolute inset-0 grid place-items-center bg-black/25">
+              <span className="grid h-8 w-8 place-items-center rounded-full bg-accent text-accent-ink transition-transform group-hover:scale-110">
+                <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden><path d="M7 4v16l13-8z" fill="currentColor" /></svg>
+              </span>
+            </span>
+          </span>
+          <span>
+            <span className="block font-display text-xl font-medium tracking-tight md:text-2xl">Watch the guided tour</span>
+            <span className="mt-1 block text-sm text-muted">10 short lessons · English &amp; اردو · AI presenter</span>
+          </span>
+          <span aria-hidden className="ml-auto text-accent transition-transform group-hover:translate-x-1">→</span>
+        </Link>
+        <Link
+          href={`/work/${banksphere.slug}`}
+          className="inline-flex items-center gap-2 justify-self-start rounded-full border border-line px-5 py-3 text-text transition-colors hover:border-text md:justify-self-end"
+        >
+          See all 8 features <span aria-hidden>→</span>
+        </Link>
+      </div>
 
       {/* Stack + video + CTA */}
       <div className="mx-auto max-w-[1440px] px-4 pb-24 sm:px-6 md:px-10 md:pb-32">

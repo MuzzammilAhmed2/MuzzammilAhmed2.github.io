@@ -84,8 +84,10 @@ export default function Projects() {
           </p>
         </div>
 
+        <p className="-mb-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted md:hidden" aria-hidden>Swipe →</p>
+        <div className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:-mx-6 sm:scroll-px-6 sm:px-6 md:contents">
         {projects.map((p) => (
-          <article key={p.slug} data-card className="group relative shrink-0 md:motion-safe:w-[min(46vw,640px)]">
+          <article key={p.slug} data-card className="group relative w-[85%] shrink-0 snap-start sm:w-[70%] md:w-auto md:motion-safe:w-[min(46vw,640px)]">
             <Link
               href={`/work/${p.slug}`}
               data-cursor="view"
@@ -116,8 +118,8 @@ export default function Projects() {
         ))}
 
         {/* Coming soon */}
-        <article data-card className="relative shrink-0 md:motion-safe:w-[min(32vw,440px)]">
-          <div className="flex aspect-[16/10] flex-col items-start justify-between rounded-3xl border border-dashed border-line p-8 md:motion-safe:aspect-auto md:motion-safe:h-[min(70vh,560px)]">
+        <article data-card className="relative w-[85%] shrink-0 snap-start sm:w-[70%] md:w-auto md:motion-safe:w-[min(32vw,440px)]">
+          <div className="flex h-full min-h-[260px] flex-col md:aspect-[16/10] md:h-auto md:min-h-0 items-start justify-between rounded-3xl border border-dashed border-line p-8 md:motion-safe:aspect-auto md:motion-safe:h-[min(70vh,560px)]">
             <span className="rounded-full border border-line px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">07 · In progress</span>
             <div>
               <p className="font-display text-4xl font-medium tracking-tight md:text-5xl">Coming soon</p>
@@ -128,6 +130,7 @@ export default function Projects() {
             </div>
           </div>
         </article>
+        </div>
         <div className="hidden w-[6vw] shrink-0 md:motion-safe:block" aria-hidden />
       </div>
     </section>

@@ -50,7 +50,7 @@ export default function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden border-t border-line">
       <div aria-hidden className="pointer-events-none absolute -bottom-1/2 left-1/2 h-[80vmax] w-[80vmax] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(46,230,197,0.12),transparent_60%)]" />
-      <div className="relative mx-auto max-w-[1440px] px-4 py-28 sm:px-6 md:px-10 md:py-40">
+      <div className="relative mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
         <SectionLabel index="08">Contact</SectionLabel>
         <RevealText
           as="h2"

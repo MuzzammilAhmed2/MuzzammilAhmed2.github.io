@@ -36,7 +36,7 @@ export default function Certifications() {
   const other = certifications.filter((c) => !c.featured);
 
   return (
-    <section ref={root} id="certifications" aria-labelledby="cert-title" className="mx-auto max-w-[1440px] px-4 py-28 sm:px-6 md:px-10 md:py-40">
+    <section ref={root} id="certifications" aria-labelledby="cert-title" className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
       <SectionLabel index="06">Certifications</SectionLabel>
       <h2 id="cert-title" className="mb-14 max-w-3xl font-display text-[clamp(2.2rem,4.8vw,4.5rem)] font-medium leading-[1] tracking-[-0.03em] text-balance">
         Certified by Microsoft on the platforms I build with.

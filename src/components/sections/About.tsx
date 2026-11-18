@@ -46,14 +46,14 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" ref={root} aria-labelledby="about-title" className="mx-auto max-w-[1440px] px-4 py-28 sm:px-6 md:px-10 md:py-40">
+    <section id="about" ref={root} aria-labelledby="about-title" className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
       <SectionLabel index="01">About</SectionLabel>
       <div className="grid gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
         <RevealText
           as="h2"
           className="font-display text-[clamp(2rem,4.6vw,4.25rem)] font-medium leading-[1.02] tracking-[-0.03em] text-balance"
         >
-          Data that leadership trusts. AI that auditors can follow.
+          {about.heading}
         </RevealText>
         <span id="about-title" className="sr-only">About Muzzammil</span>
         <div data-story className="space-y-6 text-lg leading-relaxed text-muted md:text-xl">
@@ -71,7 +71,7 @@ export default function About() {
             className={`flex flex-col-reverse gap-3 border-b border-line py-8 pr-4 lg:border-b-0 ${i % 2 === 0 ? "" : "pl-4 border-l lg:pl-6"} ${i >= 2 ? "lg:border-l lg:pl-6" : ""}`}
           >
             <dt className="max-w-[22ch] text-sm leading-snug text-muted">{s.label}</dt>
-            <dd className="font-display text-5xl font-medium tracking-tight sm:text-6xl md:text-7xl">
+            <dd className="font-display text-[2.5rem] font-medium tracking-tight min-[360px]:text-5xl sm:text-6xl md:text-7xl">
               <span data-count={s.value}>{s.value.toLocaleString("en-US")}</span>
               <span className="text-accent">{s.suffix}</span>
             </dd>

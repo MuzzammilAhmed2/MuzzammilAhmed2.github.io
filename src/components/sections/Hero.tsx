@@ -7,6 +7,7 @@ import { useLoaded } from "@/lib/loader-store";
 import { site, marquee } from "@/data/content";
 import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
+import ContactIcons from "@/components/ui/ContactIcons";
 
 export default function Hero() {
   const loaded = useLoaded();
@@ -79,7 +80,8 @@ export default function Hero() {
               DP-700 &amp; PL-300 certified.
             </p>
           </div>
-          <div data-hero-fade className="flex flex-wrap items-center gap-3">
+          <div data-hero-fade className="flex flex-col gap-5 md:items-end">
+          <div className="flex flex-wrap items-center gap-3">
             <Magnetic>
               <Link
                 href="/#contact"
@@ -97,6 +99,17 @@ export default function Hero() {
                 See the work
               </Link>
             </Magnetic>
+            <Magnetic>
+              <a
+                href={site.cv}
+                download
+                className="inline-flex items-center gap-2 rounded-full border border-line px-7 py-4 text-base text-text transition-colors hover:border-text"
+              >
+                Download CV <span aria-hidden>↓</span>
+              </a>
+            </Magnetic>
+          </div>
+          <ContactIcons />
           </div>
         </div>
       </div>
