@@ -80,7 +80,7 @@ export default function Cursor() {
         ref={ring}
         className="fixed left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--text)_35%,transparent)] will-change-transform"
       >
-        <span ref={label} className="font-mono text-[11px] font-semibold uppercase tracking-widest text-accent-ink opacity-0" />
+        <span ref={label} className="font-mono text-[13px] font-semibold uppercase tracking-widest text-accent-ink opacity-0" />
       </div>
       <div ref={dot} className="fixed left-0 top-0 h-1.5 w-1.5 rounded-full bg-accent will-change-transform" />
     </div>

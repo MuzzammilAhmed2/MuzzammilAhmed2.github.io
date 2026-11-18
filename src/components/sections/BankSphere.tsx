@@ -67,12 +67,12 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
   }, [pinned]);
 
   return (
-    <section ref={root} id="work" aria-labelledby="bs-title" className="relative">
+    <section ref={root} id="work" aria-labelledby="bs-title" className="band-bs relative border-b border-line">
       <div className="mx-auto max-w-[1440px] px-4 pt-20 sm:px-6 md:px-10 md:pt-28">
         <SectionLabel index="02">Featured project</SectionLabel>
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
           <div>
-            <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-accent">Banking · KYC · Compliance · Azure</p>
+            <p className="mb-4 font-mono text-[13px] uppercase tracking-[0.2em] text-accent">Banking · KYC · Compliance · Azure</p>
             <RevealText
               as="h2"
               by="chars"
@@ -87,7 +87,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
               <span className="text-text">{banksphere.tagline}</span> It onboards customers, screens for financial crime and explains each
               decision to the officer who makes the final call.
             </p>
-            <p className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+            <p className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
               {banksphere.honesty}
             </p>
@@ -97,7 +97,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
 
       {/* Pinned storytelling (desktop) / stacked cards (mobile + reduced motion) */}
       <div ref={pin} className="relative">
-        <div className={`mx-auto grid max-w-[1440px] gap-10 px-4 py-14 sm:px-6 md:px-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 ${pinned ? "lg:min-h-[100svh] lg:items-center lg:py-0" : ""}`}>
+        <div className={`mx-auto grid max-w-[1440px] gap-10 px-4 py-14 sm:px-6 md:px-10 lg:grid-cols-[minmax(0,0.62fr)_minmax(0,1.38fr)] lg:gap-14 ${pinned ? "lg:min-h-[100svh] lg:items-center lg:py-0" : ""}`}>
           {/* Feature list */}
           <ol className={`relative ${pinned ? "space-y-1 pl-6" : "-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:col-span-2 xl:grid-cols-4"}`}>
             {pinned && (
@@ -118,14 +118,21 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
                   }`}
                 >
                   {!pinned && (
-                    <div className="relative aspect-[4/3] border-b border-line bg-bg">
-                      <Visual i={i} media={media} />
+                    <div className="border-b border-line bg-bg">
+                      <div className="flex items-center gap-1.5 border-b border-line px-3 py-2" aria-hidden>
+                        <span className="h-2 w-2 rounded-full bg-[#ff6b6b]/70" />
+                        <span className="h-2 w-2 rounded-full bg-[#ffd166]/70" />
+                        <span className="h-2 w-2 rounded-full bg-accent/70" />
+                      </div>
+                      <div className="relative aspect-[16/10]">
+                        <Visual i={i} media={media} />
+                      </div>
                     </div>
                   )}
                   <div className={pinned ? "" : "p-5"}>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">{f.kicker}</p>
+                    <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-accent">{f.kicker}</p>
                     <h3 className={`mt-1 font-display font-medium tracking-tight ${pinned ? "text-lg xl:text-xl" : "text-xl md:text-2xl"}`}>{f.title}</h3>
-                    {!pinned && <p className="pt-2 text-[15px] leading-relaxed text-muted">{f.body}</p>}
+                    {!pinned && <p className="pt-2 text-base leading-[1.6] text-muted">{f.body}</p>}
                   </div>
                 </li>
               );
@@ -135,13 +142,13 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
           {/* Visual stage (desktop pinned only) */}
           {pinned && (
             <div data-bs-frame>
-            <div className="relative aspect-[16/11] w-full overflow-hidden rounded-3xl border border-line bg-surface shadow-[var(--stage-shadow)]">
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-3xl border border-white/15 bg-surface shadow-[var(--stage-shadow)]">
               <div className="flex items-center gap-2 border-b border-line px-5 py-3">
-                <span className="h-2.5 w-2.5 rounded-full bg-line" />
-                <span className="h-2.5 w-2.5 rounded-full bg-line" />
-                <span className="h-2.5 w-2.5 rounded-full bg-line" />
-                <span className="ml-3 font-mono text-[11px] text-muted">banksphere / {features[active].id}</span>
-                <span className="ml-auto font-mono text-[11px] text-muted tabular-nums">
+                <span className="h-2.5 w-2.5 rounded-full bg-[#ff6b6b]/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-[#ffd166]/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-accent/70" />
+                <span className="ml-3 font-mono text-[13px] text-muted">banksphere / {features[active].id}</span>
+                <span className="ml-auto font-mono text-[13px] text-muted tabular-nums">
                   {String(active + 1).padStart(2, "0")} / {String(features.length).padStart(2, "0")}
                 </span>
               </div>
@@ -195,7 +202,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
           </span>
           <span>
             <span className="block font-display text-xl font-medium tracking-tight md:text-2xl">Watch the guided tour</span>
-            <span className="mt-1 block text-sm text-muted">10 short lessons · English &amp; اردو · AI presenter</span>
+            <span className="mt-1 block text-base text-muted">10 short lessons · English &amp; اردو · AI presenter</span>
           </span>
           <span aria-hidden className="ml-auto text-accent transition-transform group-hover:translate-x-1">→</span>
         </Link>
@@ -212,7 +219,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
         <div className="grid gap-10 border-t border-line pt-12 lg:grid-cols-[1fr_auto] lg:items-center">
           <ul className="flex flex-wrap gap-2" aria-label="BankSphere tech stack">
             {banksphere.stack.map((s) => (
-              <li key={s} className="rounded-full border border-line px-3 py-1.5 font-mono text-xs text-muted">{s}</li>
+              <li key={s} className="rounded-full border border-line px-3 py-1.5 font-mono text-[13px] text-muted">{s}</li>
             ))}
           </ul>
           <div className="flex flex-wrap gap-3">

@@ -49,52 +49,65 @@ export default function Contact() {
 
   return (
     <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden border-t border-line">
-      <div aria-hidden className="pointer-events-none absolute -bottom-1/2 left-1/2 h-[80vmax] w-[80vmax] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgb(var(--accent-rgb)/0.12),transparent_60%)]" />
-      <div className="relative mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
-        <SectionLabel index="08">Contact</SectionLabel>
-        <RevealText
-          as="h2"
-          by="chars"
-          className="font-display text-[clamp(3rem,11vw,10rem)] font-medium leading-[0.88] tracking-[-0.045em]"
-        >
-          Let&apos;s talk.
-        </RevealText>
-        <span id="contact-title" className="sr-only">Contact Muzzammil</span>
-
-        <div className="mt-16 grid gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-24">
-          <div className="space-y-10">
-            <p className="max-w-md text-pretty text-xl leading-relaxed text-muted">
-              Hiring for a data or BI role, or need a data platform, Power BI dashboards or an AI document solution? Send a message and I&apos;ll get back to you.
-            </p>
-            <div className="space-y-6">
-              <div>
-                <p className="mb-2 font-mono text-xs uppercase tracking-[0.18em] text-muted">Email</p>
-                <a href={`mailto:${site.email}`} className="break-all font-display text-2xl text-text underline decoration-line underline-offset-8 transition-colors hover:text-accent hover:decoration-accent md:text-3xl">
-                  {site.email}
+      <div aria-hidden className="pointer-events-none absolute -bottom-1/2 left-1/2 h-[80vmax] w-[80vmax] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgb(var(--accent-rgb)/0.18),rgb(var(--accent-2-rgb)/0.08)_40%,transparent_62%)]" />
+      <div className="relative mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-32">
+        <div className="flex flex-col items-center text-center">
+          <SectionLabel index="08">Contact</SectionLabel>
+          <RevealText
+            as="h2"
+            accent="something"
+            className="font-display text-[clamp(2.8rem,8.5vw,8rem)] font-medium leading-[0.92] tracking-[-0.045em] text-balance"
+          >
+            Let&apos;s build something.
+          </RevealText>
+          <span id="contact-title" className="sr-only">Contact Muzzammil</span>
+          <p className="mt-6 max-w-2xl text-pretty text-base leading-[1.6] text-muted md:text-xl">
+            Hiring for a data or BI role, or need a data platform, Power BI dashboards or an AI document solution? Send a message and I&apos;ll get back to you.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Magnetic>
+              <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 font-medium text-accent-ink">
+                Email me <span aria-hidden>→</span>
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/60 px-6 py-3.5 transition-colors hover:border-text">
+                LinkedIn <span aria-hidden>↗</span>
+              </a>
+            </Magnetic>
+            {site.cv && (
+              <Magnetic>
+                <a href={site.cv} download className="inline-flex items-center gap-2 rounded-full border border-line bg-surface/60 px-6 py-3.5 transition-colors hover:border-text">
+                  Download CV <span aria-hidden>↓</span>
                 </a>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <Magnetic>
-                  <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 transition-colors hover:border-text">
-                    LinkedIn <span aria-hidden>↗</span>
-                  </a>
-                </Magnetic>
-                <Magnetic>
-                  <a href={site.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-3 transition-colors hover:border-text">
-                    GitHub <span aria-hidden>↗</span>
-                  </a>
-                </Magnetic>
-              </div>
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Based in {site.location}</p>
+              </Magnetic>
+            )}
+          </div>
+        </div>
+
+        <div className="grad-border mx-auto mt-14 grid max-w-5xl gap-12 rounded-[2rem] p-6 sm:p-8 md:mt-20 md:p-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div className="space-y-6">
+            <div>
+              <p className="mb-2 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">Email</p>
+              <a href={`mailto:${site.email}`} className="font-display text-lg text-text underline decoration-line underline-offset-8 transition-colors [overflow-wrap:anywhere] hover:text-accent hover:decoration-accent md:text-xl">
+                {site.email}
+              </a>
             </div>
+            <div>
+              <p className="mb-2 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">Elsewhere</p>
+              <a href={site.github} target="_blank" rel="noopener noreferrer" className="text-lg text-text underline decoration-line underline-offset-8 hover:text-accent">
+                GitHub <span aria-hidden>↗</span>
+              </a>
+            </div>
+            <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-muted">Based in {site.location}</p>
           </div>
 
           <form onSubmit={onSubmit} className="space-y-8" noValidate={false}>
             <fieldset>
-              <legend className="mb-4 font-mono text-xs uppercase tracking-[0.18em] text-muted">I&apos;m reaching out about</legend>
+              <legend className="mb-4 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">I&apos;m reaching out about</legend>
               <div className="flex flex-wrap gap-2">
                 {["Freelance project", "Full-time role", "Something else"].map((k) => (
-                  <label key={k} className={`cursor-pointer rounded-full border px-4 py-2 text-sm transition-colors ${kind === k ? "border-accent bg-accent text-accent-ink" : "border-line text-text hover:border-text"}`}>
+                  <label key={k} className={`cursor-pointer rounded-full border px-4 py-2 text-base transition-colors ${kind === k ? "border-accent bg-accent text-accent-ink" : "border-line text-text hover:border-text"}`}>
                     <input type="radio" name="topic" value={k} checked={kind === k} onChange={() => setKind(k)} className="sr-only" />
                     {k}
                   </label>
@@ -126,7 +139,7 @@ export default function Contact() {
                   {status === "sending" ? "Sending…" : "Send message"} <span aria-hidden>→</span>
                 </button>
               </Magnetic>
-              <p role="status" aria-live="polite" className="text-sm">
+              <p role="status" aria-live="polite" className="text-base">
                 {status === "sent" && <span className="text-accent">Thanks — your message is in. I&apos;ll get back to you soon.</span>}
                 {status === "error" && (
                   <span className="text-[color:var(--danger)]">

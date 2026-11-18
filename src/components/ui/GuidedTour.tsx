@@ -49,13 +49,13 @@ export default function GuidedTour() {
       <div>
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-accent">Guided tour</p>
+            <p className="mb-3 font-mono text-[13px] uppercase tracking-[0.2em] text-accent">Guided tour</p>
             <h3 className="font-display text-3xl font-medium tracking-[-0.03em] md:text-4xl">Walk through BankSphere in 10 short lessons</h3>
             <p className="mt-3 max-w-2xl text-muted">
               Narrated by an AI presenter from the project&apos;s own reviewed tour script, in English and Urdu. All data in the product is synthetic.
             </p>
           </div>
-          <div role="group" aria-label="Narration language" className="inline-flex rounded-full border border-line p-1 font-mono text-xs">
+          <div role="group" aria-label="Narration language" className="inline-flex rounded-full border border-line p-1 font-mono text-[13px]">
             {(["en", "ur"] as const).map((l) => (
               <button
                 key={l}
@@ -83,9 +83,9 @@ export default function GuidedTour() {
                     i === lesson ? "border-accent/60 bg-surface" : "border-transparent hover:border-line"
                   }`}
                 >
-                  <span className={`font-mono text-xs ${i === lesson ? "text-accent" : "text-muted"}`}>{String(i + 1).padStart(2, "0")}</span>
+                  <span className={`font-mono text-[13px] ${i === lesson ? "text-accent" : "text-muted"}`}>{String(i + 1).padStart(2, "0")}</span>
                   <span className={i === lesson ? "text-text" : "text-muted group-hover:text-text"}>{l.title.en}</span>
-                  <span className="ml-auto whitespace-nowrap font-mono text-[11px] text-muted">{l.steps.length} clips</span>
+                  <span className="ml-auto whitespace-nowrap font-mono text-[13px] text-muted">{l.steps.length} clips</span>
                 </button>
               </li>
             ))}
@@ -120,13 +120,13 @@ export default function GuidedTour() {
                     </span>
                   )}
                 </button>
-                <span className="absolute left-2 top-2 rounded-full bg-black/60 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-white">
+                <span className="absolute left-2 top-2 rounded-full bg-black/60 px-2 py-1 font-mono text-[13px] uppercase tracking-[0.12em] text-white">
                   AI presenter
                 </span>
               </div>
 
               <div className="flex min-h-full flex-col">
-                <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted">
+                <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-muted">
                   Lesson {lesson + 1} · part {step + 1} of {L.steps.length}
                 </p>
                 <h4 className="mt-2 font-display text-2xl font-medium tracking-[-0.02em]" lang={lang} dir={lang === "ur" ? "rtl" : "ltr"}>
@@ -158,7 +158,7 @@ export default function GuidedTour() {
                   >
                     Next →
                   </button>
-                  <span className="ml-auto font-mono text-xs text-muted">
+                  <span className="ml-auto font-mono text-[13px] text-muted">
                     {position} / {total}
                   </span>
                 </div>

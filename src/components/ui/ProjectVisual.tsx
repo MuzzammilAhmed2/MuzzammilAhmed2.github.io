@@ -8,9 +8,9 @@ export default function ProjectVisual({ p }: { p: Project }) {
     <div className="absolute inset-0 overflow-hidden bg-surface-2">
       <div
         className="absolute inset-0"
-        style={{ background: `radial-gradient(120% 90% at 85% 10%, hsl(${p.hue} 80% 50% / 0.28), transparent 55%), radial-gradient(90% 70% at 0% 100%, hsl(${(p.hue + 40) % 360} 80% 55% / 0.16), transparent 60%)` }}
+        style={{ background: `radial-gradient(120% 90% at 85% 10%, hsl(${p.hue} 85% 52% / 0.56), transparent 58%), radial-gradient(90% 70% at 0% 100%, hsl(${(p.hue + 40) % 360} 85% 58% / 0.34), transparent 62%)` }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-[size:32px_32px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgb(255_255_255/0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgb(255_255_255/0.04)_1px,transparent_1px)] bg-[size:32px_32px]" />
       <svg viewBox="0 0 500 300" className="absolute inset-0 h-full w-full" aria-hidden>
         {p.nodes.map((label, i) => {
           const x = 80 + (i * 340) / (n - 1);

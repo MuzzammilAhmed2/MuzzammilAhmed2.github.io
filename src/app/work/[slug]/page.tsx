@@ -39,28 +39,28 @@ function Shell({
 }) {
   return (
     <article className="mx-auto max-w-[1440px] px-4 pb-24 pt-36 sm:px-6 md:px-10 md:pt-44">
-      <Link href="/#work" className="mb-12 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-muted hover:text-text">
+      <Link href="/#work" className="mb-12 inline-flex items-center gap-2 font-mono text-[13px] uppercase tracking-[0.18em] text-muted hover:text-text">
         <span aria-hidden>←</span> All work
       </Link>
-      <p className="mb-5 font-mono text-xs uppercase tracking-[0.2em] text-accent">{kicker}</p>
+      <p className="mb-5 font-mono text-[13px] uppercase tracking-[0.2em] text-accent">{kicker}</p>
       <h1 className="max-w-5xl font-display text-[clamp(2.6rem,7vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.04em] text-balance">{title}</h1>
       <p className="mt-8 max-w-3xl text-pretty text-xl leading-relaxed text-muted md:text-2xl">{lead}</p>
       <ul className="mt-10 flex flex-wrap gap-2" aria-label="Tech stack">
         {stack.map((s) => (
-          <li key={s} className="rounded-full border border-line px-3 py-1.5 font-mono text-xs text-muted">{s}</li>
+          <li key={s} className="rounded-full border border-line px-3 py-1.5 font-mono text-[13px] text-muted">{s}</li>
         ))}
       </ul>
       <div className="mt-16 md:mt-24">{children}</div>
 
       <div className="mt-24 grid gap-6 border-t border-line pt-12 md:grid-cols-2">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Want something like this?</p>
+          <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-muted">Want something like this?</p>
           <Link href="/#contact" className="mt-3 inline-flex items-center gap-3 font-display text-3xl font-medium text-text hover:text-accent md:text-4xl">
             Let&apos;s talk <span aria-hidden>→</span>
           </Link>
         </div>
         <div className="md:text-right">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">Next project</p>
+          <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-muted">Next project</p>
           <Link href={next.href} data-cursor="view" data-cursor-label="Next" className="mt-3 inline-block font-display text-2xl font-medium text-text hover:text-accent md:text-3xl">
             {next.name}
           </Link>
@@ -85,7 +85,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
         stack={banksphere.stack}
         next={{ href: `/work/${first.slug}`, name: first.name }}
       >
-        <p className="mb-10 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+        <p className="mb-10 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-muted">
           <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
           {banksphere.honesty}
         </p>
@@ -119,7 +119,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
                   </div>
                 )}
               </div>
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">{f.kicker}</p>
+              <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-accent">{f.kicker}</p>
               <h2 id={`f-${f.id}`} className="mt-2 font-display text-2xl font-medium tracking-tight md:text-3xl">{f.title}</h2>
               <p className="mt-3 text-pretty text-lg leading-relaxed text-muted">{f.body}</p>
             </section>
@@ -157,7 +157,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
         </ol>
       </div>
       {p.sector !== "Final year project" && (
-        <p className="mt-16 text-sm text-muted">Client work delivered at Innolytix. Described by sector to respect client confidentiality.</p>
+        <p className="mt-16 text-base text-muted">Client work delivered at Innolytix. Described by sector to respect client confidentiality.</p>
       )}
     </Shell>
   );

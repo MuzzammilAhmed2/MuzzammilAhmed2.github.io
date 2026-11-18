@@ -36,10 +36,11 @@ export default function Certifications() {
   const other = certifications.filter((c) => !c.featured);
 
   return (
-    <section ref={root} id="certifications" aria-labelledby="cert-title" className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
+    <section ref={root} id="certifications" aria-labelledby="cert-title" className="border-y border-line bg-band">
+      <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-32">
       <SectionLabel index="06">Certifications</SectionLabel>
       <h2 id="cert-title" className="mb-14 max-w-3xl font-display text-[clamp(2.2rem,4.8vw,4.5rem)] font-medium leading-[1] tracking-[-0.03em] text-balance">
-        Certified by Microsoft on the platforms I build with.
+        Certified by <span className="grad-text">Microsoft</span> on the platforms I build with.
       </h2>
       <div className="grid gap-5 md:grid-cols-2">
         {featured.map((c) => (
@@ -55,7 +56,7 @@ export default function Certifications() {
               style={{ background: "radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgb(var(--accent-rgb) / 0.14), transparent 60%)" }}
             />
             <div className="relative flex items-start justify-between gap-6">
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">{c.issuer}</p>
+              <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-muted">{c.issuer}</p>
               <svg viewBox="0 0 24 24" className="h-7 w-7 text-accent" aria-hidden fill="none" stroke="currentColor" strokeWidth="1.5">
                 <circle cx="12" cy="9" r="6" />
                 <path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5" />
@@ -70,10 +71,11 @@ export default function Certifications() {
         {other.map((c) => (
           <li key={c.name} data-cert className="flex items-center justify-between gap-6 rounded-2xl border border-line px-6 py-5">
             <span className="text-text">{c.name}</span>
-            <span className="shrink-0 font-mono text-xs uppercase tracking-[0.16em] text-muted">{c.issuer}</span>
+            <span className="shrink-0 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">{c.issuer}</span>
           </li>
         ))}
       </ul>
+      </div>
     </section>
   );
 }

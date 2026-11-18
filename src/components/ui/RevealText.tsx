@@ -13,10 +13,12 @@ type Props = {
   play?: boolean;
   by?: "words" | "chars";
   delay?: number;
+  /** One word/phrase in `children` to paint with the teal→violet gradient */
+  accent?: string;
 };
 
 /** SplitType + GSAP line-masked reveal. Text is fully readable without JS or with reduced motion. */
-export default function RevealText({ as: Tag = "h2", children, className, mode = "scroll", play = true, by = "words", delay = 0 }: Props) {
+export default function RevealText({ as: Tag = "h2", children, className, mode = "scroll", play = true, by = "words", delay = 0, accent }: Props) {
   const ref = useRef<HTMLElement>(null);
   const split = useRef<SplitType | null>(null);
   const tween = useRef<gsap.core.Tween | null>(null);
@@ -50,6 +52,8 @@ export default function RevealText({ as: Tag = "h2", children, className, mode =
       };
       // Splitting measures layout, so do it once fonts are in and (for scroll reveals) only as the text nears the viewport.
       // The hero (manual) splits straight away, while the loader still covers it, so it never flashes.
+      // Touch screens have no loader, so the hero headline is shown as-is for a fast first paint.
+      if (mode === "manual" && window.matchMedia("(pointer: coarse)").matches) return;
       if (mode === "manual") setup();
       const fonts = document.fonts?.ready ?? Promise.resolve();
       if (mode === "scroll") fonts.then(() => {
@@ -75,9 +79,16 @@ export default function RevealText({ as: Tag = "h2", children, className, mode =
     if (mode === "manual" && play) tween.current?.play();
   }, [mode, play]);
 
+  const at = accent ? children.indexOf(accent) : -1;
   return (
     <Tag ref={ref as React.Ref<HTMLHeadingElement>} className={className}>
-      {children}
+      {at < 0 ? children : (
+        <>
+          {children.slice(0, at)}
+          <span className="grad-text">{accent}</span>
+          {children.slice(at + accent!.length)}
+        </>
+      )}
     </Tag>
   );
 }

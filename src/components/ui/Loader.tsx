@@ -20,7 +20,9 @@ export default function Loader() {
       sessionStorage.setItem("intro-seen", "1");
     } catch {}
 
-    if (reduce || seen) {
+    // Touch screens skip the intro so the headline paints straight away (CSS hides the overlay there too).
+    const touch = window.matchMedia("(pointer: coarse)").matches;
+    if (reduce || seen || touch) {
       setGone(true);
       markLoaded();
       return;
@@ -66,12 +68,12 @@ export default function Loader() {
       aria-label="Loading portfolio"
       className="fixed inset-0 z-[100] flex flex-col justify-between bg-bg p-6 md:p-10"
     >
-      <div data-loader-fade className="flex items-center justify-between font-mono text-xs uppercase tracking-[0.2em] text-muted">
+      <div data-loader-fade className="flex items-center justify-between font-mono text-[13px] uppercase tracking-[0.2em] text-muted">
         <span>Muzzammil Ahmed</span>
         <span>Portfolio © 2026</span>
       </div>
       <div data-loader-fade className="flex items-end justify-between gap-6">
-        <p className="max-w-xs font-mono text-xs uppercase leading-relaxed tracking-[0.2em] text-muted">
+        <p className="max-w-xs font-mono text-[13px] uppercase leading-relaxed tracking-[0.2em] text-muted">
           Loading pipelines<br />Validating models<br />Warming up dashboards
         </p>
         <span

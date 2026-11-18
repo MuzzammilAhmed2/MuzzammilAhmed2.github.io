@@ -2,10 +2,11 @@
 
 /* ---------- Tokens (Direction A — dark with light) ---------- */
 :root {
-  --bg: #12161f;
-  --surface: #181d28;
-  --surface-2: #1e2431;
-  --line: #2a3242;
+  --bg: #0f1420;
+  --band: #151b2b;
+  --surface: #1a2133;
+  --surface-2: #212a3f;
+  --line: rgb(255 255 255 / 0.08);
   --text: #f4f6f8;
   --muted: #c9d1d9;
   --accent: #2ee6c5;
@@ -14,20 +15,21 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --accent-rgb: 46 230 197;
   --accent-2-rgb: 125 140 255;
-  --grid-line: rgb(255 255 255 / 0.045);
+  --grid-line: rgb(255 255 255 / 0.075); /* hero only */
   --danger: #ff8a8a;
   --viz-l: 62%;
   --noise-opacity: 0.05;
-  --aurora-strength: 1.6;
+  --aurora-strength: 3.4;
   --arc-opacity: 1;
   --card-shadow: 0 0 0 1px rgb(255 255 255 / 0.02);
   --card-hover: 0 0 0 1px rgb(var(--accent-rgb) / 0.55), 0 0 40px -6px rgb(var(--accent-rgb) / 0.35), 0 30px 80px -30px rgb(var(--accent-rgb) / 0.45);
-  --stage-shadow: 0 40px 140px -30px rgb(var(--accent-rgb) / 0.4);
+  --stage-shadow: 0 50px 160px -30px rgb(var(--accent-rgb) / 0.55), 0 30px 120px -50px rgb(var(--accent-2-rgb) / 0.6);
 }
 
 
 @theme inline {
   --color-bg: var(--bg);
+  --color-band: var(--band);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
   --color-line: var(--line);
@@ -50,6 +52,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-inter), system-ui, sans-serif;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -146,6 +149,15 @@ html.has-custom-cursor textarea {
 }
 .flow-dash { animation: dash 1.2s linear infinite; }
 
+/* Page transition + mobile menu (replaces framer-motion) */
+@keyframes curtain-out { from { transform: scaleY(1); } to { transform: scaleY(0); } }
+@keyframes rise-in { from { opacity: 0; transform: translate3d(0, 40px, 0); } to { opacity: 1; transform: none; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.page-curtain { animation: curtain-out 0.8s cubic-bezier(0.76, 0, 0.24, 1) both; }
+.page-in { animation: rise-in 0.9s var(--ease-out) 0.25s both; }
+.menu-in { animation: fade-in 0.3s ease-out both; }
+.menu-item-in { animation: rise-in 0.5s var(--ease-out) both; }
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -161,6 +173,7 @@ html.has-custom-cursor textarea {
 .text-pretty { text-wrap: pretty; }
 
 html.intro-seen [data-loader] { display: none !important; }
+@media (pointer: coarse) { [data-loader] { display: none !important; } }
 
 /* Cards: resting shadow + hover glow/shadow, faded with opacity only */
 .glow-card {
@@ -187,8 +200,8 @@ html.intro-seen [data-loader] { display: none !important; }
   opacity: var(--arc-opacity);
   background:
     radial-gradient(ellipse 62% 59% at 58% 100%, transparent 93.5%, rgb(var(--accent-rgb) / 0.95) 95.5%, rgb(255 255 255 / 0.9) 96.4%, rgb(var(--accent-2-rgb) / 0.7) 97.6%, transparent 100%),
-    radial-gradient(ellipse 62% 59% at 58% 100%, transparent 88%, rgb(var(--accent-rgb) / 0.28) 96%, transparent 100%),
-    radial-gradient(ellipse 75% 70% at 58% 100%, rgb(var(--accent-rgb) / 0.14), transparent 75%);
+    radial-gradient(ellipse 62% 59% at 58% 100%, transparent 88%, rgb(var(--accent-rgb) / 0.5) 96%, transparent 100%),
+    radial-gradient(ellipse 75% 70% at 58% 100%, rgb(var(--accent-rgb) / 0.3), rgb(var(--accent-2-rgb) / 0.12) 55%, transparent 75%);
   filter: blur(1.5px);
 }
 @keyframes arc-breathe {
@@ -196,3 +209,44 @@ html.intro-seen [data-loader] { display: none !important; }
   50% { transform: translate3d(0, -1.5%, 0) scale(1.03); opacity: calc(var(--arc-opacity) * 0.85); }
 }
 .hero-arc { animation: arc-breathe 9s var(--ease-out) infinite; }
+
+/* Gradient keyword (teal → violet). Works before and after SplitType wraps the word. */
+.grad-text,
+.grad-text .word,
+.grad-text .char {
+  background-image: linear-gradient(100deg, var(--accent) 10%, var(--accent-2) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.grad-text:has(.word),
+.grad-text:has(.char) {
+  background-image: none;
+}
+
+/* Section bands */
+.band-bs {
+  background: radial-gradient(at 20% 0%, #1b2a4a, var(--bg) 60%);
+}
+
+/* Gradient-border card (Contact) */
+.grad-border {
+  position: relative;
+  background:
+    linear-gradient(var(--surface), var(--surface)) padding-box,
+    linear-gradient(120deg, var(--accent), var(--accent-2) 55%, rgb(var(--accent-rgb) / 0.4)) border-box;
+  border: 1px solid transparent;
+  box-shadow: 0 0 80px -20px rgb(var(--accent-rgb) / 0.35), 0 40px 120px -40px rgb(var(--accent-2-rgb) / 0.45);
+}
+
+/* Hero orb: rim-light ring, rotates (transform only) */
+@keyframes orb-spin {
+  to { transform: rotate(360deg); }
+}
+.orb-ring {
+  background: conic-gradient(from 0deg, transparent 0deg, rgb(var(--accent-rgb) / 0.95) 70deg, transparent 140deg, rgb(var(--accent-2-rgb) / 0.9) 230deg, transparent 300deg);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+  animation: orb-spin 24s linear infinite;
+}

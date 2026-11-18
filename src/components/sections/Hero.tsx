@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { gsap, MOTION_OK } from "@/lib/gsap";
@@ -56,10 +57,26 @@ export default function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-bg" />
       </div>
 
+      {/* Portrait (or, until public/me.jpg exists, a rim-light orb) on the right */}
+      <div aria-hidden={!site.photo} className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[44%] lg:block">
+        <div className="absolute right-[10%] top-[42%] aspect-square w-[66%] -translate-y-1/2">
+          <div className="absolute inset-[-12%] rounded-full bg-[radial-gradient(circle,rgb(var(--accent-rgb)/0.45),rgb(var(--accent-2-rgb)/0.25)_45%,transparent_70%)] blur-2xl" />
+          {site.photo ? (
+            <div className="absolute inset-0 overflow-hidden rounded-full [mask-image:linear-gradient(to_bottom,black_60%,transparent_98%)]">
+              <Image src={site.photo} alt={`Portrait of ${site.name}`} fill priority sizes="40vw" className="object-cover" />
+            </div>
+          ) : (
+            <div className="absolute inset-[14%] rounded-full bg-[radial-gradient(circle_at_35%_30%,#24365e,var(--bg)_70%)] shadow-[inset_0_0_80px_rgb(var(--accent-rgb)/0.25)]" />
+          )}
+          <div className="orb-ring absolute inset-0 rounded-full will-change-transform" />
+          <div className="orb-ring absolute inset-[7%] rounded-full opacity-60 will-change-transform [animation-direction:reverse] [animation-duration:36s]" />
+        </div>
+      </div>
+
       <div data-hero-content className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-end px-4 pb-10 pt-32 sm:px-6 md:px-10 md:pb-14">
         <div data-hero-fade className="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-line bg-surface/70 px-4 py-2 backdrop-blur">
           <span className="pulse-dot relative block h-2 w-2 rounded-full bg-accent text-accent" aria-hidden />
-          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-text">Available for freelance &amp; full-time</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.16em] text-text">Available for freelance &amp; full-time</span>
         </div>
 
         <RevealText
@@ -67,13 +84,17 @@ export default function Hero() {
           mode="manual"
           play={loaded}
           by="words"
-          className="max-w-[17ch] font-display text-[clamp(2.5rem,6.4vw,6.75rem)] font-medium leading-[0.95] tracking-[-0.035em] text-balance"
+          accent="decisions"
+          className="max-w-[14ch] font-display text-[clamp(2.5rem,6.4vw,6.75rem)] font-medium leading-[0.95] tracking-[-0.035em] text-balance"
         >
           {site.heroLine}
         </RevealText>
+        <p data-hero-fade className="mt-5 max-w-[30ch] font-display text-[clamp(1.35rem,2.4vw,2.25rem)] leading-tight tracking-[-0.02em] text-muted">
+          {site.heroSub}
+        </p>
         <span id="hero-title" className="sr-only">{site.name} — {site.role}</span>
 
-        <div className="mt-10 grid gap-8 md:mt-14 md:grid-cols-[1fr_auto] md:items-end">
+        <div className="mt-10 grid gap-8 md:mt-12 md:grid-cols-[1fr_auto] md:items-end">
           <div data-hero-fade className="max-w-xl space-y-2">
             <p className="font-display text-xl text-text md:text-2xl">{site.name}</p>
             <p className="text-pretty text-base leading-relaxed text-muted md:text-lg">

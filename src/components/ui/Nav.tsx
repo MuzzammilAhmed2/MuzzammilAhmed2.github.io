@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { nav, site } from "@/data/content";
 import ScrambleLink from "./ScrambleLink";
 import Magnetic from "./Magnetic";
@@ -47,7 +46,7 @@ export default function Nav() {
             <span className="grid h-9 w-9 place-items-center rounded-full border border-line bg-surface font-display text-sm font-semibold text-text transition-colors group-hover:border-accent">
               MA
             </span>
-            <span className="hidden font-mono text-xs uppercase tracking-[0.18em] text-muted sm:inline">
+            <span className="hidden font-mono text-[13px] uppercase tracking-[0.18em] text-muted sm:inline">
               Data · BI · AI
             </span>
           </Link>
@@ -58,7 +57,7 @@ export default function Nav() {
                 key={n.href}
                 href={n.href}
                 text={n.label}
-                className="rounded-full px-4 py-1.5 font-mono text-xs uppercase tracking-[0.16em] text-muted transition-colors hover:text-text"
+                className="rounded-full px-4 py-1.5 font-mono text-[13px] uppercase tracking-[0.16em] text-muted transition-colors hover:text-text"
               />
             ))}
           </nav>
@@ -68,7 +67,7 @@ export default function Nav() {
             <a
               href={site.cv}
               download
-              className="rounded-full border border-line px-4 py-2.5 font-mono text-xs uppercase tracking-[0.16em] text-muted transition-colors hover:border-text hover:text-text"
+              className="rounded-full border border-line px-4 py-2.5 font-mono text-[13px] uppercase tracking-[0.16em] text-muted transition-colors hover:border-text hover:text-text"
             >
               CV ↓
             </a>
@@ -100,28 +99,18 @@ export default function Nav() {
         </div>
       </header>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
+      {open && (
+          <div
             id="mobile-menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[55] flex flex-col justify-between bg-bg px-6 pb-10 pt-28 md:hidden"
+            className="menu-in fixed inset-0 z-[55] flex flex-col justify-between bg-bg px-6 pb-10 pt-28 md:hidden"
           >
             <nav aria-label="Mobile" className="flex flex-col gap-2">
               {nav.map((n, i) => (
-                <motion.div
-                  key={n.href}
-                  initial={{ y: 40, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.05 * i + 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                >
+                <div key={n.href} className="menu-item-in" style={{ animationDelay: `${0.05 * i + 0.1}s` }}>
                   <Link href={n.href} onClick={() => setOpen(false)} className="font-display text-5xl font-medium tracking-tight">
                     {n.label}
                   </Link>
-                </motion.div>
+                </div>
               ))}
             </nav>
             <div className="space-y-2 font-mono text-sm text-muted">
@@ -130,9 +119,8 @@ export default function Nav() {
               <a href={site.github} target="_blank" rel="noopener noreferrer" className="block hover:text-accent">GitHub ↗</a>
               {site.cv && <a href={site.cv} download className="block hover:text-accent">Download CV ↓</a>}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+      )}
     </>
   );
 }

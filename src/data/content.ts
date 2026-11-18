@@ -10,7 +10,10 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/muzzammil-ahmed2",
   github: "https://github.com/MuzzammilAhmed2",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://muzzammilahmed2.github.io",
-  heroLine: "I turn messy enterprise data into decisions — and build AI designed for regulated industries.",
+  heroLine: "I turn messy enterprise data into decisions.",
+  heroSub: "And build AI designed for regulated industries.",
+  // TODO: add a professional photo at public/me.jpg; the hero shows it automatically once it exists.
+  photo: process.env.NEXT_PUBLIC_HAS_PHOTO === "1" ? "/me.jpg" : null,
   // Shown only when public/Muzzammil-Ahmed-CV.pdf exists (see next.config.ts). Use a copy without the phone number.
   cv: process.env.NEXT_PUBLIC_HAS_CV === "1" ? "/Muzzammil-Ahmed-CV.pdf" : null,
   description:
