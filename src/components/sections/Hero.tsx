@@ -100,6 +100,7 @@ export default function Hero() {
                 See the work
               </Link>
             </Magnetic>
+            {site.cv && (
             <Magnetic>
               <a
                 href={site.cv}
@@ -109,6 +110,7 @@ export default function Hero() {
                 Download CV <span aria-hidden>↓</span>
               </a>
             </Magnetic>
+            )}
           </div>
           <ContactIcons />
           </div>

@@ -63,6 +63,7 @@ export default function Nav() {
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
+            {site.cv && (
             <a
               href={site.cv}
               download
@@ -70,6 +71,7 @@ export default function Nav() {
             >
               CV ↓
             </a>
+            )}
             <Magnetic>
               <Link
                 href="/#contact"
@@ -125,7 +127,7 @@ export default function Nav() {
               <a href={`mailto:${site.email}`} className="block break-all hover:text-accent">{site.email}</a>
               <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="block hover:text-accent">LinkedIn ↗</a>
               <a href={site.github} target="_blank" rel="noopener noreferrer" className="block hover:text-accent">GitHub ↗</a>
-              <a href={site.cv} download className="block hover:text-accent">Download CV ↓</a>
+              {site.cv && <a href={site.cv} download className="block hover:text-accent">Download CV ↓</a>}
             </div>
           </motion.div>
         )}

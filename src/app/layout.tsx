@@ -6,7 +6,6 @@ import SmoothScroll from "@/components/providers/SmoothScroll";
 import Loader from "@/components/ui/Loader";
 import Cursor from "@/components/ui/Cursor";
 import Nav from "@/components/ui/Nav";
-import ThemeSwitcher from "@/components/ui/ThemeSwitcher";
 import Footer from "@/components/ui/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
@@ -44,7 +43,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0d10",
+  themeColor: "#12161f",
   colorScheme: "dark",
 };
 
@@ -70,13 +69,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `try{if(sessionStorage.getItem('intro-seen')||matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-seen')}catch(e){}`,
           }}
         />
-        {process.env.NEXT_PUBLIC_THEME_SWITCHER === "1" && (
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `try{var t=new URLSearchParams(location.search).get('theme')||localStorage.getItem('theme-preview');if(t){var p=t.split('-'),d=document.documentElement;if(p[0]==='a'||p[0]==='b')d.dataset.theme=p[0];if(p[1]==='violet')d.dataset.accent='violet'}}catch(e){}`,
-            }}
-          />
-        )}
         <noscript>
           <style>{`[data-loader]{display:none!important}`}</style>
         </noscript>
@@ -87,7 +79,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Nav />
           <main id="main">{children}</main>
           <Footer />
-          {process.env.NEXT_PUBLIC_THEME_SWITCHER === "1" && <ThemeSwitcher />}
         </SmoothScroll>
       </body>
     </html>

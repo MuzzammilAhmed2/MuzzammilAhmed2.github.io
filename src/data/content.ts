@@ -11,7 +11,8 @@ export const site = {
   github: "https://github.com/MuzzammilAhmed2",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://muzzammilahmed2.github.io",
   heroLine: "I turn messy enterprise data into decisions — and build AI designed for regulated industries.",
-  cv: "/Muzzammil-Ahmed-CV.pdf", // TODO: add the PDF to /public (without phone number)
+  // Shown only when public/Muzzammil-Ahmed-CV.pdf exists (see next.config.ts). Use a copy without the phone number.
+  cv: process.env.NEXT_PUBLIC_HAS_CV === "1" ? "/Muzzammil-Ahmed-CV.pdf" : null,
   description:
     "Data Engineer, BI Developer and Data & AI Consultant at Innolytix, Karachi. Data platforms on Microsoft Fabric, Azure, AWS and Snowflake, Power BI analytics, and governed GenAI / RAG solutions. DP-700 + PL-300 certified.",
 };

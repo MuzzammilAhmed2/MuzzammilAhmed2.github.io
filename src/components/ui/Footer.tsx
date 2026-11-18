@@ -15,7 +15,7 @@ export default function Footer() {
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-text">LinkedIn ↗</a>
           <a href={site.github} target="_blank" rel="noopener noreferrer" className="hover:text-text">GitHub ↗</a>
           <a href={`mailto:${site.email}`} className="normal-case tracking-normal hover:text-text">{site.email}</a>
-          <a href={site.cv} download className="hover:text-text">CV ↓</a>
+          {site.cv && <a href={site.cv} download className="hover:text-text">CV ↓</a>}
         </nav>
       </div>
     </footer>
