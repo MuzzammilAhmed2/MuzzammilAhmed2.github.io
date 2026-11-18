@@ -112,7 +112,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
             <section key={f.id} aria-labelledby={`f-${f.id}`}>
               <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-2xl border border-line bg-surface">
                 {f.media && media[f.media] ? (
-                  <Image src={`/projects/banksphere/${f.media}`} alt={`BankSphere AI — ${f.title}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-top" />
+                  <Image src={`/projects/banksphere/${f.media}`} alt={`BankSphere AI — ${f.title}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-left-top" />
                 ) : (
                   <div className="absolute inset-0 p-6">
                     <FeatureArt art={f.art} />

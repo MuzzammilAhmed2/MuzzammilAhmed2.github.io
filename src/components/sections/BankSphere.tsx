@@ -21,7 +21,7 @@ function Visual({ i, media }: { i: number; media: Record<string, boolean> }) {
       alt={`BankSphere AI — ${f.title}`}
       fill
       sizes="(min-width: 1024px) 50vw, 100vw"
-      className="object-cover object-top"
+      className="object-cover object-left-top"
     />
   ) : (
     <div className="absolute inset-0 p-6 md:p-10">
