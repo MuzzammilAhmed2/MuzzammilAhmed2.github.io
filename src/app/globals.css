@@ -2,7 +2,7 @@
 
 /* ---------- Tokens (Direction A — dark with light) ---------- */
 :root {
-  /* Aura: cinematic black with aura-photo colour fields */
+  /* Aura: cinematic black, electric blue + cyan with a fire-orange edge */
   --bg: #050507;
   --band: #0a0a0f;
   --surface: #111117;
@@ -10,18 +10,18 @@
   --line: rgb(255 255 255 / 0.09);
   --text: #f7f7f8;
   --muted: #bdbdca;
-  --accent: #ff8ad8;
-  --accent-ink: #1a0614;
-  --accent-2: #7c9cff;
-  --accent-3: #ffb36b;
+  --accent: #5b9dff;
+  --accent-ink: #031028;
+  --accent-2: #22d3ee;
+  --accent-3: #ff9d4d;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --accent-rgb: 255 138 216;
-  --accent-2-rgb: 124 156 255;
-  --accent-3-rgb: 255 179 107;
-  --aura-pink: 255 79 216;
-  --aura-blue: 77 124 255;
-  --aura-orange: 255 140 60;
-  --aura-violet: 150 90 255;
+  --accent-rgb: 91 157 255;
+  --accent-2-rgb: 34 211 238;
+  --accent-3-rgb: 255 157 77;
+  --aura-pink: 40 110 255; /* electric blue */
+  --aura-blue: 34 200 238; /* cyan */
+  --aura-orange: 255 115 35; /* fire orange */
+  --aura-violet: 80 70 230; /* deep indigo */
   --grid-line: rgb(255 255 255 / 0.035); /* hero only */
   --danger: #ff8a8a;
   --viz-l: 68%;
@@ -30,8 +30,8 @@
   --arc-opacity: 0;
   --card-shadow: 0 0 0 1px rgb(255 255 255 / 0.02);
   --card-hover: 0 0 0 1px rgb(var(--accent-rgb) / 0.5), 0 0 50px -10px rgb(var(--aura-pink) / 0.45), 0 30px 90px -30px rgb(var(--aura-blue) / 0.45);
-  --bs-glow: #2a0f2e;
-  --orb-core: #2a0f2e;
+  --bs-glow: #0c1d3d;
+  --orb-core: #0c1d3d;
   --stage-shadow: 0 50px 160px -40px rgb(var(--aura-pink) / 0.5), 0 30px 120px -50px rgb(var(--aura-blue) / 0.55);
 }
 
