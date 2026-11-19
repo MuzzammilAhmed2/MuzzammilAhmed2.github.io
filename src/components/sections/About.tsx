@@ -29,7 +29,7 @@ export default function About() {
       });
       // Paragraph highlight: words brighten as you read
       gsap.from(el.querySelectorAll("[data-story] p"), {
-        opacity: 0.6,
+        opacity: 0.7,
         stagger: 0.3,
         ease: "none",
         scrollTrigger: { trigger: "[data-story]", start: "top 75%", end: "bottom 55%", scrub: true },

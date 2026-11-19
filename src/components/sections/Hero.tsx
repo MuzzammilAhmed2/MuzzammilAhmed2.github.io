@@ -9,7 +9,7 @@ import { site, marquee, banksphere } from "@/data/content";
 import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
 import ContactIcons from "@/components/ui/ContactIcons";
-import DataNetwork from "@/components/ui/DataNetwork";
+import Aura from "@/components/ui/Aura";
 
 export default function Hero() {
   const loaded = useLoaded();
@@ -49,10 +49,10 @@ export default function Hero() {
     <section ref={root} aria-labelledby="hero-title" className="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
       {/* Animated gradient + grain */}
       <div ref={aurora} aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <Aura />
         <div className="aurora-a absolute -left-[10%] top-[5%] h-[70vmax] w-[70vmax] rounded-full will-change-transform" style={{ background: "radial-gradient(circle at center, rgb(var(--accent-rgb) / calc(0.22 * var(--aurora-strength))), transparent 60%)" }} />
         <div className="aurora-b absolute -right-[20%] top-[20%] h-[60vmax] w-[60vmax] rounded-full will-change-transform" style={{ background: "radial-gradient(circle at center, rgb(var(--accent-3-rgb) / calc(0.14 * var(--aurora-strength))), transparent 60%)" }} />
         <div className="aurora-c absolute bottom-[-30%] left-[25%] h-[50vmax] w-[50vmax] rounded-full will-change-transform" style={{ background: "radial-gradient(circle at center, rgb(var(--accent-2-rgb) / calc(0.12 * var(--aurora-strength))), transparent 60%)" }} />
-        <DataNetwork className="absolute inset-0 h-full w-full" />
         <div className="hero-arc absolute -inset-x-[10%] -bottom-[70%] top-[35%] hidden will-change-transform md:block" />
         <div className="noise absolute inset-0 mix-blend-overlay" style={{ opacity: "var(--noise-opacity)" }} />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
@@ -106,7 +106,7 @@ export default function Hero() {
           play={loaded}
           by="words"
           accent="decisions"
-          className="max-w-[14ch] font-display text-[clamp(2.5rem,6.4vw,6.75rem)] lg:text-[clamp(3.5rem,5.2vw,5.75rem)] font-medium leading-[0.95] tracking-[-0.035em] text-balance"
+          className="aura-text max-w-[14ch] font-display text-[clamp(2.5rem,6.4vw,6.75rem)] lg:text-[clamp(3.5rem,5.2vw,5.75rem)] font-medium leading-[0.95] tracking-[-0.035em] text-balance"
         >
           {site.heroLine}
         </RevealText>

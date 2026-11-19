@@ -2,33 +2,37 @@
 
 /* ---------- Tokens (Direction A — dark with light) ---------- */
 :root {
-  /* Aurora Night: deep indigo base, violet primary, cyan + pink light */
-  --bg: #0a0b1e;
-  --band: #0f1030;
-  --surface: #16173d;
-  --surface-2: #1e1f4d;
+  /* Aura: cinematic black with aura-photo colour fields */
+  --bg: #050507;
+  --band: #0a0a0f;
+  --surface: #111117;
+  --surface-2: #18181f;
   --line: rgb(255 255 255 / 0.09);
-  --text: #f4f3ff;
-  --muted: #c4c3e6;
-  --accent: #8b7bff;
-  --accent-ink: #0b0820;
-  --accent-2: #38d9f5;
-  --accent-3: #f472b6;
+  --text: #f7f7f8;
+  --muted: #bdbdca;
+  --accent: #ff8ad8;
+  --accent-ink: #1a0614;
+  --accent-2: #7c9cff;
+  --accent-3: #ffb36b;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --accent-rgb: 139 123 255;
-  --accent-2-rgb: 56 217 245;
-  --accent-3-rgb: 244 114 182;
-  --grid-line: rgb(255 255 255 / 0.06); /* hero only */
+  --accent-rgb: 255 138 216;
+  --accent-2-rgb: 124 156 255;
+  --accent-3-rgb: 255 179 107;
+  --aura-pink: 255 79 216;
+  --aura-blue: 77 124 255;
+  --aura-orange: 255 140 60;
+  --aura-violet: 150 90 255;
+  --grid-line: rgb(255 255 255 / 0.035); /* hero only */
   --danger: #ff8a8a;
-  --viz-l: 66%;
-  --noise-opacity: 0.05;
-  --aurora-strength: 1.5;
-  --arc-opacity: 0.7;
+  --viz-l: 68%;
+  --noise-opacity: 0.09;
+  --aurora-strength: 0;
+  --arc-opacity: 0;
   --card-shadow: 0 0 0 1px rgb(255 255 255 / 0.02);
-  --card-hover: 0 0 0 1px rgb(var(--accent-rgb) / 0.55), 0 0 40px -8px rgb(var(--accent-rgb) / 0.45), 0 30px 80px -30px rgb(var(--accent-2-rgb) / 0.35);
-  --bs-glow: #241d5c;
-  --orb-core: #241d5c;
-  --stage-shadow: 0 50px 140px -40px rgb(var(--accent-rgb) / 0.6), 0 30px 100px -50px rgb(var(--accent-2-rgb) / 0.5);
+  --card-hover: 0 0 0 1px rgb(var(--accent-rgb) / 0.5), 0 0 50px -10px rgb(var(--aura-pink) / 0.45), 0 30px 90px -30px rgb(var(--aura-blue) / 0.45);
+  --bs-glow: #2a0f2e;
+  --orb-core: #2a0f2e;
+  --stage-shadow: 0 50px 160px -40px rgb(var(--aura-pink) / 0.5), 0 30px 120px -50px rgb(var(--aura-blue) / 0.55);
 }
 
 @theme inline {
@@ -219,7 +223,7 @@ html.intro-seen [data-loader] { display: none !important; }
 .grad-text,
 .grad-text .word,
 .grad-text .char {
-  background-image: linear-gradient(100deg, var(--accent-2) 0%, var(--accent) 50%, var(--accent-3) 100%);
+  background-image: linear-gradient(100deg, var(--accent-3) 0%, var(--accent) 45%, var(--accent-2) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -277,3 +281,29 @@ html.intro-seen [data-loader] { display: none !important; }
 
 /* Primary buttons: violet with a soft glow */
 .btn-glow { box-shadow: 0 10px 40px -10px rgb(var(--accent-rgb) / 0.8); }
+
+/* ---------- Aura ---------- */
+@keyframes aura-1 { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(14%,10%,0) scale(1.15); } }
+@keyframes aura-2 { 0%,100% { transform: translate3d(0,0,0) scale(1.05); } 50% { transform: translate3d(-12%,8%,0) scale(0.9); } }
+@keyframes aura-3 { 0%,100% { transform: translate3d(0,0,0) scale(0.95); } 50% { transform: translate3d(10%,-12%,0) scale(1.12); } }
+.aura-1 { animation: aura-1 20s ease-in-out infinite; }
+.aura-2 { animation: aura-2 26s ease-in-out infinite; }
+.aura-3 { animation: aura-3 23s ease-in-out infinite; }
+.aura-halo {
+  background: conic-gradient(from 0deg, rgb(var(--aura-pink) / 0.55), rgb(var(--aura-orange) / 0.45), rgb(var(--aura-violet) / 0.5), rgb(var(--aura-blue) / 0.55), rgb(var(--aura-pink) / 0.55));
+  -webkit-mask: radial-gradient(closest-side, transparent 38%, #000 58%, transparent 100%);
+  mask: radial-gradient(closest-side, transparent 38%, #000 58%, transparent 100%);
+  animation: spin-slow 40s linear infinite;
+}
+.aura-text { text-shadow: 0 0 60px rgb(var(--aura-pink) / 0.25); }
+/* Film grain over the whole page */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}

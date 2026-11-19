@@ -5,6 +5,7 @@ import { site } from "@/data/content";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 import Loader from "@/components/ui/Loader";
 import Cursor from "@/components/ui/Cursor";
+import AuraCursor from "@/components/ui/AuraCursor";
 import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
 
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0b1e",
+  themeColor: "#050507",
   colorScheme: "dark",
 };
 
@@ -63,7 +64,7 @@ const jsonLd = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${grotesk.variable} ${mono.variable}`}>
-      <body className="min-h-screen overflow-x-clip">
+      <body className="grain min-h-screen overflow-x-clip">
         <script
           dangerouslySetInnerHTML={{
             __html: `try{if(sessionStorage.getItem('intro-seen')||matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('intro-seen')}catch(e){}`,
@@ -75,6 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <SmoothScroll>
           <Loader />
+          <AuraCursor />
           <Cursor />
           <Nav />
           <main id="main">{children}</main>
