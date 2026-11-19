@@ -66,7 +66,7 @@ export default function Contact() {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Magnetic>
-              <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 font-medium text-accent-ink">
+              <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 btn-glow rounded-full bg-accent px-6 py-3.5 font-medium text-accent-ink">
                 Email me <span aria-hidden>→</span>
               </a>
             </Magnetic>
@@ -85,7 +85,11 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="grad-border mx-auto mt-14 grid max-w-5xl gap-12 rounded-[2rem] p-6 sm:p-8 md:mt-20 md:p-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <div className="relative mx-auto mt-14 max-w-5xl overflow-hidden rounded-[2rem] p-px shadow-[0_0_80px_-20px_rgb(var(--accent-rgb)/0.5),0_40px_120px_-40px_rgb(var(--accent-2-rgb)/0.45)] md:mt-20">
+          <div aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[160%] -translate-x-1/2 -translate-y-1/2">
+            <div className="spin-slow h-full w-full rounded-full bg-[conic-gradient(from_0deg,rgb(var(--accent-2-rgb)),rgb(var(--accent-rgb)),rgb(var(--accent-3-rgb)),transparent_55%,transparent_70%,rgb(var(--accent-2-rgb)))]" />
+          </div>
+        <div className="relative grid gap-12 rounded-[calc(2rem-1px)] bg-surface p-6 sm:p-8 md:p-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div className="space-y-6">
             <div>
               <p className="mb-2 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">Email</p>
@@ -134,7 +138,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="inline-flex items-center gap-3 rounded-full bg-accent px-8 py-4 text-base font-medium text-accent-ink disabled:opacity-60"
+                  className="inline-flex items-center gap-3 btn-glow rounded-full bg-accent px-8 py-4 text-base font-medium text-accent-ink disabled:opacity-60"
                 >
                   {status === "sending" ? "Sending…" : "Send message"} <span aria-hidden>→</span>
                 </button>
@@ -149,6 +153,7 @@ export default function Contact() {
               </p>
             </div>
           </form>
+        </div>
         </div>
       </div>
     </section>

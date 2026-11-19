@@ -75,7 +75,7 @@ export default function Nav() {
             <Magnetic>
               <Link
                 href="/#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-ink transition-transform hover:scale-[1.03]"
+                className="inline-flex items-center gap-2 btn-glow rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-ink transition-transform hover:scale-[1.03]"
               >
                 Let&apos;s talk
                 <span aria-hidden>→</span>

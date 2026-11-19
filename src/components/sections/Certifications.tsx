@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap, MOTION_OK } from "@/lib/gsap";
 import { certifications } from "@/data/content";
 import SectionLabel from "@/components/ui/SectionLabel";
+import Ambient from "@/components/ui/Ambient";
 
 export default function Certifications() {
   const root = useRef<HTMLElement>(null);
@@ -36,7 +37,8 @@ export default function Certifications() {
   const other = certifications.filter((c) => !c.featured);
 
   return (
-    <section ref={root} id="certifications" aria-labelledby="cert-title" className="border-y border-line bg-band">
+    <section ref={root} id="certifications" aria-labelledby="cert-title" className="relative isolate overflow-hidden border-y border-line bg-band">
+      <Ambient variant="c" />
       <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-32">
       <SectionLabel index="06">Certifications</SectionLabel>
       <h2 id="cert-title" className="mb-14 max-w-3xl font-display text-[clamp(2.2rem,4.8vw,4.5rem)] font-medium leading-[1] tracking-[-0.03em] text-balance">

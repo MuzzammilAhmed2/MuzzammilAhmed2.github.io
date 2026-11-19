@@ -7,6 +7,7 @@ import { services } from "@/data/content";
 import SectionLabel from "@/components/ui/SectionLabel";
 import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
+import Ambient from "@/components/ui/Ambient";
 
 export default function Services() {
   const root = useRef<HTMLElement>(null);
@@ -23,7 +24,8 @@ export default function Services() {
   }, []);
 
   return (
-    <section ref={root} id="services" aria-labelledby="svc-title" className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
+    <section ref={root} id="services" aria-labelledby="svc-title" className="relative isolate mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
+      <Ambient variant="a" />
       <SectionLabel index="07">Freelance services</SectionLabel>
       <div className="mb-16 grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-end">
         <RevealText as="h2" accent="Power BI" className="font-display text-[clamp(2.2rem,4.8vw,4.5rem)] font-medium leading-[1] tracking-[-0.03em] text-balance">
@@ -58,7 +60,7 @@ export default function Services() {
       </div>
       <div className="mt-12 flex justify-center">
         <Magnetic>
-          <Link href="/#contact" className="inline-flex items-center gap-3 rounded-full bg-accent px-8 py-4 text-base font-medium text-accent-ink">
+          <Link href="/#contact" className="inline-flex items-center gap-3 btn-glow rounded-full bg-accent px-8 py-4 text-base font-medium text-accent-ink">
             Tell me about your project <span aria-hidden>→</span>
           </Link>
         </Magnetic>

@@ -67,7 +67,17 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
   }, [pinned]);
 
   return (
-    <section ref={root} id="work" aria-labelledby="bs-title" className="band-bs relative border-b border-line">
+    <section ref={root} id="work" aria-labelledby="bs-title" className="band-bs relative isolate border-b border-line">
+      {/* Light beams sweeping across the band */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        {[{ top: "8%", delay: "0s", c: "--accent-2-rgb" }, { top: "38%", delay: "3s", c: "--accent-rgb" }, { top: "70%", delay: "6s", c: "--accent-3-rgb" }].map((b) => (
+          <span
+            key={b.top}
+            className="beam absolute left-0 h-px w-[45%] will-change-transform"
+            style={{ top: b.top, animationDelay: b.delay, background: `linear-gradient(90deg, transparent, rgb(var(${b.c}) / 0.7), transparent)` }}
+          />
+        ))}
+      </div>
       <div className="mx-auto max-w-[1440px] px-4 pt-20 sm:px-6 md:px-10 md:pt-28">
         <SectionLabel index="02">Featured project</SectionLabel>
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
@@ -234,7 +244,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
               </Link>
             </Magnetic>
             <Magnetic>
-              <Link href="/#contact" className="inline-flex items-center gap-3 rounded-full bg-accent px-6 py-3.5 font-medium text-accent-ink">
+              <Link href="/#contact" className="inline-flex items-center gap-3 btn-glow rounded-full bg-accent px-6 py-3.5 font-medium text-accent-ink">
                 Request a walkthrough <span aria-hidden>→</span>
               </Link>
             </Magnetic>

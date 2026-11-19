@@ -5,6 +5,7 @@ import { gsap, MOTION_OK } from "@/lib/gsap";
 import { experience } from "@/data/content";
 import SectionLabel from "@/components/ui/SectionLabel";
 import RevealText from "@/components/ui/RevealText";
+import Ambient from "@/components/ui/Ambient";
 
 export default function Experience() {
   const root = useRef<HTMLElement>(null);
@@ -27,7 +28,8 @@ export default function Experience() {
   }, []);
 
   return (
-    <section ref={root} id="experience" aria-labelledby="exp-title" className="">
+    <section ref={root} id="experience" aria-labelledby="exp-title" className="relative isolate overflow-hidden">
+      <Ambient variant="c" />
       <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
         <SectionLabel index="05">Experience</SectionLabel>
         <div className="grid gap-16 lg:grid-cols-[1fr_1.5fr]">

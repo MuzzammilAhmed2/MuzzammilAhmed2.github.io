@@ -5,6 +5,7 @@ import { gsap, MOTION_OK } from "@/lib/gsap";
 import { about } from "@/data/content";
 import SectionLabel from "@/components/ui/SectionLabel";
 import RevealText from "@/components/ui/RevealText";
+import Ambient from "@/components/ui/Ambient";
 
 export default function About() {
   const root = useRef<HTMLElement>(null);
@@ -46,7 +47,8 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" ref={root} aria-labelledby="about-title" className="border-y border-line bg-band">
+    <section id="about" ref={root} aria-labelledby="about-title" className="relative isolate overflow-hidden border-y border-line bg-band">
+      <Ambient variant="a" />
       <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-32">
       <SectionLabel index="01">About</SectionLabel>
       <div className="grid gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-24">

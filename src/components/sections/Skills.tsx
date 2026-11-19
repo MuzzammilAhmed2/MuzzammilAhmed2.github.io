@@ -5,6 +5,7 @@ import { gsap, MOTION_OK } from "@/lib/gsap";
 import { skills, coreSkills } from "@/data/content";
 import SectionLabel from "@/components/ui/SectionLabel";
 import RevealText from "@/components/ui/RevealText";
+import Ambient from "@/components/ui/Ambient";
 
 const covered = new Set(coreSkills.flatMap((c) => c.covers));
 
@@ -37,7 +38,8 @@ export default function Skills() {
     .filter((g) => g.items.length);
 
   return (
-    <section ref={root} id="skills" aria-labelledby="skills-title" className="border-y border-line bg-band">
+    <section ref={root} id="skills" aria-labelledby="skills-title" className="relative isolate overflow-hidden border-y border-line bg-band">
+      <Ambient variant="b" />
       <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-32">
       <SectionLabel index="04">Skills &amp; stack</SectionLabel>
       <div className="mb-14 grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-end">

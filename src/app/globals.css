@@ -2,30 +2,34 @@
 
 /* ---------- Tokens (Direction A — dark with light) ---------- */
 :root {
-  --bg: #0f1420;
-  --band: #151b2b;
-  --surface: #1a2133;
-  --surface-2: #212a3f;
-  --line: rgb(255 255 255 / 0.08);
-  --text: #f4f6f8;
-  --muted: #c9d1d9;
-  --accent: #2ee6c5;
-  --accent-ink: #04201b;
-  --accent-2: #7d8cff;
+  /* Aurora Night: deep indigo base, violet primary, cyan + pink light */
+  --bg: #0a0b1e;
+  --band: #0f1030;
+  --surface: #16173d;
+  --surface-2: #1e1f4d;
+  --line: rgb(255 255 255 / 0.09);
+  --text: #f4f3ff;
+  --muted: #c4c3e6;
+  --accent: #8b7bff;
+  --accent-ink: #0b0820;
+  --accent-2: #38d9f5;
+  --accent-3: #f472b6;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --accent-rgb: 46 230 197;
-  --accent-2-rgb: 125 140 255;
-  --grid-line: rgb(255 255 255 / 0.075); /* hero only */
+  --accent-rgb: 139 123 255;
+  --accent-2-rgb: 56 217 245;
+  --accent-3-rgb: 244 114 182;
+  --grid-line: rgb(255 255 255 / 0.06); /* hero only */
   --danger: #ff8a8a;
-  --viz-l: 62%;
+  --viz-l: 66%;
   --noise-opacity: 0.05;
-  --aurora-strength: 3.4;
-  --arc-opacity: 1;
+  --aurora-strength: 1.5;
+  --arc-opacity: 0.7;
   --card-shadow: 0 0 0 1px rgb(255 255 255 / 0.02);
-  --card-hover: 0 0 0 1px rgb(var(--accent-rgb) / 0.55), 0 0 40px -6px rgb(var(--accent-rgb) / 0.35), 0 30px 80px -30px rgb(var(--accent-rgb) / 0.45);
-  --stage-shadow: 0 50px 160px -30px rgb(var(--accent-rgb) / 0.55), 0 30px 120px -50px rgb(var(--accent-2-rgb) / 0.6);
+  --card-hover: 0 0 0 1px rgb(var(--accent-rgb) / 0.55), 0 0 40px -8px rgb(var(--accent-rgb) / 0.45), 0 30px 80px -30px rgb(var(--accent-2-rgb) / 0.35);
+  --bs-glow: #241d5c;
+  --orb-core: #241d5c;
+  --stage-shadow: 0 50px 140px -40px rgb(var(--accent-rgb) / 0.6), 0 30px 100px -50px rgb(var(--accent-2-rgb) / 0.5);
 }
-
 
 @theme inline {
   --color-bg: var(--bg);
@@ -38,6 +42,7 @@
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
   --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
   --font-sans: var(--font-inter);
   --font-display: var(--font-grotesk);
   --font-mono: var(--font-jetbrains);
@@ -214,7 +219,7 @@ html.intro-seen [data-loader] { display: none !important; }
 .grad-text,
 .grad-text .word,
 .grad-text .char {
-  background-image: linear-gradient(100deg, var(--accent) 10%, var(--accent-2) 90%);
+  background-image: linear-gradient(100deg, var(--accent-2) 0%, var(--accent) 50%, var(--accent-3) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -227,7 +232,7 @@ html.intro-seen [data-loader] { display: none !important; }
 
 /* Section bands */
 .band-bs {
-  background: radial-gradient(at 20% 0%, #1b2a4a, var(--bg) 60%);
+  background: radial-gradient(at 20% 0%, var(--bs-glow), var(--bg) 60%);
 }
 
 /* Gradient-border card (Contact) */
@@ -250,3 +255,25 @@ html.intro-seen [data-loader] { display: none !important; }
   mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
   animation: orb-spin 24s linear infinite;
 }
+
+/* Hero glass card: gentle float (transform only) */
+@keyframes float-y {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+}
+.float-y { animation: float-y 7s ease-in-out infinite; }
+
+/* ---------- Background motion (transform/opacity only; reduced-motion stops it via the global rule) ---------- */
+@keyframes blob-a { 0%,100% { transform: translate3d(0,0,0) scale(1); } 33% { transform: translate3d(12%,-8%,0) scale(1.12); } 66% { transform: translate3d(-8%,10%,0) scale(0.92); } }
+@keyframes blob-b { 0%,100% { transform: translate3d(0,0,0) scale(1.05); } 50% { transform: translate3d(-14%,-10%,0) scale(0.9); } }
+.blob-a { animation: blob-a 24s ease-in-out infinite; }
+.blob-b { animation: blob-b 30s ease-in-out infinite; }
+
+@keyframes beam { from { transform: translate3d(-120%,0,0) rotate(-18deg); } to { transform: translate3d(320%,0,0) rotate(-18deg); } }
+.beam { animation: beam 9s linear infinite; }
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 8s linear infinite; }
+
+/* Primary buttons: violet with a soft glow */
+.btn-glow { box-shadow: 0 10px 40px -10px rgb(var(--accent-rgb) / 0.8); }
