@@ -2,27 +2,52 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { banksphere, plantmind, projects } from "@/data/content";
+import { site, banksphere, plantmind, projects } from "@/data/content";
+import { allWork, workBySlug } from "@/data/work";
 import { banksphereMedia } from "@/lib/media";
 import GuidedTour from "@/components/ui/GuidedTour";
 import ProjectVisual from "@/components/ui/ProjectVisual";
 import FeatureArt from "@/components/ui/FeatureArt";
 
 export function generateStaticParams() {
-  return [{ slug: banksphere.slug }, { slug: plantmind.slug }, ...projects.map((p) => ({ slug: p.slug }))];
+  return allWork.map((w) => ({ slug: w.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  if (slug === banksphere.slug) {
-    return { title: banksphere.name, description: banksphere.tagline, alternates: { canonical: `/work/${slug}` } };
-  }
-  if (slug === plantmind.slug) {
-    return { title: `${plantmind.name}: ${plantmind.tagline}`, description: plantmind.lead, alternates: { canonical: `/work/${slug}` } };
-  }
-  const p = projects.find((x) => x.slug === slug);
-  if (!p) return {};
-  return { title: p.name, description: p.summary, alternates: { canonical: `/work/${slug}` } };
+  const w = workBySlug(slug);
+  if (!w) return {};
+  const description = slug === plantmind.slug
+    ? "AI operations layer for manufacturing: cited answers from plant documents, live asset risk, human approval gates and a hash-linked audit trail."
+    : slug === banksphere.slug
+      ? "Governed AI for KYC and compliance in banking: ID-card OCR, watchlist screening and risk scoring, with an officer making every final call."
+      : projects.find((p) => p.slug === slug)!.summary;
+  const url = `/work/${slug}/`;
+  const title = `${w.name} — ${site.name}`;
+  return {
+    title: { absolute: title },
+    description,
+    alternates: { canonical: url },
+    openGraph: { type: "article", url, title, description, siteName: site.name, images: [{ url: `/og/${slug}.png`, width: 1200, height: 630, alt: title }] },
+    twitter: { card: "summary_large_image", title, description, images: [`/og/${slug}.png`] },
+  };
+}
+
+function DiagramTag() {
+  return (
+    <span className="absolute bottom-3 right-3 rounded-full border border-line bg-bg/80 px-2.5 py-1 font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
+      Diagram
+    </span>
+  );
+}
+
+function Block({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="grid gap-6 border-t border-line pt-10 md:grid-cols-[280px_1fr] md:gap-12">
+      <h2 className="font-display text-2xl font-medium">{title}</h2>
+      <div>{children}</div>
+    </section>
+  );
 }
 
 function Shell({
@@ -42,17 +67,19 @@ function Shell({
 }) {
   return (
     <article className="mx-auto max-w-[1440px] px-4 pb-24 pt-36 sm:px-6 md:px-10 md:pt-44">
-      <Link href="/#work" className="mb-12 inline-flex items-center gap-2 font-mono text-[13px] uppercase tracking-[0.18em] text-muted hover:text-text">
+      <Link href="/#work" className="mb-12 inline-flex min-h-6 items-center gap-2 py-2 font-mono pointer-coarse:min-h-11 text-[13px] uppercase tracking-[0.18em] text-muted hover:text-text">
         <span aria-hidden>←</span> All work
       </Link>
       <p className="mb-5 font-mono text-[13px] uppercase tracking-[0.2em] text-accent">{kicker}</p>
       <h1 className="max-w-5xl font-display text-[clamp(2.6rem,7vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.04em] text-balance">{title}</h1>
       <p className="mt-8 max-w-3xl text-pretty text-xl leading-relaxed text-muted md:text-2xl">{lead}</p>
-      <ul className="mt-10 flex flex-wrap gap-2" aria-label="Tech stack">
-        {stack.map((s) => (
-          <li key={s} className="rounded-full border border-line px-3 py-1.5 font-mono text-[13px] text-muted">{s}</li>
-        ))}
-      </ul>
+      {stack.length > 0 && (
+        <ul className="mt-10 flex flex-wrap gap-2" aria-label="Tech stack">
+          {stack.map((s) => (
+            <li key={s} className="rounded-full border border-line px-3 py-1.5 font-mono text-[13px] text-muted">{s}</li>
+          ))}
+        </ul>
+      )}
       <div className="mt-16 md:mt-24">{children}</div>
 
       <div className="mt-24 grid gap-6 border-t border-line pt-12 md:grid-cols-2">
@@ -77,7 +104,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
 
   if (slug === banksphere.slug) {
-    const files = [...banksphere.features.map((f) => f.media!), banksphere.video];
+    const files = [...banksphere.features.flatMap((f) => (f.media ? [f.media] : [])), banksphere.video];
     const media = banksphereMedia(files);
     return (
       <Shell
@@ -118,6 +145,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
                 ) : (
                   <div className="absolute inset-0 p-6">
                     <FeatureArt art={f.art} />
+                    <DiagramTag />
                   </div>
                 )}
               </div>
@@ -150,17 +178,14 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
           <Image src={`/projects/plantmind/${plantmind.showcase[0].media}`} alt={`PlantMind — ${plantmind.showcase[0].title}`} fill priority sizes="(min-width: 1440px) 1360px, 100vw" className="object-cover object-left-top" />
         </div>
 
-        <dl className="mb-24 grid grid-cols-2 gap-3 md:grid-cols-4">
+        <ul aria-label="PlantMind in numbers" className="mb-24 grid grid-cols-2 gap-3 md:grid-cols-4">
           {plantmind.facts.map((f) => (
-            <div key={f.label} className="rounded-2xl border border-line bg-surface/60 p-5">
-              <dt className="sr-only">{f.label}</dt>
-              <dd>
-                <span className="block font-display text-4xl font-medium tracking-tight md:text-5xl">{f.value}</span>
-                <span className="mt-2 block text-base text-muted">{f.label}</span>
-              </dd>
-            </div>
+            <li key={f.label} className="rounded-2xl border border-line bg-surface/60 p-5">
+              <span className="block font-display text-4xl font-medium tracking-tight md:text-5xl">{f.value}</span>{" "}
+              <span className="mt-2 block text-base text-muted">{f.label}</span>
+            </li>
           ))}
-        </dl>
+        </ul>
 
         <section aria-labelledby="pm-problem" className="mb-24 grid gap-8 md:grid-cols-[280px_1fr]">
           <h2 id="pm-problem" className="font-display text-2xl font-medium">Why I built it</h2>
@@ -227,24 +252,48 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
       kicker={`${p.index} · ${p.sector}`}
       title={p.name}
       lead={p.description}
-      stack={p.stack}
+      stack={[]}
       next={i === projects.length - 1 ? { href: `/work/${banksphere.slug}`, name: banksphere.name } : { href: `/work/${nxt.slug}`, name: nxt.name }}
     >
       <div className="relative mb-20 aspect-[16/8] overflow-hidden rounded-3xl border border-line">
         <ProjectVisual p={p} />
       </div>
-      <div className="grid gap-12 md:grid-cols-[280px_1fr]">
-        <h2 className="font-display text-2xl font-medium">What I delivered</h2>
-        <ol className="space-y-8">
-          {p.highlights.map((h, k) => (
-            <li key={k} className="grid grid-cols-[3rem_1fr] gap-4 border-t border-line pt-6">
-              <span className="font-mono text-sm text-accent">{String(k + 1).padStart(2, "0")}</span>
-              <p className="text-pretty text-lg leading-relaxed text-text md:text-xl">{h}</p>
-            </li>
-          ))}
-        </ol>
+      <div className="space-y-16 md:space-y-20">
+        <Block title="Context">
+          <p className="text-pretty text-lg leading-relaxed text-text md:text-xl">{p.context}</p>
+        </Block>
+        <Block title="My role">
+          <p className="text-pretty text-lg leading-relaxed text-text md:text-xl">{p.role}</p>
+        </Block>
+        <Block title="What I built">
+          <ol className="space-y-6">
+            {p.highlights.map((h, k) => (
+              <li key={k} className="grid grid-cols-[3rem_1fr] gap-4 border-t border-line pt-6 first:border-t-0 first:pt-0">
+                <span className="font-mono text-sm text-accent">{String(k + 1).padStart(2, "0")}</span>
+                <p className="text-pretty text-lg leading-relaxed text-text md:text-xl">{h}</p>
+              </li>
+            ))}
+          </ol>
+        </Block>
+        <Block title="Stack">
+          <ul className="flex flex-wrap gap-2" aria-label="Tech stack">
+            {p.stack.map((t) => (
+              <li key={t} className="rounded-full border border-line px-3 py-1.5 font-mono text-[13px] text-muted">{t}</li>
+            ))}
+          </ul>
+        </Block>
+        <Block title="Outcome">
+          <ul className="space-y-4">
+            {p.outcome.map((o) => (
+              <li key={o} className="flex gap-3 text-pretty text-lg leading-relaxed text-text md:text-xl">
+                <span aria-hidden className="mt-1 text-accent-2">✦</span>
+                {o}
+              </li>
+            ))}
+          </ul>
+        </Block>
       </div>
-      {p.sector !== "Final year project" && (
+      {!p.academic && (
         <p className="mt-16 text-base text-muted">Client work delivered at Innolytix. Described by sector to respect client confidentiality.</p>
       )}
     </Shell>

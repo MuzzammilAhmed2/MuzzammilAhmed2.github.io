@@ -8,6 +8,7 @@ import Cursor from "@/components/ui/Cursor";
 import AuraCursor from "@/components/ui/AuraCursor";
 import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
+import Analytics from "@/components/ui/Analytics";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk", display: "swap" });
@@ -16,7 +17,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains", 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Data Engineer · BI Developer · Data & AI Consultant`,
+    default: `${site.name} — Data Engineer & BI Developer`,
     template: `%s — ${site.name}`,
   },
   description: site.description,
@@ -31,14 +32,16 @@ export const metadata: Metadata = {
     type: "website",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — Data Engineer · BI Developer · Data & AI Consultant`,
+    title: `${site.name} — Data Engineer & BI Developer`,
     description: site.description,
     locale: "en_US",
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: `${site.name} — ${site.role}` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Data Engineer · BI Developer · Data & AI Consultant`,
+    title: `${site.name} — Data Engineer & BI Developer`,
     description: site.description,
+    images: ["/og/home.png"],
   },
   robots: { index: true, follow: true },
 };
@@ -52,7 +55,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: site.name,
-  jobTitle: "Data Engineer / BI Developer",
+  jobTitle: site.role.replace(/ · /g, ", "),
   worksFor: { "@type": "Organization", name: site.company },
   address: { "@type": "PostalAddress", addressLocality: "Karachi", addressCountry: "PK" },
   alumniOf: "Dawood University of Engineering & Technology",
@@ -82,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="main">{children}</main>
           <Footer />
         </SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );

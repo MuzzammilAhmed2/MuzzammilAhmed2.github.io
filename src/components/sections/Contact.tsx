@@ -7,7 +7,7 @@ import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
 
 const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
-type Status = "idle" | "sending" | "sent" | "error";
+type Status = "idle" | "sending" | "sent" | "error" | "mailto";
 
 const field =
   "peer w-full border-b border-line bg-transparent pb-3 pt-6 text-lg text-text outline-none transition-colors placeholder:text-transparent focus:border-accent";
@@ -29,6 +29,7 @@ export default function Contact() {
       const subject = encodeURIComponent(`${kind} — from ${data.get("name")}`);
       const body = encodeURIComponent(`${data.get("message")}\n\n— ${data.get("name")} (${data.get("email")})`);
       window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
+      setStatus("mailto");
       return;
     }
 
@@ -99,9 +100,14 @@ export default function Contact() {
             </div>
             <div>
               <p className="mb-2 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">Elsewhere</p>
-              <a href={site.github} target="_blank" rel="noopener noreferrer" className="text-lg text-text underline decoration-line underline-offset-8 hover:text-accent">
-                GitHub <span aria-hidden>↗</span>
-              </a>
+              <div className="flex flex-wrap gap-x-6 gap-y-2">
+                <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="text-lg text-text underline decoration-line underline-offset-8 hover:text-accent">
+                  LinkedIn <span aria-hidden>↗</span>
+                </a>
+                <a href={site.github} target="_blank" rel="noopener noreferrer" className="text-lg text-text underline decoration-line underline-offset-8 hover:text-accent">
+                  GitHub <span aria-hidden>↗</span>
+                </a>
+              </div>
             </div>
             <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-muted">Based in {site.location}</p>
           </div>
@@ -110,7 +116,7 @@ export default function Contact() {
             <fieldset>
               <legend className="mb-4 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">I&apos;m reaching out about</legend>
               <div className="flex flex-wrap gap-2">
-                {["Freelance project", "Full-time role", "Something else"].map((k) => (
+                {["Freelance project", "Full‑time role", "Something else"].map((k) => (
                   <label key={k} className={`cursor-pointer rounded-full border px-4 py-2 text-base transition-colors ${kind === k ? "border-accent bg-accent text-accent-ink" : "border-line text-text hover:border-text"}`}>
                     <input type="radio" name="topic" value={k} checked={kind === k} onChange={() => setKind(k)} className="sr-only" />
                     {k}
@@ -145,13 +151,19 @@ export default function Contact() {
               </Magnetic>
               <p role="status" aria-live="polite" className="text-base">
                 {status === "sent" && <span className="text-accent">Thanks — your message is in. I&apos;ll get back to you soon.</span>}
+                {status === "mailto" && <span className="text-text">Your email app should now be open with the message ready to send.</span>}
                 {status === "error" && (
                   <span className="text-[color:var(--danger)]">
-                    Something went wrong. Please email me directly at {site.email}.
+                    Something went wrong. Please email me directly using the address above.
                   </span>
                 )}
               </p>
             </div>
+            {!FORMSPREE_ID && (
+              <p className="text-base text-muted">
+                This opens your email app — or email me directly at the address in this card.
+              </p>
+            )}
           </form>
         </div>
         </div>

@@ -26,6 +26,9 @@ function Visual({ i, media }: { i: number; media: Record<string, boolean> }) {
   ) : (
     <div className="absolute inset-0 p-6 md:p-10">
       <FeatureArt art={f.art} />
+      <span className="absolute bottom-3 right-3 rounded-full border border-line bg-bg/80 px-2.5 py-1 font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
+        Diagram
+      </span>
     </div>
   );
 }
@@ -109,7 +112,9 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
       <div ref={pin} className="relative">
         <div className={`mx-auto grid max-w-[1440px] gap-10 px-4 py-14 sm:px-6 md:px-10 lg:grid-cols-[minmax(0,0.62fr)_minmax(0,1.38fr)] lg:gap-14 ${pinned ? "lg:min-h-[100svh] lg:items-center lg:py-0" : ""}`}>
           {/* Feature list */}
-          <ol className={`relative ${pinned ? "space-y-1 pl-6" : "-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:col-span-2 xl:grid-cols-4"}`}>
+          <ol
+            {...(!pinned && { tabIndex: 0, "aria-label": "BankSphere features, scroll sideways" })}
+            className={`relative focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent ${pinned ? "space-y-1 pl-6" : "-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:col-span-2 xl:grid-cols-4"}`}>
             {pinned && (
               <span aria-hidden className="absolute left-0 top-0 h-full w-px bg-line">
                 <span data-bs-progress className="block h-full w-full origin-top scale-y-0 bg-accent" />
@@ -203,7 +208,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
           className="glow-card group flex items-center gap-5 rounded-2xl border border-line bg-surface p-4 transition-colors hover:border-accent/60 md:p-5"
         >
           <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-surface-2 md:h-20 md:w-20">
-            <Image src="/projects/banksphere/tour/presenter.jpg" alt="" fill sizes="80px" className="object-cover" />
+            <Image src="/projects/banksphere/tour/presenter.jpg" alt="" aria-hidden fill sizes="80px" className="object-cover" />
             <span className="absolute inset-0 grid place-items-center bg-black/25">
               <span className="grid h-8 w-8 place-items-center rounded-full bg-accent text-accent-ink transition-transform group-hover:scale-110">
                 <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden><path d="M7 4v16l13-8z" fill="currentColor" /></svg>

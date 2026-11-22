@@ -21,13 +21,15 @@ export default function Hero() {
     if (!loaded || !root.current) return;
     const mm = gsap.matchMedia();
     mm.add(MOTION_OK, () => {
+      // Slide up from behind a mask instead of fading: text keeps full contrast on every frame.
       gsap.from(root.current!.querySelectorAll("[data-hero-fade]"), {
         y: 24,
-        opacity: 0,
+        clipPath: "inset(0% 0% 100% 0%)",
         duration: 1,
         ease: "expo.out",
         stagger: 0.08,
         delay: 0.5,
+        clearProps: "clipPath",
       });
       // Parallax the aurora + headline away as you scroll
       gsap.to(aurora.current, {
@@ -37,7 +39,6 @@ export default function Hero() {
       });
       gsap.to("[data-hero-content]", {
         yPercent: -12,
-        opacity: 0.2,
         ease: "none",
         scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: true },
       });
@@ -46,7 +47,7 @@ export default function Hero() {
   }, [loaded]);
 
   return (
-    <section ref={root} aria-labelledby="hero-title" className="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
+    <section ref={root} aria-labelledby="hero-name hero-role" className="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
       {/* Animated gradient + grain */}
       <div ref={aurora} aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <Aura />
@@ -75,7 +76,7 @@ export default function Hero() {
             <div className="flex items-center justify-between px-1 pb-3">
               <span className="font-mono text-[13px] uppercase tracking-[0.14em] text-muted">Featured project</span>
               <span className="inline-flex items-center gap-1.5 font-mono text-[13px] text-accent">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden /> Live demo
+                Case study <span aria-hidden>→</span>
               </span>
             </div>
             <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-line bg-bg">
@@ -86,7 +87,7 @@ export default function Hero() {
               <p className="mt-1 text-base text-muted">{banksphere.tagline}</p>
             </div>
             <div className="mt-4 flex flex-wrap gap-2 px-1 pb-1">
-              {["DP-700 certified", "PL-300 certified", "Innolytix · Karachi"].map((c) => (
+              {["DP‑700 certified", "PL‑300 certified", "Innolytix · Karachi"].map((c) => (
                 <span key={c} className="rounded-full border border-line bg-bg/60 px-3 py-1 text-[13px] text-text">{c}</span>
               ))}
             </div>
@@ -106,7 +107,7 @@ export default function Hero() {
       <div data-hero-content className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-end px-4 pb-10 pt-32 sm:px-6 md:px-10 md:pb-14 lg:pr-[44%]">
         <div data-hero-fade className="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-line bg-surface/70 px-4 py-2 backdrop-blur">
           <span className="pulse-dot relative block h-2 w-2 rounded-full bg-accent text-accent" aria-hidden />
-          <span className="font-mono text-[13px] uppercase tracking-[0.16em] text-text">Available for freelance &amp; full-time</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.16em] text-text">Available for freelance &amp; full‑time</span>
         </div>
 
         <RevealText
@@ -122,14 +123,13 @@ export default function Hero() {
         <p data-hero-fade className="mt-5 max-w-[30ch] font-display text-[clamp(1.35rem,2.4vw,2.25rem)] leading-tight tracking-[-0.02em] text-muted">
           {site.heroSub}
         </p>
-        <span id="hero-title" className="sr-only">{site.name} — {site.role}</span>
 
         <div className="mt-10 grid gap-8 md:mt-12 md:grid-cols-[1fr_auto] md:items-end lg:grid-cols-1 lg:items-start">
           <div data-hero-fade className="max-w-xl space-y-2">
-            <p className="font-display text-xl text-text md:text-2xl">{site.name}</p>
-            <p className="text-pretty text-base leading-relaxed text-muted md:text-lg">
+            <p id="hero-name" className="font-display text-xl text-text md:text-2xl">{site.name}</p>
+            <p id="hero-role" className="text-pretty text-base leading-relaxed text-muted md:text-lg">
               Data Engineer · BI Developer · Data &amp; AI Consultant at <span className="text-text">Innolytix</span>, Karachi.
-              DP-700 &amp; PL-300 certified.
+              DP‑700 &amp; PL‑300 certified.
             </p>
           </div>
           <div data-hero-fade className="flex flex-col gap-5 md:items-end lg:items-start">
@@ -165,6 +165,33 @@ export default function Hero() {
           </div>
           <ContactIcons />
           </div>
+        </div>
+
+        {/* Below lg the big glass card is hidden — show a compact version so phones still see the featured work */}
+        <div data-hero-fade className="mt-8 flex flex-col gap-3 lg:hidden">
+          <Link
+            href={`/work/${banksphere.slug}`}
+            className="flex items-center gap-4 rounded-2xl border border-line bg-surface/70 p-3 backdrop-blur-md transition-colors hover:border-accent/50"
+          >
+            <span className="relative h-20 w-24 shrink-0 self-start overflow-hidden rounded-lg border border-line bg-bg">
+              <Image src="/projects/banksphere/kyc.webp" alt="" fill sizes="96px" className="object-cover object-left-top" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-display text-lg font-medium leading-tight tracking-tight">{banksphere.name}</span>
+              <span className="mt-0.5 block text-[15px] leading-snug text-muted">{banksphere.tagline}</span>
+              <span className="mt-1 block font-mono text-[13px] text-accent">
+                Case study <span aria-hidden>→</span>
+              </span>
+            </span>
+          </Link>
+          <Link
+            href="/#plantmind"
+            className="group flex w-fit items-center gap-3 rounded-full border border-line bg-surface/70 py-1.5 pl-1.5 pr-4 backdrop-blur-md transition-colors hover:border-accent-2/60"
+          >
+            <span className="rounded-full bg-accent-2 px-2.5 py-0.5 font-mono text-[12px] font-medium uppercase tracking-[0.12em] text-accent-ink">New</span>
+            <span className="text-[15px] text-text">{plantmind.name} · AI for manufacturing</span>
+            <span aria-hidden className="text-accent-2">→</span>
+          </Link>
         </div>
       </div>
 

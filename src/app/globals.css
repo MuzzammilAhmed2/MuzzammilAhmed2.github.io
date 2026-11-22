@@ -164,7 +164,8 @@ html.has-custom-cursor textarea {
 @keyframes rise-in { from { opacity: 0; transform: translate3d(0, 40px, 0); } to { opacity: 1; transform: none; } }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 .page-curtain { animation: curtain-out 0.8s cubic-bezier(0.76, 0, 0.24, 1) both; }
-.page-in { animation: rise-in 0.9s var(--ease-out) 0.25s both; }
+@keyframes rise-up { from { transform: translate3d(0, 40px, 0); } to { transform: none; } }
+.page-in { animation: rise-up 0.9s var(--ease-out) 0.25s both; } /* transform only: the curtain hides the page, and text never dips in contrast */
 .menu-in { animation: fade-in 0.3s ease-out both; }
 .menu-item-in { animation: rise-in 0.5s var(--ease-out) both; }
 

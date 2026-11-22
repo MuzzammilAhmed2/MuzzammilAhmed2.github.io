@@ -16,7 +16,7 @@ export default function Services() {
     const mm = gsap.matchMedia();
     mm.add(MOTION_OK, () => {
       gsap.from(root.current!.querySelectorAll("[data-svc]"), {
-        y: 80, opacity: 0, duration: 1.2, ease: "expo.out", stagger: 0.12,
+        y: 48, clipPath: "inset(0% 0% 100% 0%)", duration: 1.2, ease: "expo.out", stagger: 0.12, clearProps: "clipPath",
         scrollTrigger: { trigger: "[data-svc-grid]", start: "top 80%", once: true },
       });
     });
@@ -33,7 +33,7 @@ export default function Services() {
         </RevealText>
         <span id="svc-title" className="sr-only">Freelance services</span>
         <p className="text-pretty text-lg leading-relaxed text-muted">
-          I take on a small number of freelance projects alongside my full-time role. Here&apos;s where I can help most.
+          I take on a small number of freelance projects alongside my full‑time role. Here&apos;s where I can help most.
         </p>
       </div>
       <div data-svc-grid className="grid gap-5 lg:grid-cols-3">
@@ -58,7 +58,7 @@ export default function Services() {
           </article>
         ))}
       </div>
-      <div className="mt-12 flex justify-center">
+      <div data-svc className="mt-16 flex justify-center md:mt-20">
         <Magnetic>
           <Link href="/#contact" className="inline-flex items-center gap-3 btn-glow rounded-full bg-accent px-8 py-4 text-base font-medium text-accent-ink">
             Tell me about your project <span aria-hidden>→</span>

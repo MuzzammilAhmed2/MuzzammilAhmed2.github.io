@@ -40,16 +40,16 @@ export default function Loader() {
     });
     tl.to(counter, {
       v: 100,
-      duration: 2.2,
+      duration: 0.6,
       ease: "power2.inOut",
       onUpdate: () => {
         if (count.current) count.current.textContent = String(Math.round(counter.v)).padStart(3, "0");
         if (bar.current) bar.current.style.transform = `scaleX(${counter.v / 100})`;
       },
     })
-      .to("[data-loader-fade]", { opacity: 0, y: -20, duration: 0.4, ease: "power2.in" })
+      .to("[data-loader-fade]", { opacity: 0, y: -20, duration: 0.2, ease: "power2.in" })
       .add(() => markLoaded())
-      .to(root.current, { yPercent: -100, duration: 1.0, ease: "expo.inOut" }, "<0.1");
+      .to(root.current, { yPercent: -100, duration: 0.4, ease: "expo.inOut" }, "<0.05"); // total ≈ 1.05s
 
     return () => {
       tl.kill();

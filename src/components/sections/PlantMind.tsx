@@ -161,17 +161,14 @@ export default function PlantMind() {
 
       {/* Facts + CTA */}
       <div className="mx-auto max-w-[1440px] px-4 pb-24 pt-14 sm:px-6 md:px-10 md:pb-32">
-        <dl className="grid grid-cols-2 gap-3 md:grid-cols-4">
+        <ul aria-label="PlantMind in numbers" className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {plantmind.facts.map((f) => (
-            <div key={f.label} className="glow-card rounded-2xl border border-line bg-surface/60 p-5">
-              <dt className="sr-only">{f.label}</dt>
-              <dd>
-                <span className="block font-display text-4xl font-medium tracking-tight md:text-5xl">{f.value}</span>
-                <span className="mt-2 block text-base text-muted">{f.label}</span>
-              </dd>
-            </div>
+            <li key={f.label} className="glow-card rounded-2xl border border-line bg-surface/60 p-5">
+              <span className="block font-display text-4xl font-medium tracking-tight md:text-5xl">{f.value}</span>{" "}
+              <span className="mt-2 block text-base text-muted">{f.label}</span>
+            </li>
           ))}
-        </dl>
+        </ul>
         <div className="mt-12 grid gap-10 border-t border-line pt-12 lg:grid-cols-[1fr_auto] lg:items-center">
           <ul className="flex flex-wrap gap-2" aria-label="PlantMind tech stack">
             {plantmind.stack.map((s) => (
@@ -191,7 +188,7 @@ export default function PlantMind() {
             </Magnetic>
             <Magnetic>
               <Link href="/#contact" className="btn-glow inline-flex items-center gap-3 rounded-full bg-accent px-6 py-3.5 font-medium text-accent-ink">
-                Book a live demo <span aria-hidden>→</span>
+                Request a walkthrough <span aria-hidden>→</span>
               </Link>
             </Magnetic>
           </div>

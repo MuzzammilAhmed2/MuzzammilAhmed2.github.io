@@ -1,6 +1,11 @@
-MIT License
+MIT License (source code only)
 
 Copyright (c) 2026 Muzzammil Ahmed
+
+This licence covers the source code in this repository. It does NOT cover the site's
+content: the text, CV, photos, screenshots, videos and project descriptions
+(including everything in src/data/ and public/). Content and CV © Muzzammil Ahmed.
+All rights reserved.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

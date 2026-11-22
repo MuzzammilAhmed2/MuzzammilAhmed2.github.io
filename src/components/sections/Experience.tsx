@@ -34,12 +34,12 @@ export default function Experience() {
         <SectionLabel index="06">Experience</SectionLabel>
         <div className="grid gap-16 lg:grid-cols-[1fr_1.5fr]">
           <div className="lg:sticky lg:top-32 lg:self-start">
-            <RevealText as="h2" accent="full-time" className="font-display text-[clamp(2.2rem,4.8vw,4.5rem)] font-medium leading-[1] tracking-[-0.03em] text-balance">
-              Intern to full-time in three months.
+            <RevealText as="h2" accent="full‑time" className="font-display text-[clamp(2.2rem,4.8vw,4.5rem)] font-medium leading-[1] tracking-[-0.03em] text-balance">
+              Intern to full‑time in three months.
             </RevealText>
             <span id="exp-title" className="sr-only">Experience timeline</span>
             <p className="mt-6 max-w-md text-pretty text-lg leading-relaxed text-muted">
-              Joined Innolytix as a Data Engineering intern in September 2025 and moved to a full-time Data Engineer / BI Developer role in
+              Joined Innolytix as a Data Engineering intern in September 2025 and moved to a full‑time Data Engineer / BI Developer role in
               December 2025.
             </p>
           </div>

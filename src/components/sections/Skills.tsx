@@ -73,11 +73,12 @@ export default function Skills() {
             </div>
           </li>
         ))}
-        <li className="col-span-2 pt-4 font-mono text-[13px] uppercase tracking-[0.12em] text-muted sm:hidden" aria-hidden>Also worked with</li>
+        <li className="col-span-2 pt-6 lg:col-span-4">
+          <h3 className="font-mono text-[13px] uppercase tracking-[0.16em] text-muted">Also worked with</h3>
+        </li>
         {rest.map((g) => (
           <li key={g.group} className="glow-card col-span-2 rounded-3xl border border-line bg-surface/70 p-5 sm:col-span-1 md:p-6">
-            <span className="hidden font-mono text-[13px] uppercase tracking-[0.12em] text-muted sm:block">Also worked with</span>
-            <h3 className="font-display sm:mt-4 text-xl font-medium tracking-tight">{g.group}</h3>
+            <h4 className="font-display text-xl font-medium tracking-tight">{g.group}</h4>
             <p className="mt-2 text-base leading-[1.6] text-muted">{g.items.join(" · ")}</p>
           </li>
         ))}
