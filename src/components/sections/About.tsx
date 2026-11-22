@@ -49,7 +49,7 @@ export default function About() {
   return (
     <section id="about" ref={root} aria-labelledby="about-title" className="relative isolate overflow-hidden border-y border-line bg-band">
       <Ambient variant="a" />
-      <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-32">
+      <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-24 xl:py-32">
       <SectionLabel index="01">About</SectionLabel>
       <div className="grid gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
         <RevealText

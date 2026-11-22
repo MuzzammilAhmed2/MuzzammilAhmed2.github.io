@@ -14,8 +14,8 @@ export default function ProjectVisual({ p }: { p: Project }) {
       <svg viewBox="0 0 500 300" className="absolute inset-0 h-full w-full" aria-hidden>
         {p.nodes.map((label, i) => {
           const x = 80 + (i * 340) / (n - 1);
-          const y = 150 + (i % 2 === 0 ? -34 : 34);
-          const next = i < n - 1 ? { x: 80 + ((i + 1) * 340) / (n - 1), y: 150 + ((i + 1) % 2 === 0 ? -34 : 34) } : null;
+          const y = 170 + (i % 2 === 0 ? -32 : 32);
+          const next = i < n - 1 ? { x: 80 + ((i + 1) * 340) / (n - 1), y: 170 + ((i + 1) % 2 === 0 ? -32 : 32) } : null;
           return (
             <g key={label}>
               {next && (
@@ -33,9 +33,9 @@ export default function ProjectVisual({ p }: { p: Project }) {
               <circle cx={x} cy={y} r="3" fill={c} />
               <text
                 x={x}
-                y={i % 2 === 0 ? y - 22 : y + 32}
+                y={i % 2 === 0 ? y - 22 : y + 36}
                 textAnchor="middle"
-                fontSize="11"
+                fontSize="15"
                 fill="var(--text)"
                 fontFamily="var(--font-jetbrains)"
               >

@@ -39,7 +39,7 @@ export default function Certifications() {
   return (
     <section ref={root} id="certifications" aria-labelledby="cert-title" className="relative isolate overflow-hidden border-y border-line bg-band">
       <Ambient variant="c" />
-      <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-32">
+      <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-24 xl:py-32">
       <SectionLabel index="07">Certifications</SectionLabel>
       <h2 id="cert-title" className="mb-14 max-w-3xl font-display text-[clamp(2.2rem,4.8vw,4.5rem)] font-medium leading-[1] tracking-[-0.03em] text-balance">
         Certified on the <span className="grad-text">platforms</span> I build with.
@@ -50,7 +50,7 @@ export default function Certifications() {
             key={c.code}
             data-cert
             data-spot
-            className="group relative overflow-hidden rounded-3xl border border-line bg-surface p-8 md:p-10"
+            className="group relative overflow-hidden rounded-3xl border border-line bg-surface p-7 md:p-8"
           >
             <div
               aria-hidden
@@ -64,7 +64,7 @@ export default function Certifications() {
                 <path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5" />
               </svg>
             </div>
-            <p className="relative mt-14 font-display text-6xl font-medium tracking-tight md:text-7xl">{c.code.replace("-", "‑")}</p>
+            <p className="relative mt-8 font-display text-5xl font-medium tracking-tight md:text-6xl">{c.code.replace("-", "‑")}</p>
             <h3 className="relative mt-3 text-lg text-text md:text-xl">{c.name}</h3>
           </article>
         ))}

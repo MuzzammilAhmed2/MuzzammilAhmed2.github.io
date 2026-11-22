@@ -86,18 +86,14 @@ export default function Hero() {
               <p className="font-display text-2xl font-medium tracking-tight">{banksphere.name}</p>
               <p className="mt-1 text-base text-muted">{banksphere.tagline}</p>
             </div>
-            <div className="mt-4 flex flex-wrap gap-2 px-1 pb-1">
-              {["DP‑700 certified", "PL‑300 certified", "Innolytix · Karachi"].map((c) => (
-                <span key={c} className="rounded-full border border-line bg-bg/60 px-3 py-1 text-[13px] text-text">{c}</span>
-              ))}
-            </div>
+            <p className="mt-3 px-1 pb-1 font-mono text-[12px] uppercase tracking-[0.12em] text-muted">Working product · synthetic data</p>
           </Link>
           <Link
             href="/#plantmind"
             className="group pointer-events-auto flex items-center gap-3 self-start rounded-full border border-line bg-surface/70 py-1.5 pl-1.5 pr-4 backdrop-blur-md transition-colors hover:border-accent-2/60"
           >
             <span className="rounded-full bg-accent-2 px-2.5 py-0.5 font-mono text-[12px] font-medium uppercase tracking-[0.12em] text-accent-ink">New</span>
-            <span className="text-[15px] text-text">{plantmind.name} · AI for manufacturing</span>
+            <span className="whitespace-nowrap text-[15px] text-text">{plantmind.name} · AI for manufacturing</span>
             <span aria-hidden className="text-accent-2 transition-transform group-hover:translate-x-0.5">→</span>
           </Link>
           </div>
@@ -137,7 +133,7 @@ export default function Hero() {
             <Magnetic>
               <Link
                 href="/#contact"
-                className="group inline-flex items-center gap-3 btn-glow rounded-full bg-accent px-7 py-4 text-base font-medium text-accent-ink"
+                className="group inline-flex items-center gap-3 btn-glow rounded-full bg-accent px-6 py-3.5 text-base font-medium text-accent-ink lg:px-7 lg:py-4"
               >
                 Start a project
                 <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -146,24 +142,20 @@ export default function Hero() {
             <Magnetic>
               <Link
                 href="/#work"
-                className="inline-flex items-center gap-3 rounded-full border border-line px-7 py-4 text-base text-text transition-colors hover:border-text"
+                className="inline-flex items-center gap-3 rounded-full border border-line px-6 py-3.5 text-base text-text transition-colors hover:border-text lg:px-7 lg:py-4"
               >
                 See the work
               </Link>
             </Magnetic>
+          </div>
+          <div className="flex flex-wrap items-center gap-5">
             {site.cv && (
-            <Magnetic>
-              <a
-                href={site.cv}
-                download
-                className="inline-flex items-center gap-2 rounded-full border border-line px-7 py-4 text-base text-text transition-colors hover:border-text"
-              >
+              <a href={site.cv} download className="inline-flex min-h-11 items-center gap-2 text-base text-muted underline decoration-line underline-offset-8 transition-colors hover:text-text">
                 Download CV <span aria-hidden>↓</span>
               </a>
-            </Magnetic>
             )}
+            <ContactIcons />
           </div>
-          <ContactIcons />
           </div>
         </div>
 
