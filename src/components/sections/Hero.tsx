@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { gsap, MOTION_OK } from "@/lib/gsap";
 import { useLoaded } from "@/lib/loader-store";
-import { site, marquee, banksphere } from "@/data/content";
+import { site, marquee, banksphere, plantmind } from "@/data/content";
 import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
 import ContactIcons from "@/components/ui/ContactIcons";
@@ -67,10 +67,10 @@ export default function Hero() {
             <Image src={site.photo} alt={`Portrait of ${site.name}`} fill priority sizes="40vw" className="object-cover" />
           </div>
         ) : (
+          <div data-hero-fade className="float-y relative flex w-[86%] max-w-[480px] flex-col items-stretch gap-3">
           <Link
             href={`/work/${banksphere.slug}`}
-            data-hero-fade
-            className="float-y pointer-events-auto relative w-[86%] max-w-[480px] rounded-[1.75rem] border border-line bg-surface/70 p-4 shadow-[var(--stage-shadow)] backdrop-blur-md transition-colors hover:border-accent/50"
+            className="pointer-events-auto relative w-full max-w-[480px] rounded-[1.75rem] border border-line bg-surface/70 p-4 shadow-[var(--stage-shadow)] backdrop-blur-md transition-colors hover:border-accent/50"
           >
             <div className="flex items-center justify-between px-1 pb-3">
               <span className="font-mono text-[13px] uppercase tracking-[0.14em] text-muted">Featured project</span>
@@ -91,6 +91,15 @@ export default function Hero() {
               ))}
             </div>
           </Link>
+          <Link
+            href="/#plantmind"
+            className="group pointer-events-auto flex items-center gap-3 self-start rounded-full border border-line bg-surface/70 py-1.5 pl-1.5 pr-4 backdrop-blur-md transition-colors hover:border-accent-2/60"
+          >
+            <span className="rounded-full bg-accent-2 px-2.5 py-0.5 font-mono text-[12px] font-medium uppercase tracking-[0.12em] text-accent-ink">New</span>
+            <span className="text-[15px] text-text">{plantmind.name} · AI for manufacturing</span>
+            <span aria-hidden className="text-accent-2 transition-transform group-hover:translate-x-0.5">→</span>
+          </Link>
+          </div>
         )}
       </div>
 

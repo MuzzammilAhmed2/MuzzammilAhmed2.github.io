@@ -26,7 +26,7 @@ export default function Services() {
   return (
     <section ref={root} id="services" aria-labelledby="svc-title" className="relative isolate mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
       <Ambient variant="a" />
-      <SectionLabel index="07">Freelance services</SectionLabel>
+      <SectionLabel index="08">Freelance services</SectionLabel>
       <div className="mb-16 grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-end">
         <RevealText as="h2" accent="Power BI" className="font-display text-[clamp(2.2rem,4.8vw,4.5rem)] font-medium leading-[1] tracking-[-0.03em] text-balance">
           Freelance: data platforms, Power BI &amp; AI document solutions

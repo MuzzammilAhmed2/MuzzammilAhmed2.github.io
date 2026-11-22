@@ -79,7 +79,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
         ))}
       </div>
       <div className="mx-auto max-w-[1440px] px-4 pt-20 sm:px-6 md:px-10 md:pt-28">
-        <SectionLabel index="02">Featured project</SectionLabel>
+        <SectionLabel index="02">Featured product</SectionLabel>
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
           <div>
             <p className="mb-4 font-mono text-[13px] uppercase tracking-[0.2em] text-accent">Banking · KYC · Compliance · Azure</p>

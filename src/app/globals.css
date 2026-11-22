@@ -157,6 +157,7 @@ html.has-custom-cursor textarea {
   to { stroke-dashoffset: -24; }
 }
 .flow-dash { animation: dash 1.2s linear infinite; }
+@keyframes pm-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
 /* Page transition + mobile menu (replaces framer-motion) */
 @keyframes curtain-out { from { transform: scaleY(1); } to { transform: scaleY(0); } }

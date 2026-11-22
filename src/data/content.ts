@@ -32,7 +32,7 @@ export const about = {
   story: [
     "I'm a Data Engineer and BI Developer. I take ERP, CRM, core-banking and operational data that doesn't agree with itself and turn it into governed, high-performance platforms people actually trust.",
     "I started at Innolytix as a Data Engineering intern in September 2025 and was offered a full-time role three months later. Since then I've architected Medallion platforms on Microsoft Fabric and Azure, built enterprise Power BI semantic models, and delivered AI-powered document and search solutions across banking, insurance, logistics and retail.",
-    "On the side, I build BankSphere AI for KYC in banking, because AI in regulated industries has to explain itself before it's clever.",
+    "On the side, I build products: BankSphere AI for KYC in banking, and PlantMind, an AI operations layer for manufacturing. Both start from the same rule: AI in serious industries has to explain itself before it's clever.",
   ],
   stats: [
     { value: 5, suffix: "", label: "Enterprise & cloud platforms delivered" },
@@ -152,6 +152,95 @@ export const homeFeatures: Feature[] = [
   { ...byId("redteam"), kicker: "04 — Proof" },
 ];
 
+export type Showcase = {
+  id: string;
+  kicker: string;
+  title: string;
+  body: string;
+  media: string; // filename inside /public/projects/plantmind/
+};
+
+// PlantMind facts come from the PlantMind repo README, PROJECT_SPEC.md and docs/DECISIONS.md.
+// 76 = `pytest --collect-only` on the PlantMind repo, 2026-11-22. Screens captured from the hosted synthetic demo the same day.
+export const plantmind = {
+  slug: "plantmind",
+  name: "PlantMind",
+  tagline: "An AI operations layer for manufacturing.",
+  lead: "One workspace where maintenance, quality, customer care and leadership share a private knowledge engine, live plant data, human approval gates and a hash-linked audit trail.",
+  honesty: "Hosted demo on synthetic data · Walkthrough on request",
+  sectors: "Manufacturing · Maintenance · Quality · Azure AI",
+  stack: [
+    "Python",
+    "FastAPI",
+    "SQLAlchemy 2",
+    "PostgreSQL + pgvector",
+    "Alembic",
+    "Azure AI Foundry",
+    "RAG",
+    "WhatsApp Cloud API",
+    "React + TypeScript",
+    "Docker Compose",
+  ],
+  facts: [
+    { value: "5", label: "Roles with their own permissions" },
+    { value: "25", label: "Synthetic plant documents indexed" },
+    { value: "12", label: "Machines on three production lines" },
+    { value: "76", label: "Automated backend tests" },
+  ],
+  thread: ["Sensor alert", "AI work order", "Human approval", "Audit chain"],
+  showcase: [
+    {
+      id: "live",
+      kicker: "01 · Live operations",
+      title: "The plant floor, right now",
+      body: "A plant health score, per-line risk, open alerts, pending approvals and low-stock parts, refreshed every 30 seconds. Every number shows the query it came from.",
+      media: "live-ops.webp",
+    },
+    {
+      id: "ask",
+      kicker: "02 · Knowledge engine",
+      title: "Answers that cite their sources",
+      body: "Ask in plain language. PlantMind answers from your manuals and SOPs (cited S1, S2…), from live plant data filtered by role, and labels anything that is general knowledge rather than your documents.",
+      media: "ask.webp",
+    },
+    {
+      id: "approvals",
+      kicker: "03 · Human in the loop",
+      title: "AI proposes. People decide.",
+      body: "When a maintenance agent spots risk, it drafts the work order with its evidence. Nothing runs until someone with the right role reviews it and signs off.",
+      media: "approvals.webp",
+    },
+    {
+      id: "audit",
+      kicker: "04 · Governance",
+      title: "Every step, hash-chained",
+      body: "Agent steps, tool calls, retrievals, model answers and approvals are written to an append-only, hash-linked log that a single command can verify.",
+      media: "audit.webp",
+    },
+    {
+      id: "overview",
+      kicker: "05 · Workspace",
+      title: "One studio for the whole shift",
+      body: "Overview, live ops, alerts, NCR / CAPA, customer care and admin in a glass interface with dark and light themes, Ctrl+K search and motion controls.",
+      media: "overview.webp",
+    },
+  ] satisfies Showcase[],
+  modules: [
+    { title: "Predictive maintenance", body: "Anomaly scoring and remaining-life estimates on replayed sensor data raise alerts and draft work orders." },
+    { title: "NCR / CAPA", body: "A nonconformance dispatches process, supplier and inspection evidence workers, then drafts a ranked corrective action for approval." },
+    { title: "Batch genealogy", body: "Trace a batch to its supplier, material certificate and the customer complaints linked to it." },
+    { title: "Customer care", body: "Complaint triage with SLA targets and escalation to quality, on the web or WhatsApp." },
+    { title: "WhatsApp access", body: "Staff get the AI on WhatsApp with their role's permissions. Webhooks are signature-checked and customer numbers stored only as salted fingerprints." },
+    { title: "Executive brief", body: "An on-demand report whose KPI figures come from real database queries, each with its lineage." },
+  ],
+  principles: [
+    "Every model call goes through one router, so the cloud model can be swapped for an on-prem one with a config change.",
+    "Risky actions such as work orders and CAPA release become pending actions that only run after role-based approval.",
+    "Retrieved document text is treated as data, never as instructions. Answers say \"not found in the documents\" rather than invent a source.",
+    "Runs end to end offline with a deterministic stub model, so the full demo and test suite need no cloud keys.",
+  ],
+};
+
 export type Project = {
   slug: string;
   index: string;
@@ -168,7 +257,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "intelligent-document-processing",
-    index: "02",
+    index: "03",
     name: "Intelligent Document Processing & Compliance Platform",
     sector: "Insurance",
     summary: "AI-powered classification, OCR and routing of claims and policy documents, with RAG search over historical cases.",
@@ -185,7 +274,7 @@ export const projects: Project[] = [
   },
   {
     slug: "real-time-fleet-control-tower",
-    index: "03",
+    index: "04",
     name: "Real-Time Fleet Control Tower",
     sector: "Logistics & transportation",
     summary: "Real-time IoT analytics tracking a live vehicle fleet — health, geofencing, fuel efficiency and driver behaviour.",
@@ -202,7 +291,7 @@ export const projects: Project[] = [
   },
   {
     slug: "enterprise-performance-analytics",
-    index: "04",
+    index: "05",
     name: "Enterprise Performance Analytics Platform",
     sector: "Banking",
     summary: "Governed Medallion platform on Fabric Direct Lake unifying core banking, treasury and CRM data.",
@@ -219,7 +308,7 @@ export const projects: Project[] = [
   },
   {
     slug: "cross-cloud-revenue-intelligence",
-    index: "05",
+    index: "06",
     name: "Cross-Cloud Revenue Intelligence Platform",
     sector: "Retail & e-commerce",
     summary: "Secure analytics across AWS, Snowflake and Fabric unifying sales, inventory and customer data, with CLV segmentation.",
@@ -236,7 +325,7 @@ export const projects: Project[] = [
   },
   {
     slug: "cloud-predictive-maintenance",
-    index: "06",
+    index: "07",
     name: "Cloud-Based Predictive Maintenance",
     sector: "Final year project",
     summary: "Cloud platform on AWS predicting remaining useful life and failure probability from sensor telemetry.",

@@ -2,20 +2,23 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { banksphere, projects } from "@/data/content";
+import { banksphere, plantmind, projects } from "@/data/content";
 import { banksphereMedia } from "@/lib/media";
 import GuidedTour from "@/components/ui/GuidedTour";
 import ProjectVisual from "@/components/ui/ProjectVisual";
 import FeatureArt from "@/components/ui/FeatureArt";
 
 export function generateStaticParams() {
-  return [{ slug: banksphere.slug }, ...projects.map((p) => ({ slug: p.slug }))];
+  return [{ slug: banksphere.slug }, { slug: plantmind.slug }, ...projects.map((p) => ({ slug: p.slug }))];
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   if (slug === banksphere.slug) {
     return { title: banksphere.name, description: banksphere.tagline, alternates: { canonical: `/work/${slug}` } };
+  }
+  if (slug === plantmind.slug) {
+    return { title: `${plantmind.name}: ${plantmind.tagline}`, description: plantmind.lead, alternates: { canonical: `/work/${slug}` } };
   }
   const p = projects.find((x) => x.slug === slug);
   if (!p) return {};
@@ -76,14 +79,13 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   if (slug === banksphere.slug) {
     const files = [...banksphere.features.map((f) => f.media!), banksphere.video];
     const media = banksphereMedia(files);
-    const first = projects[0];
     return (
       <Shell
         kicker="Featured · Banking · KYC & compliance"
         title={banksphere.name}
         lead={`${banksphere.tagline} ID-card OCR, card checks, watchlist screening and a risk score decide approve / officer review / resubmit — with a human officer making every final call.`}
         stack={banksphere.stack}
-        next={{ href: `/work/${first.slug}`, name: first.name }}
+        next={{ href: `/work/${plantmind.slug}`, name: plantmind.name }}
       >
         <p className="mb-10 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-muted">
           <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
@@ -125,6 +127,92 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
             </section>
           ))}
         </div>
+      </Shell>
+    );
+  }
+
+  if (slug === plantmind.slug) {
+    const first = projects[0];
+    return (
+      <Shell
+        kicker={`Product · ${plantmind.sectors}`}
+        title={plantmind.name}
+        lead={`${plantmind.tagline} ${plantmind.lead}`}
+        stack={plantmind.stack}
+        next={{ href: `/work/${first.slug}`, name: first.name }}
+      >
+        <p className="mb-10 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-muted">
+          <span className="h-1.5 w-1.5 rounded-full bg-accent-2" aria-hidden />
+          {plantmind.honesty}
+        </p>
+
+        <div className="relative mb-12 aspect-[16/10] overflow-hidden rounded-3xl border border-white/15 bg-surface shadow-[var(--stage-shadow)]">
+          <Image src={`/projects/plantmind/${plantmind.showcase[0].media}`} alt={`PlantMind — ${plantmind.showcase[0].title}`} fill priority sizes="(min-width: 1440px) 1360px, 100vw" className="object-cover object-left-top" />
+        </div>
+
+        <dl className="mb-24 grid grid-cols-2 gap-3 md:grid-cols-4">
+          {plantmind.facts.map((f) => (
+            <div key={f.label} className="rounded-2xl border border-line bg-surface/60 p-5">
+              <dt className="sr-only">{f.label}</dt>
+              <dd>
+                <span className="block font-display text-4xl font-medium tracking-tight md:text-5xl">{f.value}</span>
+                <span className="mt-2 block text-base text-muted">{f.label}</span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        <section aria-labelledby="pm-problem" className="mb-24 grid gap-8 md:grid-cols-[280px_1fr]">
+          <h2 id="pm-problem" className="font-display text-2xl font-medium">Why I built it</h2>
+          <div className="space-y-5 text-pretty text-lg leading-relaxed text-muted md:text-xl">
+            <p>
+              Mid-size manufacturers in Pakistan, the GCC and South Asia rarely get AI built for them. Enterprise platforms are expensive, tied to one cloud and
+              don&apos;t work where their teams already talk: WhatsApp.
+            </p>
+            <p className="text-text">
+              PlantMind puts one private knowledge engine, one approval layer and one audit trail underneath every team, so an alert can travel from a sensor
+              to an approved work order with the evidence attached at each step.
+            </p>
+          </div>
+        </section>
+
+        <div className="mb-24 grid gap-x-10 gap-y-16 md:grid-cols-2">
+          {plantmind.showcase.slice(1).map((f) => (
+            <section key={f.id} aria-labelledby={`pm-${f.id}`}>
+              <div className="relative mb-6 aspect-[16/10] overflow-hidden rounded-2xl border border-line bg-surface">
+                <Image src={`/projects/plantmind/${f.media}`} alt={`PlantMind — ${f.title}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-left-top" />
+              </div>
+              <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-accent-2">{f.kicker}</p>
+              <h2 id={`pm-${f.id}`} className="mt-2 font-display text-2xl font-medium tracking-tight md:text-3xl">{f.title}</h2>
+              <p className="mt-3 text-pretty text-lg leading-relaxed text-muted">{f.body}</p>
+            </section>
+          ))}
+        </div>
+
+        <section aria-labelledby="pm-modules" className="mb-24">
+          <h2 id="pm-modules" className="mb-10 font-display text-3xl font-medium tracking-tight md:text-4xl">Modules on one shared core</h2>
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {plantmind.modules.map((m) => (
+              <li key={m.title} className="glow-card rounded-2xl border border-line bg-surface p-6">
+                <h3 className="font-display text-xl font-medium tracking-tight">{m.title}</h3>
+                <p className="mt-2 text-base leading-relaxed text-muted">{m.body}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section aria-labelledby="pm-principles" className="grid gap-12 md:grid-cols-[280px_1fr]">
+          <h2 id="pm-principles" className="font-display text-2xl font-medium">Engineering rules</h2>
+          <ol className="space-y-8">
+            {plantmind.principles.map((h, k) => (
+              <li key={k} className="grid grid-cols-[3rem_1fr] gap-4 border-t border-line pt-6">
+                <span className="font-mono text-sm text-accent-2">{String(k + 1).padStart(2, "0")}</span>
+                <p className="text-pretty text-lg leading-relaxed text-text md:text-xl">{h}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+        <p className="mt-16 text-base text-muted">All records, documents and telemetry in the demo are clearly labelled synthetic. No real plant or customer data is used.</p>
       </Shell>
     );
   }

@@ -72,7 +72,7 @@ export default function Projects() {
       >
         {/* Intro panel */}
         <div className="flex shrink-0 flex-col justify-center md:col-span-2 md:mb-8 md:motion-safe:mb-0 md:motion-safe:w-[34vw] md:motion-safe:pr-10">
-          <SectionLabel index="03">More work</SectionLabel>
+          <SectionLabel index="04">More work</SectionLabel>
           <h2 id="projects-title" className="font-display text-[clamp(2.4rem,5vw,4.75rem)] font-medium leading-[0.98] tracking-[-0.03em] text-balance">
             Platforms delivered across <span className="grad-text">four sectors</span>.
           </h2>
@@ -116,19 +116,6 @@ export default function Projects() {
           </article>
         ))}
 
-        {/* Coming soon */}
-        <article data-card className="relative w-[85%] shrink-0 snap-start sm:w-[70%] md:w-auto md:motion-safe:w-[min(32vw,440px)]">
-          <div className="flex h-full min-h-[260px] flex-col md:aspect-[16/10] md:h-auto md:min-h-0 items-start justify-between rounded-3xl border border-dashed border-line p-8 md:motion-safe:aspect-auto md:motion-safe:h-[min(70vh,560px)]">
-            <span className="rounded-full border border-line px-3 py-1 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">07 · In progress</span>
-            <div>
-              <p className="font-display text-4xl font-medium tracking-tight md:text-5xl">Coming soon</p>
-              <p className="mt-3 max-w-xs text-muted">Something new is being built right now. Want a preview?</p>
-              <Link href="/#contact" className="mt-6 inline-flex items-center gap-2 text-accent underline-offset-4 hover:underline">
-                Ask me about it <span aria-hidden>→</span>
-              </Link>
-            </div>
-          </div>
-        </article>
         </div>
         <div className="hidden w-[6vw] shrink-0 md:motion-safe:block" aria-hidden />
       </div>

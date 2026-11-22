@@ -31,7 +31,7 @@ export default function Experience() {
     <section ref={root} id="experience" aria-labelledby="exp-title" className="relative isolate overflow-hidden">
       <Ambient variant="c" />
       <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
-        <SectionLabel index="05">Experience</SectionLabel>
+        <SectionLabel index="06">Experience</SectionLabel>
         <div className="grid gap-16 lg:grid-cols-[1fr_1.5fr]">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <RevealText as="h2" accent="full-time" className="font-display text-[clamp(2.2rem,4.8vw,4.5rem)] font-medium leading-[1] tracking-[-0.03em] text-balance">

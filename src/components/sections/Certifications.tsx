@@ -40,7 +40,7 @@ export default function Certifications() {
     <section ref={root} id="certifications" aria-labelledby="cert-title" className="relative isolate overflow-hidden border-y border-line bg-band">
       <Ambient variant="c" />
       <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-32">
-      <SectionLabel index="06">Certifications</SectionLabel>
+      <SectionLabel index="07">Certifications</SectionLabel>
       <h2 id="cert-title" className="mb-14 max-w-3xl font-display text-[clamp(2.2rem,4.8vw,4.5rem)] font-medium leading-[1] tracking-[-0.03em] text-balance">
         Certified by <span className="grad-text">Microsoft</span> on the platforms I build with.
       </h2>
