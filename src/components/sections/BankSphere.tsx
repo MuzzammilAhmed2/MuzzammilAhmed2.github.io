@@ -203,7 +203,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
           className="glow-card group flex items-center gap-5 rounded-2xl border border-line bg-surface p-4 transition-colors hover:border-accent/60 md:p-5"
         >
           <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-surface-2 md:h-20 md:w-20">
-            <Image src="/projects/banksphere/tour/presenter.jpg" alt="" fill sizes="80px" className="object-cover" />
+            <Image src="/projects/banksphere/tour/presenter.jpg" alt="" aria-hidden fill sizes="80px" className="object-cover" />
             <span className="absolute inset-0 grid place-items-center bg-black/25">
               <span className="grid h-8 w-8 place-items-center rounded-full bg-accent text-accent-ink transition-transform group-hover:scale-110">
                 <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden><path d="M7 4v16l13-8z" fill="currentColor" /></svg>

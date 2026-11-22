@@ -17,7 +17,7 @@ export const site = {
   // Shown only when public/Muzzammil-Ahmed-CV.pdf exists (see next.config.ts). Use a copy without the phone number.
   cv: process.env.NEXT_PUBLIC_HAS_CV === "1" ? "/Muzzammil-Ahmed-CV.pdf" : null,
   description:
-    "Data Engineer, BI Developer and Data & AI Consultant at Innolytix, Karachi. Data platforms on Microsoft Fabric, Azure, AWS and Snowflake, Power BI analytics, and governed GenAI / RAG solutions. DP-700 + PL-300 certified.",
+    "Data Engineer & BI Developer in Karachi: data platforms on Microsoft Fabric, Azure, AWS and Snowflake, Power BI and governed AI. DP-700 & PL-300 certified.",
 };
 
 export const nav = [

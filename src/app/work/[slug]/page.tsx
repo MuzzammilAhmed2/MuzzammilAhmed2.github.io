@@ -2,27 +2,35 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { banksphere, plantmind, projects } from "@/data/content";
+import { site, banksphere, plantmind, projects } from "@/data/content";
+import { allWork, workBySlug } from "@/data/work";
 import { banksphereMedia } from "@/lib/media";
 import GuidedTour from "@/components/ui/GuidedTour";
 import ProjectVisual from "@/components/ui/ProjectVisual";
 import FeatureArt from "@/components/ui/FeatureArt";
 
 export function generateStaticParams() {
-  return [{ slug: banksphere.slug }, { slug: plantmind.slug }, ...projects.map((p) => ({ slug: p.slug }))];
+  return allWork.map((w) => ({ slug: w.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  if (slug === banksphere.slug) {
-    return { title: banksphere.name, description: banksphere.tagline, alternates: { canonical: `/work/${slug}` } };
-  }
-  if (slug === plantmind.slug) {
-    return { title: `${plantmind.name}: ${plantmind.tagline}`, description: plantmind.lead, alternates: { canonical: `/work/${slug}` } };
-  }
-  const p = projects.find((x) => x.slug === slug);
-  if (!p) return {};
-  return { title: p.name, description: p.summary, alternates: { canonical: `/work/${slug}` } };
+  const w = workBySlug(slug);
+  if (!w) return {};
+  const description = slug === plantmind.slug
+    ? "AI operations layer for manufacturing: cited answers from plant documents, live asset risk, human approval gates and a hash-linked audit trail."
+    : slug === banksphere.slug
+      ? "Governed AI for KYC and compliance in banking: ID-card OCR, watchlist screening and risk scoring, with an officer making every final call."
+      : projects.find((p) => p.slug === slug)!.summary;
+  const url = `/work/${slug}/`;
+  const title = `${w.name} — ${site.name}`;
+  return {
+    title: { absolute: title },
+    description,
+    alternates: { canonical: url },
+    openGraph: { type: "article", url, title, description, siteName: site.name, images: [{ url: `/og/${slug}.png`, width: 1200, height: 630, alt: title }] },
+    twitter: { card: "summary_large_image", title, description, images: [`/og/${slug}.png`] },
+  };
 }
 
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
