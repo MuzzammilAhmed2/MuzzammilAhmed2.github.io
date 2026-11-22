@@ -167,7 +167,7 @@ export const plantmind = {
   name: "PlantMind",
   tagline: "An AI operations layer for manufacturing.",
   lead: "One workspace where maintenance, quality, customer care and leadership share a private knowledge engine, live plant data, human approval gates and a hash-linked audit trail.",
-  honesty: "Hosted demo on synthetic data · Walkthrough on request",
+  honesty: "Working product on synthetic data · Walkthrough on request",
   sectors: "Manufacturing · Maintenance · Quality · Azure AI",
   stack: [
     "Python",
@@ -449,9 +449,8 @@ export const experience = [
 
 export const certifications = [
   { code: "DP-700", name: "Microsoft Fabric Data Engineer Associate", issuer: "Microsoft", featured: true },
-  { code: "PL-300", name: "Microsoft Power BI Data Analyst", issuer: "Microsoft", featured: true },
+  { code: "PL-300", name: "Microsoft Power BI Data Analyst Associate", issuer: "Microsoft", featured: true },
   { code: "Coursera", name: "Microsoft Power BI & Power Platform for Productivity", issuer: "Coursera", featured: false },
-  { code: "Snowflake", name: "Snowflake Training — Batches 1 to 4", issuer: "Snowflake", featured: false },
 ];
 
 export const services = [

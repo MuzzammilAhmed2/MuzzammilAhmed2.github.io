@@ -7,7 +7,7 @@ import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
 
 const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
-type Status = "idle" | "sending" | "sent" | "error";
+type Status = "idle" | "sending" | "sent" | "error" | "mailto";
 
 const field =
   "peer w-full border-b border-line bg-transparent pb-3 pt-6 text-lg text-text outline-none transition-colors placeholder:text-transparent focus:border-accent";
@@ -29,6 +29,7 @@ export default function Contact() {
       const subject = encodeURIComponent(`${kind} — from ${data.get("name")}`);
       const body = encodeURIComponent(`${data.get("message")}\n\n— ${data.get("name")} (${data.get("email")})`);
       window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
+      setStatus("mailto");
       return;
     }
 
@@ -145,13 +146,20 @@ export default function Contact() {
               </Magnetic>
               <p role="status" aria-live="polite" className="text-base">
                 {status === "sent" && <span className="text-accent">Thanks — your message is in. I&apos;ll get back to you soon.</span>}
+                {status === "mailto" && <span className="text-text">Your email app should now be open with the message ready to send.</span>}
                 {status === "error" && (
                   <span className="text-[color:var(--danger)]">
-                    Something went wrong. Please email me directly at {site.email}.
+                    Something went wrong. Please email me directly using the address above.
                   </span>
                 )}
               </p>
             </div>
+            {!FORMSPREE_ID && (
+              <p className="text-base text-muted">
+                This opens your email app — or email me directly at{" "}
+                <a href={`mailto:${site.email}`} className="text-text underline decoration-line underline-offset-4 hover:text-accent">{site.email}</a>.
+              </p>
+            )}
           </form>
         </div>
         </div>

@@ -28,6 +28,8 @@ jobs:
         env:
           STATIC_EXPORT: "1"
           NEXT_PUBLIC_SITE_URL: https://muzzammilahmed2.github.io
+          NEXT_PUBLIC_FORMSPREE_ID: ${{ vars.NEXT_PUBLIC_FORMSPREE_ID }}
+          NEXT_PUBLIC_CF_BEACON_TOKEN: ${{ vars.NEXT_PUBLIC_CF_BEACON_TOKEN }}
       - run: touch out/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -75,7 +75,7 @@ export default function Hero() {
             <div className="flex items-center justify-between px-1 pb-3">
               <span className="font-mono text-[13px] uppercase tracking-[0.14em] text-muted">Featured project</span>
               <span className="inline-flex items-center gap-1.5 font-mono text-[13px] text-accent">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden /> Live demo
+                Case study <span aria-hidden>→</span>
               </span>
             </div>
             <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-line bg-bg">
@@ -165,6 +165,33 @@ export default function Hero() {
           </div>
           <ContactIcons />
           </div>
+        </div>
+
+        {/* Below lg the big glass card is hidden — show a compact version so phones still see the featured work */}
+        <div data-hero-fade className="mt-8 flex flex-col gap-3 lg:hidden">
+          <Link
+            href={`/work/${banksphere.slug}`}
+            className="flex items-center gap-4 rounded-2xl border border-line bg-surface/70 p-3 backdrop-blur-md transition-colors hover:border-accent/50"
+          >
+            <span className="relative h-20 w-24 shrink-0 self-start overflow-hidden rounded-lg border border-line bg-bg">
+              <Image src="/projects/banksphere/kyc.webp" alt="" fill sizes="96px" className="object-cover object-left-top" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-display text-lg font-medium leading-tight tracking-tight">{banksphere.name}</span>
+              <span className="mt-0.5 block text-[15px] leading-snug text-muted">{banksphere.tagline}</span>
+              <span className="mt-1 block font-mono text-[13px] text-accent">
+                Case study <span aria-hidden>→</span>
+              </span>
+            </span>
+          </Link>
+          <Link
+            href="/#plantmind"
+            className="group flex w-fit items-center gap-3 rounded-full border border-line bg-surface/70 py-1.5 pl-1.5 pr-4 backdrop-blur-md transition-colors hover:border-accent-2/60"
+          >
+            <span className="rounded-full bg-accent-2 px-2.5 py-0.5 font-mono text-[12px] font-medium uppercase tracking-[0.12em] text-accent-ink">New</span>
+            <span className="text-[15px] text-text">{plantmind.name} · AI for manufacturing</span>
+            <span aria-hidden className="text-accent-2">→</span>
+          </Link>
         </div>
       </div>
 

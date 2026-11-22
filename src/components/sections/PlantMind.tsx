@@ -191,7 +191,7 @@ export default function PlantMind() {
             </Magnetic>
             <Magnetic>
               <Link href="/#contact" className="btn-glow inline-flex items-center gap-3 rounded-full bg-accent px-6 py-3.5 font-medium text-accent-ink">
-                Book a live demo <span aria-hidden>→</span>
+                Request a walkthrough <span aria-hidden>→</span>
               </Link>
             </Magnetic>
           </div>
