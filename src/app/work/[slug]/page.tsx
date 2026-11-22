@@ -33,6 +33,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+function DiagramTag() {
+  return (
+    <span className="absolute bottom-3 right-3 rounded-full border border-line bg-bg/80 px-2.5 py-1 font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
+      Diagram
+    </span>
+  );
+}
+
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="grid gap-6 border-t border-line pt-10 md:grid-cols-[280px_1fr] md:gap-12">
@@ -96,7 +104,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
 
   if (slug === banksphere.slug) {
-    const files = [...banksphere.features.map((f) => f.media!), banksphere.video];
+    const files = [...banksphere.features.flatMap((f) => (f.media ? [f.media] : [])), banksphere.video];
     const media = banksphereMedia(files);
     return (
       <Shell
@@ -137,6 +145,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
                 ) : (
                   <div className="absolute inset-0 p-6">
                     <FeatureArt art={f.art} />
+                    <DiagramTag />
                   </div>
                 )}
               </div>

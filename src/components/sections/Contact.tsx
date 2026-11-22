@@ -116,7 +116,7 @@ export default function Contact() {
             <fieldset>
               <legend className="mb-4 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">I&apos;m reaching out about</legend>
               <div className="flex flex-wrap gap-2">
-                {["Freelance project", "Full-time role", "Something else"].map((k) => (
+                {["Freelance project", "Full‑time role", "Something else"].map((k) => (
                   <label key={k} className={`cursor-pointer rounded-full border px-4 py-2 text-base transition-colors ${kind === k ? "border-accent bg-accent text-accent-ink" : "border-line text-text hover:border-text"}`}>
                     <input type="radio" name="topic" value={k} checked={kind === k} onChange={() => setKind(k)} className="sr-only" />
                     {k}

@@ -33,7 +33,7 @@ export default function Services() {
         </RevealText>
         <span id="svc-title" className="sr-only">Freelance services</span>
         <p className="text-pretty text-lg leading-relaxed text-muted">
-          I take on a small number of freelance projects alongside my full-time role. Here&apos;s where I can help most.
+          I take on a small number of freelance projects alongside my full‑time role. Here&apos;s where I can help most.
         </p>
       </div>
       <div data-svc-grid className="grid gap-5 lg:grid-cols-3">

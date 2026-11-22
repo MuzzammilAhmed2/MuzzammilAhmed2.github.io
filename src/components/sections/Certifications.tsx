@@ -64,7 +64,7 @@ export default function Certifications() {
                 <path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5" />
               </svg>
             </div>
-            <p className="relative mt-14 font-display text-6xl font-medium tracking-tight md:text-7xl">{c.code}</p>
+            <p className="relative mt-14 font-display text-6xl font-medium tracking-tight md:text-7xl">{c.code.replace("-", "‑")}</p>
             <h3 className="relative mt-3 text-lg text-text md:text-xl">{c.name}</h3>
           </article>
         ))}

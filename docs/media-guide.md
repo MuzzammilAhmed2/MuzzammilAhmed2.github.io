@@ -1,7 +1,7 @@
 # BankSphere AI media
 
-Drop files here with these exact names, then rebuild (`npm run build`) or restart `npm run dev`.
-The site picks each one up automatically and replaces the matching illustration.
+Drop files into `public/projects/banksphere/` with these names, add the filename as `media` on the feature in `src/data/content.ts`, then rebuild (`npm run build`) or restart `npm run dev`.
+The screenshot then replaces that feature's labelled diagram. In use today: `kyc.webp`, `detective.webp`, `audit.webp`, `demo.mp4`.
 
 | File               | Shown for                                   |
 |--------------------|---------------------------------------------|

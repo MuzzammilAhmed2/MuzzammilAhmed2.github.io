@@ -26,6 +26,9 @@ function Visual({ i, media }: { i: number; media: Record<string, boolean> }) {
   ) : (
     <div className="absolute inset-0 p-6 md:p-10">
       <FeatureArt art={f.art} />
+      <span className="absolute bottom-3 right-3 rounded-full border border-line bg-bg/80 px-2.5 py-1 font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
+        Diagram
+      </span>
     </div>
   );
 }

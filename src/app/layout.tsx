@@ -8,6 +8,7 @@ import Cursor from "@/components/ui/Cursor";
 import AuraCursor from "@/components/ui/AuraCursor";
 import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
+import Analytics from "@/components/ui/Analytics";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk", display: "swap" });
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="main">{children}</main>
           <Footer />
         </SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );

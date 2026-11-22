@@ -49,7 +49,8 @@ export type Feature = {
   title: string;
   body: string;
   art: "decision" | "detective" | "challenge" | "timemachine" | "twin" | "fourEyes" | "audit" | "redteam";
-  media?: string; // filename inside /public/projects/banksphere/
+  /** Screenshot in /public/projects/banksphere/. Features without one show a labelled diagram (FeatureArt). */
+  media?: string;
 };
 
 export const banksphere = {
@@ -93,7 +94,6 @@ export const banksphere = {
       title: "Challenge the AI",
       body: "An officer can push back on any AI conclusion and make it defend — or revise — its reasoning before a decision is made.",
       art: "challenge",
-      media: "challenge.png",
     },
     {
       id: "timemachine",
@@ -101,7 +101,6 @@ export const banksphere = {
       title: "Time Machine case replay",
       body: "Replay any case step by step to see exactly what the system knew and decided at each point in time.",
       art: "timemachine",
-      media: "time-machine.png",
     },
     {
       id: "twin",
@@ -109,7 +108,6 @@ export const banksphere = {
       title: "Regulatory Digital Twin & knowledge graph",
       body: "A digital twin of the regulatory rulebook plus a compliance knowledge graph that links customers, cases, rules and evidence.",
       art: "twin",
-      media: "digital-twin.png",
     },
     {
       id: "fourEyes",
@@ -117,7 +115,6 @@ export const banksphere = {
       title: "Screening with four-eyes approval",
       body: "Financial-crime screening where sensitive decisions need a second, independent approver before they take effect.",
       art: "fourEyes",
-      media: "four-eyes.png",
     },
     {
       id: "audit",
@@ -133,7 +130,6 @@ export const banksphere = {
       title: "Red-team & evaluation suites",
       body: "Adversarial red-team and evaluation suites run alongside 1,000+ automated tests to keep the AI honest as it changes.",
       art: "redteam",
-      media: "tests.png",
     },
   ] satisfies Feature[],
 };

@@ -7,6 +7,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-4 py-10 sm:px-6 md:flex-row md:items-center md:justify-between md:px-10">
         <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-muted">
           © {new Date().getFullYear()} {site.name} · {site.location}
+          <span className="mt-1 block normal-case tracking-normal">Content and CV © {site.name}. All rights reserved.</span>
         </p>
         <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-[13px] uppercase tracking-[0.18em] text-muted">
           {nav.map((n) => (

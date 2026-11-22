@@ -87,7 +87,7 @@ export default function Hero() {
               <p className="mt-1 text-base text-muted">{banksphere.tagline}</p>
             </div>
             <div className="mt-4 flex flex-wrap gap-2 px-1 pb-1">
-              {["DP-700 certified", "PL-300 certified", "Innolytix · Karachi"].map((c) => (
+              {["DP‑700 certified", "PL‑300 certified", "Innolytix · Karachi"].map((c) => (
                 <span key={c} className="rounded-full border border-line bg-bg/60 px-3 py-1 text-[13px] text-text">{c}</span>
               ))}
             </div>
@@ -107,7 +107,7 @@ export default function Hero() {
       <div data-hero-content className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-end px-4 pb-10 pt-32 sm:px-6 md:px-10 md:pb-14 lg:pr-[44%]">
         <div data-hero-fade className="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-line bg-surface/70 px-4 py-2 backdrop-blur">
           <span className="pulse-dot relative block h-2 w-2 rounded-full bg-accent text-accent" aria-hidden />
-          <span className="font-mono text-[13px] uppercase tracking-[0.16em] text-text">Available for freelance &amp; full-time</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.16em] text-text">Available for freelance &amp; full‑time</span>
         </div>
 
         <RevealText
@@ -129,7 +129,7 @@ export default function Hero() {
             <p id="hero-name" className="font-display text-xl text-text md:text-2xl">{site.name}</p>
             <p id="hero-role" className="text-pretty text-base leading-relaxed text-muted md:text-lg">
               Data Engineer · BI Developer · Data &amp; AI Consultant at <span className="text-text">Innolytix</span>, Karachi.
-              DP-700 &amp; PL-300 certified.
+              DP‑700 &amp; PL‑300 certified.
             </p>
           </div>
           <div data-hero-fade className="flex flex-col gap-5 md:items-end lg:items-start">
