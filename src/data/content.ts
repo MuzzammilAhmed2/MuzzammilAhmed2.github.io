@@ -266,7 +266,7 @@ export const projects: Project[] = [
       "Built an AI-powered document platform using IBM FileNet, IBM Datacap and IBM Watsonx.ai to automate classification, OCR extraction and routing of claims and policy documents.",
     context:
       "An insurer handled claims and policy documents by hand: classifying them, keying in their data and routing them, with no quick way to search past cases.",
-    role: "Data Engineer / BI Developer at Innolytix, on the delivery team.",
+    role: "I designed and built it end to end as the Data Engineer / BI Developer at Innolytix.",
     highlights: [
       "Classification, OCR extraction and routing of claims and policy documents with IBM Datacap, FileNet and Watsonx.ai.",
       "A RAG search layer so claims officers can query historical case files in natural language, with full audit and records-management compliance.",
@@ -291,7 +291,7 @@ export const projects: Project[] = [
       "Engineered a real-time IoT analytics platform on Azure IoT Hub, Microsoft Fabric Eventstream, Eventhouse and Fabric Activator to track a live vehicle fleet.",
     context:
       "A logistics operator needed a live view of its vehicle fleet (health, location, fuel and driver behaviour) instead of finding out about problems after the fact.",
-    role: "Data Engineer / BI Developer at Innolytix, on the delivery team.",
+    role: "I designed and built it end to end as the Data Engineer / BI Developer at Innolytix.",
     highlights: [
       "Streaming ingestion from Azure IoT Hub into Fabric Eventstream and Eventhouse, with Fabric Activator for real-time alerts.",
       "Vehicle health monitoring, geofencing alerts and fuel-efficiency tracking.",
@@ -316,7 +316,7 @@ export const projects: Project[] = [
       "Built an enterprise analytics platform on Microsoft Fabric Direct Lake, consolidating core banking, treasury and CRM data into a governed Medallion Architecture.",
     context:
       "A bank's core banking, treasury and CRM data lived in separate systems, which made branch performance and regulatory reporting slow and hard to trust.",
-    role: "Data Engineer / BI Developer at Innolytix, on the delivery team.",
+    role: "I designed and built it end to end as the Data Engineer / BI Developer at Innolytix.",
     highlights: [
       "A governed Medallion platform on Microsoft Fabric Direct Lake consolidating core banking, treasury and CRM data.",
       "Automated Data Factory quality controls, and identity-based RLS mapped to branch and regional hierarchies.",
@@ -341,7 +341,7 @@ export const projects: Project[] = [
       "Built a secure cross-cloud analytics solution across AWS, Snowflake and Microsoft Fabric to unify sales, inventory and customer data for a multi-channel retailer.",
     context:
       "A multi-channel retailer's sales, inventory and customer data was split across clouds, so revenue and customer value couldn't be reported in one place.",
-    role: "Data Engineer / BI Developer at Innolytix, on the delivery team.",
+    role: "I designed and built it end to end as the Data Engineer / BI Developer at Innolytix.",
     highlights: [
       "A secure analytics layer across AWS, Snowflake and Microsoft Fabric.",
       "Automated daily ingestion pipelines from POS and e-commerce systems.",
@@ -366,7 +366,7 @@ export const projects: Project[] = [
       "Built a cloud data platform using AWS S3, EC2, SageMaker and Power BI to monitor industrial equipment health and predict maintenance requirements.",
     context:
       "Industrial equipment is usually serviced on a fixed schedule or after it fails. The goal was to predict failures early from sensor data.",
-    role: "Final-year BSCS project, Dawood University of Engineering & Technology.",
+    role: "I designed and built it end to end as my final-year BSCS project at Dawood University of Engineering & Technology.",
     highlights: [
       "Cloud data platform on AWS S3, EC2 and SageMaker for equipment telemetry.",
       "Time-series and vibration features, and models estimating remaining useful life and failure probability.",
