@@ -50,7 +50,7 @@ export default function GuidedTour() {
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="mb-3 font-mono text-[13px] uppercase tracking-[0.2em] text-accent">Guided tour</p>
-            <h3 className="font-display text-3xl font-medium tracking-[-0.03em] md:text-4xl">Walk through BankSphere in 10 short lessons</h3>
+            <h2 className="font-display text-3xl font-medium tracking-[-0.03em] md:text-4xl">Walk through BankSphere in 10 short lessons</h2>
             <p className="mt-3 max-w-2xl text-muted">
               Narrated by an AI presenter from the project&apos;s own reviewed tour script, in English and Urdu. All data in the product is synthetic.
             </p>
@@ -129,9 +129,9 @@ export default function GuidedTour() {
                 <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-muted">
                   Lesson {lesson + 1} · part {step + 1} of {L.steps.length}
                 </p>
-                <h4 className="mt-2 font-display text-2xl font-medium tracking-[-0.02em]" lang={lang} dir={lang === "ur" ? "rtl" : "ltr"}>
+                <h3 className="mt-2 font-display text-2xl font-medium tracking-[-0.02em]" lang={lang} dir={lang === "ur" ? "rtl" : "ltr"}>
                   {L.title[lang]}
-                </h4>
+                </h3>
                 <p
                   aria-live="polite"
                   lang={lang}

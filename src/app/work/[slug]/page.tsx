@@ -59,7 +59,7 @@ function Shell({
 }) {
   return (
     <article className="mx-auto max-w-[1440px] px-4 pb-24 pt-36 sm:px-6 md:px-10 md:pt-44">
-      <Link href="/#work" className="mb-12 inline-flex items-center gap-2 font-mono text-[13px] uppercase tracking-[0.18em] text-muted hover:text-text">
+      <Link href="/#work" className="mb-12 inline-flex min-h-6 items-center gap-2 py-2 font-mono pointer-coarse:min-h-11 text-[13px] uppercase tracking-[0.18em] text-muted hover:text-text">
         <span aria-hidden>←</span> All work
       </Link>
       <p className="mb-5 font-mono text-[13px] uppercase tracking-[0.2em] text-accent">{kicker}</p>

@@ -21,13 +21,15 @@ export default function Hero() {
     if (!loaded || !root.current) return;
     const mm = gsap.matchMedia();
     mm.add(MOTION_OK, () => {
+      // Slide up from behind a mask instead of fading: text keeps full contrast on every frame.
       gsap.from(root.current!.querySelectorAll("[data-hero-fade]"), {
         y: 24,
-        opacity: 0,
+        clipPath: "inset(0% 0% 100% 0%)",
         duration: 1,
         ease: "expo.out",
         stagger: 0.08,
         delay: 0.5,
+        clearProps: "clipPath",
       });
       // Parallax the aurora + headline away as you scroll
       gsap.to(aurora.current, {
@@ -37,7 +39,6 @@ export default function Hero() {
       });
       gsap.to("[data-hero-content]", {
         yPercent: -12,
-        opacity: 0.2,
         ease: "none",
         scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: true },
       });

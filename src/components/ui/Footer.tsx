@@ -8,14 +8,14 @@ export default function Footer() {
         <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-muted">
           © {new Date().getFullYear()} {site.name} · {site.location}
         </p>
-        <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2 font-mono text-[13px] uppercase tracking-[0.18em] text-muted">
+        <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-1 font-mono text-[13px] uppercase tracking-[0.18em] text-muted">
           {nav.map((n) => (
-            <Link key={n.href} href={n.href} className="hover:text-text">{n.label}</Link>
+            <Link key={n.href} href={n.href} className="inline-flex min-h-6 items-center py-1 hover:text-text pointer-coarse:min-h-11">{n.label}</Link>
           ))}
-          <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-text">LinkedIn ↗</a>
-          <a href={site.github} target="_blank" rel="noopener noreferrer" className="hover:text-text">GitHub ↗</a>
-          <a href={`mailto:${site.email}`} className="normal-case tracking-normal hover:text-text">{site.email}</a>
-          {site.cv && <a href={site.cv} download className="hover:text-text">CV ↓</a>}
+          <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-6 items-center py-1 hover:text-text pointer-coarse:min-h-11">LinkedIn ↗</a>
+          <a href={site.github} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-6 items-center py-1 hover:text-text pointer-coarse:min-h-11">GitHub ↗</a>
+          <a href={`mailto:${site.email}`} className="inline-flex min-h-6 items-center py-1 normal-case tracking-normal hover:text-text pointer-coarse:min-h-11">{site.email}</a>
+          {site.cv && <a href={site.cv} download className="inline-flex min-h-6 items-center py-1 hover:text-text pointer-coarse:min-h-11">CV ↓</a>}
         </nav>
       </div>
     </footer>

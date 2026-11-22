@@ -57,7 +57,7 @@ export default function Nav() {
                 key={n.href}
                 href={n.href}
                 text={n.label}
-                className="rounded-full px-4 py-1.5 font-mono text-[13px] uppercase tracking-[0.16em] text-muted transition-colors hover:text-text"
+                className="inline-flex min-h-9 items-center rounded-full px-4 py-2 font-mono text-[13px] uppercase tracking-[0.16em] text-muted transition-colors hover:text-text"
               />
             ))}
           </nav>

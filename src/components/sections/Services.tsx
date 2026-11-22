@@ -16,7 +16,7 @@ export default function Services() {
     const mm = gsap.matchMedia();
     mm.add(MOTION_OK, () => {
       gsap.from(root.current!.querySelectorAll("[data-svc]"), {
-        y: 48, opacity: 0, duration: 1.2, ease: "expo.out", stagger: 0.12,
+        y: 48, clipPath: "inset(0% 0% 100% 0%)", duration: 1.2, ease: "expo.out", stagger: 0.12, clearProps: "clipPath",
         scrollTrigger: { trigger: "[data-svc-grid]", start: "top 80%", once: true },
       });
     });
