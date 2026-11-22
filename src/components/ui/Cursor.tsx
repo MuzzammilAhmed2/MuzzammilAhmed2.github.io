@@ -21,6 +21,9 @@ export default function Cursor() {
     const dy = gsap.quickTo(dot.current, "y", { duration: 0.12, ease: "power3" });
     const rx = gsap.quickTo(ring.current, "x", { duration: 0.45, ease: "power3" });
     const ry = gsap.quickTo(ring.current, "y", { duration: 0.45, ease: "power3" });
+    gsap.set(label.current, { xPercent: -50, yPercent: -50, opacity: 0 });
+    const lx = gsap.quickTo(label.current, "x", { duration: 0.45, ease: "power3" });
+    const ly = gsap.quickTo(label.current, "y", { duration: 0.45, ease: "power3" });
 
     let state = "";
     // Read theme colours at hover time so the cursor follows the active theme
@@ -37,8 +40,8 @@ export default function Cursor() {
       if (label.current) label.current.textContent = text;
       const r = ring.current!;
       if (next === "view") {
-        gsap.to(r, { scale: 2.6, backgroundColor: acc(1), borderColor: acc(0), duration: 0.35, ease: "power3.out" });
-        gsap.to(label.current, { opacity: 1, scale: 1 / 2.6, duration: 0.25 });
+        gsap.to(r, { scale: 2.2, backgroundColor: acc(1), borderColor: acc(0), duration: 0.35, ease: "power3.out" });
+        gsap.to(label.current, { opacity: 1, duration: 0.25 });
         gsap.to(dot.current, { scale: 0, duration: 0.2 });
       } else if (next === "link") {
         gsap.to(r, { scale: 1.7, backgroundColor: acc(0.12), borderColor: acc(0.9), duration: 0.3, ease: "power3.out" });
@@ -51,24 +54,33 @@ export default function Cursor() {
       }
     };
 
-    const onMove = (e: PointerEvent) => {
-      dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
-      gsap.to([dot.current, ring.current], { opacity: 1, duration: 0.2, overwrite: "auto" });
-      const t = e.target as HTMLElement;
+    let px = -1, py = -1;
+    const pick = (t: HTMLElement | null) => {
+      if (!t) return setState("");
       const view = t.closest<HTMLElement>("[data-cursor='view']");
       if (view) return setState("view", view.dataset.cursorLabel ?? "View");
       if (t.closest("a, button, [role='button'], label, select, [data-cursor='link']")) return setState("link");
       setState("");
     };
-    const onLeave = () => gsap.to([dot.current, ring.current], { opacity: 0, duration: 0.2 });
+    const onMove = (e: PointerEvent) => {
+      px = e.clientX; py = e.clientY;
+      dx(px); dy(py); rx(px); ry(py); lx(px); ly(py);
+      gsap.to([dot.current, ring.current], { opacity: 1, duration: 0.2, overwrite: "auto" });
+      pick(e.target as HTMLElement);
+    };
+    // Content moves under a still pointer while scrolling: re-check what is under it
+    const onScroll = () => { if (px >= 0) pick(document.elementFromPoint(px, py) as HTMLElement | null); };
+    const onLeave = () => gsap.to([dot.current, ring.current, label.current], { opacity: 0, duration: 0.2 });
     const onDown = () => gsap.to(ring.current, { scale: "-=0.25", duration: 0.15, yoyo: true, repeat: 1 });
 
     window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("pointerleave", onLeave);
     window.addEventListener("pointerdown", onDown);
     return () => {
       html.classList.remove("has-custom-cursor");
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("scroll", onScroll);
       document.removeEventListener("pointerleave", onLeave);
       window.removeEventListener("pointerdown", onDown);
     };
@@ -79,9 +91,12 @@ export default function Cursor() {
       <div
         ref={ring}
         className="fixed left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-[color-mix(in_srgb,var(--text)_35%,transparent)] will-change-transform"
-      >
-        <span ref={label} className="font-mono text-[13px] font-semibold uppercase tracking-widest text-accent-ink opacity-0" />
-      </div>
+      />
+      {/* Label lives outside the scaled ring so its text renders crisp */}
+      <span
+        ref={label}
+        className="fixed left-0 top-0 font-mono text-[13px] font-bold uppercase tracking-[0.14em] text-[#05070d] opacity-0 will-change-transform"
+      />
       <div ref={dot} className="fixed left-0 top-0 h-1.5 w-1.5 rounded-full bg-accent will-change-transform" />
     </div>
   );

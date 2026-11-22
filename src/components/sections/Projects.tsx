@@ -71,9 +71,9 @@ export default function Projects() {
         className="flex flex-col gap-6 px-4 py-20 sm:px-6 md:grid md:grid-cols-2 md:gap-8 md:px-10 md:motion-safe:flex md:motion-safe:h-full md:motion-safe:w-max md:motion-safe:flex-row md:motion-safe:items-center md:motion-safe:py-0"
       >
         {/* Intro panel */}
-        <div className="flex shrink-0 flex-col justify-center md:col-span-2 md:mb-8 md:motion-safe:mb-0 md:motion-safe:w-[34vw] md:motion-safe:pr-10">
+        <div className="flex shrink-0 flex-col justify-center md:col-span-2 md:mb-8 md:motion-safe:mb-0 md:motion-safe:w-[min(34vw,520px)] md:motion-safe:pr-10">
           <SectionLabel index="04">More work</SectionLabel>
-          <h2 id="projects-title" className="font-display text-[clamp(2.4rem,5vw,4.75rem)] font-medium leading-[0.98] tracking-[-0.03em] text-balance">
+          <h2 id="projects-title" className="font-display text-[clamp(2.2rem,4.2vw,4.25rem)] font-medium leading-[0.98] tracking-[-0.03em] text-balance">
             Platforms delivered across <span className="grad-text">four sectors</span>.
           </h2>
           <p className="mt-6 max-w-md text-pretty text-lg leading-relaxed text-muted">
@@ -87,34 +87,34 @@ export default function Projects() {
         <p className="-mb-2 font-mono text-[13px] uppercase tracking-[0.2em] text-muted md:hidden" aria-hidden>Swipe →</p>
         <div className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:-mx-6 sm:scroll-px-6 sm:px-6 md:contents">
         {projects.map((p) => (
-          <article key={p.slug} data-card className="group relative w-[85%] shrink-0 snap-start sm:w-[70%] md:w-auto md:motion-safe:w-[min(46vw,640px)]">
+          <article key={p.slug} data-card className="group relative w-[85%] shrink-0 snap-start sm:w-[70%] md:w-auto md:motion-safe:h-[33rem] md:motion-safe:w-[clamp(340px,33vw,460px)]">
             <Link
               href={`/work/${p.slug}`}
               data-cursor="view"
-              className="glow-card block rounded-3xl border border-line bg-surface p-3 transition-colors duration-500 hover:border-[color:var(--accent)]/40"
+              className="glow-card flex h-full flex-col rounded-3xl border border-line bg-surface p-3 transition-colors duration-500 hover:border-[color:var(--accent)]/40"
             >
-              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
                 <div data-img className="absolute inset-0 transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] will-change-transform">
                   <ProjectVisual p={p} />
                 </div>
                 <div data-mask className="absolute inset-0 origin-top bg-bg motion-reduce:hidden md:origin-right" aria-hidden />
-                <span className="absolute left-4 top-4 flex flex-wrap gap-2">
+                <span className="absolute left-3 right-16 top-3 flex flex-wrap gap-2">
                   {p.academic && (
                     <span className="rounded-full border border-dashed border-line bg-bg/80 px-3 py-1 font-mono text-[13px] uppercase tracking-[0.16em] text-muted backdrop-blur">
                       Academic
                     </span>
                   )}
-                  <span className="rounded-full border border-line bg-bg/70 px-3 py-1 font-mono text-[13px] uppercase tracking-[0.16em] text-text backdrop-blur">
+                  <span className="rounded-full border border-line bg-bg/70 px-3 py-1 font-mono text-[12px] uppercase tracking-[0.12em] text-text backdrop-blur">
                     {p.sector}
                   </span>
                 </span>
-                <span className="absolute right-4 top-4 font-display text-4xl font-medium text-text/80">{p.index}</span>
+                <span className="absolute right-4 top-3 font-display text-3xl font-medium text-text/80">{p.index}</span>
               </div>
-              <div className="px-3 pb-4 pt-6">
-                <h3 className="font-display text-2xl font-medium leading-tight tracking-tight md:text-[1.75rem]">{p.name}</h3>
-                <p className="mt-3 text-pretty leading-relaxed text-muted">{p.summary}</p>
-                <ul className="mt-5 flex flex-wrap gap-2" aria-label="Stack">
-                  {p.stack.slice(0, 5).map((s) => (
+              <div className="flex flex-1 flex-col px-2 pb-3 pt-5">
+                <h3 className="font-display text-xl font-medium leading-tight tracking-tight md:text-[1.4rem]">{p.name}</h3>
+                <p className="mt-2 line-clamp-3 text-pretty text-[15px] leading-relaxed text-muted">{p.summary}</p>
+                <ul className="mt-auto flex flex-wrap gap-2 pt-4" aria-label="Stack">
+                  {p.stack.slice(0, 4).map((s) => (
                     <li key={s} className="rounded-full border border-line px-2.5 py-1 font-mono text-[13px] text-muted">{s}</li>
                   ))}
                 </ul>

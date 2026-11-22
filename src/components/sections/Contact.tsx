@@ -51,7 +51,7 @@ export default function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden border-t border-line">
       <div aria-hidden className="pointer-events-none absolute -bottom-1/2 left-1/2 h-[80vmax] w-[80vmax] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgb(var(--accent-rgb)/0.18),rgb(var(--accent-2-rgb)/0.08)_40%,transparent_62%)]" />
-      <div className="relative mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-32">
+      <div className="relative mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-24 xl:py-32">
         <div className="flex flex-col items-center text-center">
           <SectionLabel index="09">Contact</SectionLabel>
           <RevealText
@@ -94,8 +94,8 @@ export default function Contact() {
           <div className="space-y-6">
             <div>
               <p className="mb-2 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">Email</p>
-              <a href={`mailto:${site.email}`} className="font-display text-lg text-text underline decoration-line underline-offset-8 transition-colors [overflow-wrap:anywhere] hover:text-accent hover:decoration-accent md:text-xl">
-                {site.email}
+              <a href={`mailto:${site.email}`} className="font-display text-base text-text underline decoration-line underline-offset-8 transition-colors hover:text-accent hover:decoration-accent sm:text-lg xl:text-xl">
+                {site.email.split("@")[0]}<wbr />@{site.email.split("@")[1]}
               </a>
             </div>
             <div>

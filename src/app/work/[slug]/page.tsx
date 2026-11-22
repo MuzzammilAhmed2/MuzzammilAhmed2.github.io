@@ -255,7 +255,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
       stack={[]}
       next={i === projects.length - 1 ? { href: `/work/${banksphere.slug}`, name: banksphere.name } : { href: `/work/${nxt.slug}`, name: nxt.name }}
     >
-      <div className="relative mb-20 aspect-[16/8] overflow-hidden rounded-3xl border border-line">
+      <div className="relative mb-16 aspect-[16/9] max-h-[380px] w-full overflow-hidden rounded-3xl border border-line sm:aspect-[21/8]">
         <ProjectVisual p={p} />
       </div>
       <div className="space-y-16 md:space-y-20">
