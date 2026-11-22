@@ -15,10 +15,11 @@ type Props = {
   delay?: number;
   /** One word/phrase in `children` to paint with the teal→violet gradient */
   accent?: string;
+  id?: string;
 };
 
 /** SplitType + GSAP line-masked reveal. Text is fully readable without JS or with reduced motion. */
-export default function RevealText({ as: Tag = "h2", children, className, mode = "scroll", play = true, by = "words", delay = 0, accent }: Props) {
+export default function RevealText({ as: Tag = "h2", children, className, mode = "scroll", play = true, by = "words", delay = 0, accent, id }: Props) {
   const ref = useRef<HTMLElement>(null);
   const split = useRef<SplitType | null>(null);
   const tween = useRef<gsap.core.Tween | null>(null);
@@ -81,7 +82,7 @@ export default function RevealText({ as: Tag = "h2", children, className, mode =
 
   const at = accent ? children.indexOf(accent) : -1;
   return (
-    <Tag ref={ref as React.Ref<HTMLHeadingElement>} className={className}>
+    <Tag ref={ref as React.Ref<HTMLHeadingElement>} id={id} className={className}>
       {at < 0 ? children : (
         <>
           {children.slice(0, at)}

@@ -100,9 +100,14 @@ export default function Contact() {
             </div>
             <div>
               <p className="mb-2 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">Elsewhere</p>
-              <a href={site.github} target="_blank" rel="noopener noreferrer" className="text-lg text-text underline decoration-line underline-offset-8 hover:text-accent">
-                GitHub <span aria-hidden>↗</span>
-              </a>
+              <div className="flex flex-wrap gap-x-6 gap-y-2">
+                <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className="text-lg text-text underline decoration-line underline-offset-8 hover:text-accent">
+                  LinkedIn <span aria-hidden>↗</span>
+                </a>
+                <a href={site.github} target="_blank" rel="noopener noreferrer" className="text-lg text-text underline decoration-line underline-offset-8 hover:text-accent">
+                  GitHub <span aria-hidden>↗</span>
+                </a>
+              </div>
             </div>
             <p className="font-mono text-[13px] uppercase tracking-[0.16em] text-muted">Based in {site.location}</p>
           </div>
@@ -156,8 +161,7 @@ export default function Contact() {
             </div>
             {!FORMSPREE_ID && (
               <p className="text-base text-muted">
-                This opens your email app — or email me directly at{" "}
-                <a href={`mailto:${site.email}`} className="text-text underline decoration-line underline-offset-4 hover:text-accent">{site.email}</a>.
+                This opens your email app — or email me directly at the address in this card.
               </p>
             )}
           </form>

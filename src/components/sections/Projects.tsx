@@ -98,8 +98,15 @@ export default function Projects() {
                   <ProjectVisual p={p} />
                 </div>
                 <div data-mask className="absolute inset-0 origin-top bg-bg motion-reduce:hidden md:origin-right" aria-hidden />
-                <span className="absolute left-4 top-4 rounded-full border border-line bg-bg/70 px-3 py-1 font-mono text-[13px] uppercase tracking-[0.16em] text-text backdrop-blur">
-                  {p.sector}
+                <span className="absolute left-4 top-4 flex flex-wrap gap-2">
+                  {p.academic && (
+                    <span className="rounded-full border border-dashed border-line bg-bg/80 px-3 py-1 font-mono text-[13px] uppercase tracking-[0.16em] text-muted backdrop-blur">
+                      Academic
+                    </span>
+                  )}
+                  <span className="rounded-full border border-line bg-bg/70 px-3 py-1 font-mono text-[13px] uppercase tracking-[0.16em] text-text backdrop-blur">
+                    {p.sector}
+                  </span>
                 </span>
                 <span className="absolute right-4 top-4 font-display text-4xl font-medium text-text/80">{p.index}</span>
               </div>

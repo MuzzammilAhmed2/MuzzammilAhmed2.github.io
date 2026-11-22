@@ -46,7 +46,7 @@ export default function Hero() {
   }, [loaded]);
 
   return (
-    <section ref={root} aria-labelledby="hero-title" className="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
+    <section ref={root} aria-labelledby="hero-name hero-role" className="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
       {/* Animated gradient + grain */}
       <div ref={aurora} aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <Aura />
@@ -122,12 +122,11 @@ export default function Hero() {
         <p data-hero-fade className="mt-5 max-w-[30ch] font-display text-[clamp(1.35rem,2.4vw,2.25rem)] leading-tight tracking-[-0.02em] text-muted">
           {site.heroSub}
         </p>
-        <span id="hero-title" className="sr-only">{site.name} — {site.role}</span>
 
         <div className="mt-10 grid gap-8 md:mt-12 md:grid-cols-[1fr_auto] md:items-end lg:grid-cols-1 lg:items-start">
           <div data-hero-fade className="max-w-xl space-y-2">
-            <p className="font-display text-xl text-text md:text-2xl">{site.name}</p>
-            <p className="text-pretty text-base leading-relaxed text-muted md:text-lg">
+            <p id="hero-name" className="font-display text-xl text-text md:text-2xl">{site.name}</p>
+            <p id="hero-role" className="text-pretty text-base leading-relaxed text-muted md:text-lg">
               Data Engineer · BI Developer · Data &amp; AI Consultant at <span className="text-text">Innolytix</span>, Karachi.
               DP-700 &amp; PL-300 certified.
             </p>

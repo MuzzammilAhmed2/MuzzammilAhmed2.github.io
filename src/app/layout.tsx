@@ -52,7 +52,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: site.name,
-  jobTitle: "Data Engineer / BI Developer",
+  jobTitle: site.role.replace(/ · /g, ", "),
   worksFor: { "@type": "Organization", name: site.company },
   address: { "@type": "PostalAddress", addressLocality: "Karachi", addressCountry: "PK" },
   alumniOf: "Dawood University of Engineering & Technology",
