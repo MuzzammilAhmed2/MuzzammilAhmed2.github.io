@@ -452,17 +452,12 @@ export const experience = [
     period: "Dec 2025 – Present",
     role: "Data Engineer / BI Developer",
     company: "Innolytix",
-    // Each bullet: action → what → result. Result numbers are TODOs until real figures are supplied.
+    // Each bullet: action → what → result. Only add a number the owner has confirmed; never estimate one.
     points: [
-      // TODO: real figure — how many source systems, and data volume (rows or GB per month)?
       "Built Medallion analytics platforms on Microsoft Fabric and Azure, integrating ERP, CRM and operational systems into one governed source for reporting.",
-      // TODO: real figure — how many pipelines / sources run on the framework?
       "Built metadata-driven ELT pipelines and star-schema models, so new sources are onboarded through configuration rather than new code.",
-      // TODO: real figure — refresh or processing time before → after?
       "Applied partitioning and query optimization to high-volume datasets to shorten processing and refresh times.",
-      // TODO: real figure — number of reports / dashboards and users?
       "Delivered Power BI semantic models with complex DAX (time intelligence, variance, rolling KPIs), incremental refresh and RLS for executive reporting.",
-      // TODO: real figure — release frequency or deployment time saved?
       "Set up Azure DevOps CI/CD for analytics and BI, standardising how analytics and BI changes are deployed.",
     ],
   },
@@ -471,9 +466,7 @@ export const experience = [
     role: "Data Engineering Intern",
     company: "Innolytix",
     points: [
-      // TODO: real figure — how many pipelines / validation checks?
       "Built and tested ELT pipelines and data-validation workflows with the Data Engineering team to check data quality before it reached reports.",
-      // TODO: real figure — how many reports / stakeholders?
       "Developed Power BI reports and dashboards for internal stakeholders.",
       "Worked hands-on with Microsoft Fabric and Azure data tools, which led to a full-time offer after three months.",
     ],
