@@ -6,8 +6,9 @@ import { site, banksphere, plantmind, projects } from "@/data/content";
 import { allWork, workBySlug } from "@/data/work";
 import { banksphereMedia } from "@/lib/media";
 import GuidedTour from "@/components/ui/GuidedTour";
-import ProjectVisual from "@/components/ui/ProjectVisual";
+import ArchitectureDiagram from "@/components/ui/ArchitectureDiagram";
 import FeatureArt from "@/components/ui/FeatureArt";
+import ProductLinks from "@/components/ui/ProductLinks";
 
 export function generateStaticParams() {
   return allWork.map((w) => ({ slug: w.slug }));
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       ? "Governed AI for KYC and compliance in banking: ID-card OCR, watchlist screening and risk scoring, with an officer making every final call."
       : projects.find((p) => p.slug === slug)!.summary;
   const url = `/work/${slug}/`;
-  const title = `${w.name} — ${site.name}`;
+  const title = `${w.name} | ${site.name}`;
   return {
     title: { absolute: title },
     description,
@@ -50,38 +51,9 @@ function Block({ title, children }: { title: string; children: React.ReactNode }
   );
 }
 
-function Shell({
-  kicker,
-  title,
-  lead,
-  stack,
-  next,
-  children,
-}: {
-  kicker: string;
-  title: string;
-  lead: string;
-  stack: string[];
-  next: { href: string; name: string };
-  children: React.ReactNode;
-}) {
+function Footer({ next }: { next: { href: string; name: string } }) {
   return (
-    <article className="mx-auto max-w-[1440px] px-4 pb-24 pt-36 sm:px-6 md:px-10 md:pt-44">
-      <Link href="/#work" className="mb-12 inline-flex min-h-6 items-center gap-2 py-2 font-mono pointer-coarse:min-h-11 text-[13px] uppercase tracking-[0.18em] text-muted hover:text-text">
-        <span aria-hidden>←</span> All work
-      </Link>
-      <p className="mb-5 font-mono text-[13px] uppercase tracking-[0.2em] text-accent">{kicker}</p>
-      <h1 className="max-w-5xl font-display text-[clamp(2.6rem,7vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.04em] text-balance">{title}</h1>
-      <p className="mt-8 max-w-3xl text-pretty text-xl leading-relaxed text-muted md:text-2xl">{lead}</p>
-      {stack.length > 0 && (
-        <ul className="mt-10 flex flex-wrap gap-2" aria-label="Tech stack">
-          {stack.map((s) => (
-            <li key={s} className="rounded-full border border-line px-3 py-1.5 font-mono text-[13px] text-muted">{s}</li>
-          ))}
-        </ul>
-      )}
-      <div className="mt-16 md:mt-24">{children}</div>
-
+    <>
       <div className="mt-24 grid gap-6 border-t border-line pt-12 md:grid-cols-2">
         <div>
           <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-muted">Want something like this?</p>
@@ -96,6 +68,53 @@ function Shell({
           </Link>
         </div>
       </div>
+      <Link href="/#work" className="mt-12 inline-flex min-h-11 items-center gap-2 font-mono text-[13px] uppercase tracking-[0.18em] text-muted hover:text-text">
+        <span aria-hidden>←</span> Back to all work
+      </Link>
+    </>
+  );
+}
+
+function Shell({
+  kicker,
+  title,
+  pitch,
+  actions,
+  lead,
+  stack,
+  next,
+  children,
+}: {
+  kicker: string;
+  title: string;
+  /** One line, shown with the action buttons above the fold. */
+  pitch?: string;
+  actions?: React.ReactNode;
+  lead: string;
+  stack: string[];
+  next: { href: string; name: string };
+  children: React.ReactNode;
+}) {
+  return (
+    <article className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 pb-24 pt-28 sm:px-6 md:px-10 md:pt-36">
+      <Link href="/#work" className="mb-8 inline-flex min-h-6 items-center gap-2 py-2 font-mono pointer-coarse:min-h-11 text-[13px] uppercase tracking-[0.18em] text-muted hover:text-text">
+        <span aria-hidden>←</span> All work
+      </Link>
+      <p className="mb-5 font-mono text-[13px] uppercase tracking-[0.2em] text-accent">{kicker}</p>
+      <h1 className="max-w-5xl font-display text-[clamp(2.6rem,7vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.04em] text-balance">{title}</h1>
+      {pitch && <p className="mt-5 max-w-3xl text-pretty text-xl leading-snug text-text md:text-2xl">{pitch}</p>}
+      {actions && <div className="mt-6">{actions}</div>}
+      <p className="mt-8 max-w-3xl text-pretty text-lg leading-relaxed text-muted md:text-xl">{lead}</p>
+      {stack.length > 0 && (
+        <ul className="mt-10 flex flex-wrap gap-2" aria-label="Tech stack">
+          {stack.map((s) => (
+            <li key={s} className="rounded-full border border-line px-3 py-1.5 font-mono text-[13px] text-muted">{s}</li>
+          ))}
+        </ul>
+      )}
+      <div className="mt-16 md:mt-24">{children}</div>
+
+      <Footer next={next} />
     </article>
   );
 }
@@ -110,17 +129,15 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
       <Shell
         kicker="Featured · Banking · KYC & compliance"
         title={banksphere.name}
-        lead={`${banksphere.tagline} ID-card OCR, card checks, watchlist screening and a risk score decide approve / officer review / resubmit — with a human officer making every final call.`}
+        pitch={banksphere.tagline}
+        actions={<ProductLinks product={banksphere} />}
+        lead={`ID-card OCR, card checks, watchlist screening and a risk score decide approve, officer review or resubmit. A human officer makes every final call.`}
         stack={banksphere.stack}
         next={{ href: `/work/${plantmind.slug}`, name: plantmind.name }}
       >
-        <p className="mb-10 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-muted">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
-          {banksphere.honesty}
-        </p>
 
         {media[banksphere.video] && (
-          <div className="relative mb-20 aspect-video overflow-hidden rounded-3xl border border-line bg-surface">
+          <div id="demo" className="relative mb-20 aspect-video scroll-mt-28 overflow-hidden rounded-3xl border border-line bg-surface">
             <video
               src={`/projects/banksphere/${banksphere.video}`}
               controls
@@ -141,7 +158,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
             <section key={f.id} aria-labelledby={`f-${f.id}`}>
               <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-2xl border border-line bg-surface">
                 {f.media && media[f.media] ? (
-                  <Image src={`/projects/banksphere/${f.media}`} alt={`BankSphere AI — ${f.title}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-left-top" />
+                  <Image src={`/projects/banksphere/${f.media}`} alt={`BankSphere AI: ${f.title}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-left-top" />
                 ) : (
                   <div className="absolute inset-0 p-6">
                     <FeatureArt art={f.art} />
@@ -165,17 +182,15 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
       <Shell
         kicker={`Product · ${plantmind.sectors}`}
         title={plantmind.name}
-        lead={`${plantmind.tagline} ${plantmind.lead}`}
+        pitch={plantmind.tagline}
+        actions={<ProductLinks product={plantmind} />}
+        lead={plantmind.lead}
         stack={plantmind.stack}
         next={{ href: `/work/${first.slug}`, name: first.name }}
       >
-        <p className="mb-10 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-muted">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent-2" aria-hidden />
-          {plantmind.honesty}
-        </p>
 
         <div className="relative mb-12 aspect-[16/10] overflow-hidden rounded-3xl border border-white/15 bg-surface shadow-[var(--stage-shadow)]">
-          <Image src={`/projects/plantmind/${plantmind.showcase[0].media}`} alt={`PlantMind — ${plantmind.showcase[0].title}`} fill priority sizes="(min-width: 1440px) 1360px, 100vw" className="object-cover object-left-top" />
+          <Image src={`/projects/plantmind/${plantmind.showcase[0].media}`} alt={`PlantMind: ${plantmind.showcase[0].title}`} fill priority sizes="(min-width: 1440px) 1360px, 100vw" className="object-cover object-left-top" />
         </div>
 
         <ul aria-label="PlantMind in numbers" className="mb-24 grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -205,7 +220,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
           {plantmind.showcase.slice(1).map((f) => (
             <section key={f.id} aria-labelledby={`pm-${f.id}`}>
               <div className="relative mb-6 aspect-[16/10] overflow-hidden rounded-2xl border border-line bg-surface">
-                <Image src={`/projects/plantmind/${f.media}`} alt={`PlantMind — ${f.title}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-left-top" />
+                <Image src={`/projects/plantmind/${f.media}`} alt={`PlantMind: ${f.title}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-left-top" />
               </div>
               <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-accent-2">{f.kicker}</p>
               <h2 id={`pm-${f.id}`} className="mt-2 font-display text-2xl font-medium tracking-tight md:text-3xl">{f.title}</h2>
@@ -246,46 +261,92 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   if (i === -1) notFound();
   const p = projects[i];
   const nxt = projects[(i + 1) % projects.length];
+  const next = i === projects.length - 1 ? { href: `/work/${banksphere.slug}`, name: banksphere.name } : { href: `/work/${nxt.slug}`, name: nxt.name };
+  const stageNo = (id: string) => p.architecture.findIndex((s) => s.id === id) + 1;
+  const glance: [string, string | undefined][] = [
+    ["Sector", p.academic ? `Academic · ${p.sector}` : p.sector],
+    ["My role", p.academic ? "Sole developer (final-year project)" : "Data Engineer / BI Developer, Innolytix"],
+    ["Team", p.team],
+    ["Duration", p.duration],
+  ];
 
   return (
-    <Shell
-      kicker={`${p.index} · ${p.sector}`}
-      title={p.name}
-      lead={p.description}
-      stack={[]}
-      next={i === projects.length - 1 ? { href: `/work/${banksphere.slug}`, name: banksphere.name } : { href: `/work/${nxt.slug}`, name: nxt.name }}
-    >
-      <div className="relative mb-16 aspect-[16/9] max-h-[380px] w-full overflow-hidden rounded-3xl border border-line sm:aspect-[21/8]">
-        <ProjectVisual p={p} />
+    <article className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 pb-24 pt-28 sm:px-6 md:px-10 md:pt-36">
+      <Link href="/#work" className="mb-8 inline-flex min-h-6 items-center gap-2 py-2 font-mono pointer-coarse:min-h-11 text-[13px] uppercase tracking-[0.18em] text-muted hover:text-text">
+        <span aria-hidden>←</span> All work
+      </Link>
+
+      {/* Hero: story on the left, "At a glance" on the right */}
+      <header className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(300px,380px)] lg:gap-16">
+        <div>
+          <p className="mb-5 font-mono text-[13px] uppercase tracking-[0.2em] text-accent">{p.index} · {p.sector}</p>
+          <h1 className="font-display text-[clamp(2.3rem,5.6vw,5rem)] font-medium leading-[0.98] tracking-[-0.035em] text-balance">{p.name}</h1>
+          <p className="mt-6 max-w-3xl text-pretty text-xl leading-snug text-text md:text-2xl">{p.result}</p>
+          <p className="mt-5 max-w-3xl text-pretty text-lg leading-relaxed text-muted">{p.role}</p>
+          <ul className="mt-8 flex flex-wrap gap-2" aria-label="Tech stack">
+            {p.stack.map((t) => (
+              <li key={t} className="rounded-full border border-line px-3 py-1.5 font-mono text-[13px] text-muted">{t}</li>
+            ))}
+          </ul>
+        </div>
+        <aside aria-labelledby="glance" className="h-fit rounded-3xl border border-line bg-surface/80 p-6 lg:mt-10">
+          <h2 id="glance" className="font-mono text-[13px] uppercase tracking-[0.16em] text-muted">At a glance</h2>
+          <dl className="mt-5 space-y-4">
+            {glance.filter(([, v]) => v).map(([k, v]) => (
+              <div key={k} className="border-t border-line pt-4 first:border-t-0 first:pt-0">
+                <dt className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">{k}</dt>
+                <dd className="mt-1 text-pretty text-base leading-snug text-text">{v}</dd>
+              </div>
+            ))}
+            <div className="border-t border-line pt-4">
+              <dt className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Stack</dt>
+              <dd className="mt-1 text-base leading-snug text-text">{p.stack.join(" · ")}</dd>
+            </div>
+          </dl>
+        </aside>
+      </header>
+
+      <div className="mt-16 md:mt-20">
+        <ArchitectureDiagram stages={p.architecture} hue={p.hue} title={`${p.name} architecture`} />
       </div>
-      <div className="space-y-16 md:space-y-20">
-        <Block title="Context">
-          <p className="text-pretty text-lg leading-relaxed text-text md:text-xl">{p.context}</p>
-        </Block>
-        <Block title="My role">
-          <p className="text-pretty text-lg leading-relaxed text-text md:text-xl">{p.role}</p>
+
+      <div className="mt-16 space-y-16 md:mt-24 md:space-y-20">
+        <Block title="The problem">
+          <p className="max-w-3xl text-pretty text-lg leading-relaxed text-text md:text-xl">{p.problem}</p>
         </Block>
         <Block title="What I built">
           <ol className="space-y-6">
             {p.highlights.map((h, k) => (
               <li key={k} className="grid grid-cols-[3rem_1fr] gap-4 border-t border-line pt-6 first:border-t-0 first:pt-0">
                 <span className="font-mono text-sm text-accent">{String(k + 1).padStart(2, "0")}</span>
-                <p className="text-pretty text-lg leading-relaxed text-text md:text-xl">{h}</p>
+                <div>
+                  <p className="text-pretty text-lg leading-relaxed text-text md:text-xl">{h.text}</p>
+                  <a href={`#stage-${h.stage}`} className="mt-2 inline-flex font-mono text-[13px] uppercase tracking-[0.12em] text-muted hover:text-accent">
+                    Diagram step {stageNo(h.stage)} · {p.architecture[stageNo(h.stage) - 1].label}
+                  </a>
+                </div>
               </li>
             ))}
           </ol>
         </Block>
-        <Block title="Stack">
-          <ul className="flex flex-wrap gap-2" aria-label="Tech stack">
-            {p.stack.map((t) => (
-              <li key={t} className="rounded-full border border-line px-3 py-1.5 font-mono text-[13px] text-muted">{t}</li>
-            ))}
-          </ul>
-        </Block>
-        <Block title="Outcome">
+        {p.decisions && p.decisions.length > 0 && (
+          <Block title="Key decisions">
+            <ul className="space-y-5">
+              {p.decisions.map((d) => (
+                <li key={d} className="max-w-3xl border-l-2 border-accent/60 pl-5 text-pretty text-lg leading-relaxed text-text">{d}</li>
+              ))}
+            </ul>
+          </Block>
+        )}
+        {p.hardProblem && (
+          <Block title="Hard problem">
+            <p className="max-w-3xl text-pretty text-lg leading-relaxed text-text md:text-xl">{p.hardProblem}</p>
+          </Block>
+        )}
+        <Block title="Results">
           <ul className="space-y-4">
-            {p.outcome.map((o) => (
-              <li key={o} className="flex gap-3 text-pretty text-lg leading-relaxed text-text md:text-xl">
+            {p.results.map((o) => (
+              <li key={o} className="flex max-w-3xl gap-3 text-pretty text-lg leading-relaxed text-text md:text-xl">
                 <span aria-hidden className="mt-1 text-accent-2">✦</span>
                 {o}
               </li>
@@ -296,6 +357,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
       {!p.academic && (
         <p className="mt-16 text-base text-muted">Client work delivered at Innolytix. Described by sector to respect client confidentiality.</p>
       )}
-    </Shell>
+      <Footer next={next} />
+    </article>
   );
 }

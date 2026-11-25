@@ -8,6 +8,7 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
 import Ambient from "@/components/ui/Ambient";
+import ProductLinks from "@/components/ui/ProductLinks";
 
 const shots = plantmind.showcase;
 const STEP_MS = 6500;
@@ -38,7 +39,7 @@ export default function PlantMind() {
   return (
     <section ref={root} id="plantmind" aria-labelledby="pm-title" className="relative isolate overflow-hidden border-b border-line">
       <Ambient variant="b" />
-      <div className="mx-auto max-w-[1440px] px-4 pt-20 sm:px-6 md:px-10 md:pt-28">
+      <div className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 pt-20 sm:px-6 md:px-10 md:pt-28">
         <SectionLabel index="03">New product</SectionLabel>
         <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end">
           <div>
@@ -46,19 +47,13 @@ export default function PlantMind() {
             <RevealText as="h2" by="chars" className="font-display text-[clamp(3rem,8.4vw,8.25rem)] font-medium leading-[0.88] tracking-[-0.045em]">
               PlantMind
             </RevealText>
-            <span id="pm-title" className="sr-only">PlantMind — AI operations layer for manufacturing</span>
+            <span id="pm-title" className="sr-only">PlantMind: AI operations layer for manufacturing</span>
           </div>
           <div className="space-y-5">
             <p className="text-pretty text-lg leading-relaxed text-muted md:text-xl">
               <span className="text-text">{plantmind.tagline}</span> {plantmind.lead}
             </p>
-            <p className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-muted">
-              <span className="relative flex h-1.5 w-1.5" aria-hidden>
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-2 opacity-70 motion-reduce:hidden" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent-2" />
-              </span>
-              {plantmind.honesty}
-            </p>
+            <ProductLinks product={plantmind} />
           </div>
         </div>
 
@@ -82,7 +77,7 @@ export default function PlantMind() {
 
       {/* Product console */}
       <div
-        className="mx-auto mt-12 grid max-w-[1440px] gap-6 px-4 sm:px-6 md:px-10 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.6fr)] lg:gap-10"
+        className="mx-auto mt-12 grid max-w-[1440px] 2xl:max-w-[1600px] gap-6 px-4 sm:px-6 md:px-10 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.6fr)] lg:gap-10"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onFocusCapture={() => setPaused(true)}
@@ -146,7 +141,7 @@ export default function PlantMind() {
                 >
                   <Image
                     src={`/projects/plantmind/${s.media}`}
-                    alt={`PlantMind — ${s.title}`}
+                    alt={`PlantMind: ${s.title}`}
                     fill
                     sizes="(min-width: 1024px) 60vw, 100vw"
                     className="object-cover object-left-top"
@@ -160,7 +155,7 @@ export default function PlantMind() {
       </div>
 
       {/* Facts + CTA */}
-      <div className="mx-auto max-w-[1440px] px-4 pb-24 pt-14 sm:px-6 md:px-10 md:pb-32">
+      <div className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 pb-24 pt-14 sm:px-6 md:px-10 md:pb-32">
         <ul aria-label="PlantMind in numbers" className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {plantmind.facts.map((f) => (
             <li key={f.label} className="glow-card rounded-2xl border border-line bg-surface/60 p-5">
@@ -184,11 +179,6 @@ export default function PlantMind() {
                 className="inline-flex items-center gap-3 rounded-full border border-line px-6 py-3.5 text-text transition-colors hover:border-text"
               >
                 Read the case study
-              </Link>
-            </Magnetic>
-            <Magnetic>
-              <Link href="/#contact" className="btn-glow inline-flex items-center gap-3 rounded-full bg-accent px-6 py-3.5 font-medium text-accent-ink">
-                Request a walkthrough <span aria-hidden>→</span>
               </Link>
             </Magnetic>
           </div>

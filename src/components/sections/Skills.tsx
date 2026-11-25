@@ -38,7 +38,7 @@ export default function Skills() {
   return (
     <section ref={root} id="skills" aria-labelledby="skills-title" className="relative isolate overflow-hidden border-y border-line bg-band">
       <Ambient variant="b" />
-      <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-24 xl:py-32">
+      <div className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 py-20 sm:px-6 md:px-10 md:py-24 xl:py-32">
       <SectionLabel index="05">Skills &amp; stack</SectionLabel>
       <div className="mb-14 grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-end">
         <RevealText as="h2" accent="boardroom" className="font-display text-[clamp(2.2rem,4.8vw,4.5rem)] font-medium leading-[1] tracking-[-0.03em] text-balance">
@@ -46,7 +46,7 @@ export default function Skills() {
         </RevealText>
         <span id="skills-title" className="sr-only">Skills and stack</span>
         <p className="text-pretty text-base leading-[1.6] text-muted lg:text-lg">
-          The whole path — ingestion, modelling, governance, BI and AI — so there&apos;s no hand-off gap between the data team and the people
+          The whole path, from ingestion and modelling to governance, BI and AI, so there&apos;s no hand-off gap between the data team and the people
           who need the answer.
         </p>
       </div>

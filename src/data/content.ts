@@ -1,5 +1,5 @@
 // Single source of truth for all site copy.
-// Everything here comes from the CV or the portfolio brief — do not add claims that aren't in either.
+// Everything here comes from the CV or the portfolio brief. Do not add claims that aren't in either.
 
 export const site = {
   name: "Muzzammil Ahmed",
@@ -12,7 +12,7 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://muzzammilahmed2.github.io",
   heroLine: "I turn messy enterprise data into decisions.",
   heroSub: "And build AI designed for regulated industries.",
-  // TODO: add a professional photo at public/me.jpg; the hero shows it automatically once it exists.
+  // The hero shows public/me.jpg automatically once it exists.
   photo: process.env.NEXT_PUBLIC_HAS_PHOTO === "1" ? "/me.jpg" : null,
   // Shown only when public/Muzzammil-Ahmed-CV.pdf exists (see next.config.ts). Use a copy without the phone number.
   cv: process.env.NEXT_PUBLIC_HAS_CV === "1" ? "/Muzzammil-Ahmed-CV.pdf" : null,
@@ -31,17 +31,21 @@ export const about = {
   heading: "Data that leadership trusts. AI whose every decision can be traced.",
   story: [
     "I'm a Data Engineer, BI Developer and Data & AI Consultant. I take ERP, CRM, core-banking and operational data that doesn't agree with itself and turn it into governed, high-performance platforms people actually trust.",
-    "I started at Innolytix as a Data Engineering intern in September 2025 and was offered a full-time role three months later. Since then I've built Medallion platforms on Microsoft Fabric and Azure, built enterprise Power BI semantic models, and delivered AI-powered document and search solutions across banking, insurance, logistics and retail.",
+    "I joined Innolytix as a Data Engineering intern in September 2025 and now work there as a Data Engineer / BI Developer. I've built a governed Medallion platform on Microsoft Fabric for a bank, real-time fleet analytics for a logistics operator, cross-cloud revenue reporting for a retailer, and an AI document and search platform for an insurer.",
     "On the side, I build products: BankSphere AI for KYC in banking, and PlantMind, an AI operations layer for manufacturing. Both start from the same rule: AI in serious industries has to explain itself before it's clever.",
   ],
+  // `value` counts up; `text` is shown as-is (for things that aren't a count).
   stats: [
-    { value: 4, suffix: "", label: "Client platforms delivered" },
-    { value: 4, suffix: "", label: "Sectors: banking, insurance, logistics, retail" },
-    { value: 4, suffix: "", label: "Cloud platforms: Fabric, Azure, AWS, Snowflake" },
     // 1,041 = `pytest --collect-only` on the BankSphere repo, 2026-11-18. Tests aren't tagged unit/integration/eval, so no split is shown.
-    { value: 1041, suffix: "", label: "Automated tests on BankSphere AI" },
-  ],
+    { value: 1041, label: "Automated tests on BankSphere AI" },
+    { value: 2, label: "AI products built and shipped: BankSphere AI and PlantMind" },
+    { value: 4, label: "Client platforms delivered" },
+    { text: "DP‑700 + PL‑300", label: "Microsoft certified" },
+  ] as { value?: number; text?: string; label: string }[],
 };
+
+/** Public links for a product. Only links that exist are rendered; never add a placeholder. */
+export type ProductLinks = { demo?: string; repo?: string; video?: string };
 
 export type Feature = {
   id: string;
@@ -57,7 +61,10 @@ export const banksphere = {
   slug: "banksphere-ai",
   name: "BankSphere AI",
   tagline: "Governed AI for KYC & compliance in banking.",
-  honesty: "Working product on synthetic data · Code walkthrough on request",
+  honesty: "Synthetic data, no real customers",
+  // Repo is private, so code is shown on request instead of linked.
+  links: { demo: "https://app.spherekyc.dpdns.org", video: "/work/banksphere-ai/#demo" } as ProductLinks,
+  walkthrough: "BankSphere walkthrough",
   stack: [
     "Python",
     "FastAPI",
@@ -68,13 +75,12 @@ export const banksphere = {
     "AI Content Safety",
     "AI Foundry",
     "AI Search",
-    "GSAP UI",
   ],
   video: "demo.mp4",
   features: [
     {
       id: "kyc",
-      kicker: "01 — Onboarding",
+      kicker: "01 · Onboarding",
       title: "KYC decisions in one pass",
       body: "ID-card OCR, card checks, watchlist screening and a risk score decide the outcome: approve, send to officer review, or ask the customer to resubmit.",
       art: "decision",
@@ -82,43 +88,43 @@ export const banksphere = {
     },
     {
       id: "detective",
-      kicker: "02 — Officer desk",
+      kicker: "02 · Officer desk",
       title: "AI Compliance Detective",
-      body: "Officers ask questions about a case and get grounded answers with citations back to the evidence — not free-floating model output.",
+      body: "Officers ask questions about a case and get answers that cite the evidence they came from.",
       art: "detective",
       media: "detective.webp",
     },
     {
       id: "challenge",
-      kicker: "03 — Human oversight",
+      kicker: "03 · Human oversight",
       title: "Challenge the AI",
-      body: "An officer can push back on any AI conclusion and make it defend — or revise — its reasoning before a decision is made.",
+      body: "An officer can push back on any AI conclusion and make it defend or revise its reasoning before a decision is made.",
       art: "challenge",
     },
     {
       id: "timemachine",
-      kicker: "04 — Replay",
+      kicker: "04 · Replay",
       title: "Time Machine case replay",
       body: "Replay any case step by step to see exactly what the system knew and decided at each point in time.",
       art: "timemachine",
     },
     {
       id: "twin",
-      kicker: "05 — Regulation",
+      kicker: "05 · Regulation",
       title: "Regulatory Digital Twin & knowledge graph",
       body: "A digital twin of the regulatory rulebook plus a compliance knowledge graph that links customers, cases, rules and evidence.",
       art: "twin",
     },
     {
       id: "fourEyes",
-      kicker: "06 — Financial crime",
+      kicker: "06 · Financial crime",
       title: "Screening with four-eyes approval",
       body: "Financial-crime screening where sensitive decisions need a second, independent approver before they take effect.",
       art: "fourEyes",
     },
     {
       id: "audit",
-      kicker: "07 — Evidence",
+      kicker: "07 · Evidence",
       title: "Tamper-evident audit trail",
       body: "Every action lands in a hash-chained audit log with write-once checkpoints, so any after-the-fact edit is detectable.",
       art: "audit",
@@ -126,7 +132,7 @@ export const banksphere = {
     },
     {
       id: "redteam",
-      kicker: "08 — Proof",
+      kicker: "08 · Proof",
       title: "Red-team & evaluation suites",
       body: "Adversarial red-team and evaluation suites run alongside 1,000+ automated tests to keep the AI honest as it changes.",
       art: "redteam",
@@ -137,15 +143,15 @@ export const banksphere = {
 // Homepage shows 4 of the 8 features; the case study shows all of them.
 const byId = (id: string) => banksphere.features.find((f) => f.id === id)!;
 export const homeFeatures: Feature[] = [
-  { ...byId("kyc"), kicker: "01 — Onboarding" },
+  { ...byId("kyc"), kicker: "01 · Onboarding" },
   {
     ...byId("detective"),
-    kicker: "02 — Officer desk",
-    title: "Ask the AI — then challenge it",
+    kicker: "02 · Officer desk",
+    title: "Ask the AI, then challenge it",
     body: "Officers get answers with citations back to the evidence, and can push back on any conclusion before they make the call.",
   },
-  { ...byId("audit"), kicker: "03 — Evidence" },
-  { ...byId("redteam"), kicker: "04 — Proof" },
+  { ...byId("audit"), kicker: "03 · Evidence" },
+  { ...byId("redteam"), kicker: "04 · Proof" },
 ];
 
 export type Showcase = {
@@ -163,7 +169,11 @@ export const plantmind = {
   name: "PlantMind",
   tagline: "An AI operations layer for manufacturing.",
   lead: "One workspace where maintenance, quality, customer care and leadership share a private knowledge engine, live plant data, human approval gates and a hash-linked audit trail.",
-  honesty: "Working product on synthetic data · Walkthrough on request",
+  honesty: "Synthetic data, no real customers",
+  // The hosted demo opens on a sign-in screen; logins are handed out on request.
+  links: { demo: "https://plantmind.spherekyc.dpdns.org" } as ProductLinks,
+  demoNote: "Demo login on request",
+  walkthrough: "PlantMind walkthrough",
   sectors: "Manufacturing · Maintenance · Quality · Azure AI",
   stack: [
     "Python",
@@ -237,22 +247,36 @@ export const plantmind = {
   ],
 };
 
+/** One column of a case-study architecture diagram, left to right (top to bottom on phones). */
+export type ArchStage = { id: string; label: string; items: string[] };
+
 export type Project = {
   slug: string;
   index: string;
   name: string;
   sector: string;
   summary: string;
-  description: string;
-  /** Case-study structure: Context → My role → What I built → Stack → Outcome. */
-  context: string;
+  /** One-line result for the case-study hero. Qualitative unless the owner gives a number. */
+  result: string;
+  /** 2–3 concrete sentences. */
+  problem: string;
+  /** What Muzzammil personally owned. Worded per project. */
   role: string;
-  highlights: string[];
-  outcome: string[];
+  /** Only set from the owner's answers. Rows without a value are hidden. */
+  team?: string;
+  duration?: string;
+  architecture: ArchStage[];
+  /** Each highlight points at the diagram stage it lives in. */
+  highlights: { stage: string; text: string }[];
+  /** "I chose X over Y because Z." Only from the owner; the section is hidden until set. */
+  decisions?: string[];
+  /** One paragraph from the owner; hidden until set. */
+  hardProblem?: string;
+  results: string[];
   academic?: boolean;
   stack: string[];
   hue: number; // accent hue for the card visual
-  nodes: string[]; // pipeline drawn in the card visual
+  nodes: string[]; // pipeline drawn in the homepage card visual
 };
 
 export const projects: Project[] = [
@@ -262,19 +286,25 @@ export const projects: Project[] = [
     name: "Intelligent Document Processing & Compliance Platform",
     sector: "Insurance",
     summary: "AI-powered classification, OCR and routing of claims and policy documents, with RAG search over historical cases.",
-    description:
-      "Built an AI-powered document platform using IBM FileNet, IBM Datacap and IBM Watsonx.ai to automate classification, OCR extraction and routing of claims and policy documents.",
-    context:
-      "An insurer handled claims and policy documents by hand: classifying them, keying in their data and routing them, with no quick way to search past cases.",
-    role: "I designed and built it end to end as the Data Engineer / BI Developer at Innolytix.",
-    highlights: [
-      "Classification, OCR extraction and routing of claims and policy documents with IBM Datacap, FileNet and Watsonx.ai.",
-      "A RAG search layer so claims officers can query historical case files in natural language, with full audit and records-management compliance.",
-      "CMIS-based records lifecycle management to enforce retention policies.",
-      "Automatic routing of high-priority cases based on document content and risk indicators.",
+    result: "Claims and policy documents are classified, read and routed automatically, and officers search past cases in plain language.",
+    problem:
+      "An insurer classified claims and policy documents by hand, keyed in their data and routed them to the right team. Past cases sat in a records system with no quick way to search them, and every change had to respect records-management rules.",
+    role: "Built the capture, routing and RAG search pipeline on IBM Datacap, FileNet and Watsonx.ai as the Data Engineer at Innolytix.",
+    architecture: [
+      { id: "sources", label: "Sources", items: ["Claims documents", "Policy documents"] },
+      { id: "capture", label: "Capture", items: ["IBM Datacap", "OCR extraction", "Classification"] },
+      { id: "store", label: "Records store", items: ["IBM FileNet", "CMIS lifecycle", "Retention policies"] },
+      { id: "ai", label: "AI layer", items: ["IBM Watsonx.ai", "RAG over case files", "Risk-based routing"] },
+      { id: "use", label: "Used by", items: ["Claims officers", "Priority queues", "Audit"] },
     ],
-    outcome: [
-      "Less manual claims triage: high-priority cases reach the right people automatically.",
+    highlights: [
+      { stage: "capture", text: "Classification, OCR extraction and routing of claims and policy documents with IBM Datacap, FileNet and Watsonx.ai." },
+      { stage: "ai", text: "A RAG search layer so claims officers can query historical case files in natural language, with full audit and records-management compliance." },
+      { stage: "store", text: "CMIS-based records lifecycle management to enforce retention policies." },
+      { stage: "ai", text: "Automatic routing of high-priority cases based on document content and risk indicators." },
+    ],
+    results: [
+      "High-priority cases are routed automatically from their content and risk indicators, so they no longer wait in a manual triage queue.",
       "Officers can search years of case files in plain language without breaking records compliance.",
     ],
     stack: ["IBM FileNet", "IBM Datacap", "IBM Watsonx.ai", "RAG", "OCR", "CMIS"],
@@ -286,20 +316,26 @@ export const projects: Project[] = [
     index: "02",
     name: "Real-Time Fleet Control Tower",
     sector: "Logistics & transportation",
-    summary: "Real-time IoT analytics tracking a live vehicle fleet — health, geofencing, fuel efficiency and driver behaviour.",
-    description:
-      "Engineered a real-time IoT analytics platform on Azure IoT Hub, Microsoft Fabric Eventstream, Eventhouse and Fabric Activator to track a live vehicle fleet.",
-    context:
-      "A logistics operator needed a live view of its vehicle fleet (health, location, fuel and driver behaviour) instead of finding out about problems after the fact.",
-    role: "I designed and built it end to end as the Data Engineer / BI Developer at Innolytix.",
-    highlights: [
-      "Streaming ingestion from Azure IoT Hub into Fabric Eventstream and Eventhouse, with Fabric Activator for real-time alerts.",
-      "Vehicle health monitoring, geofencing alerts and fuel-efficiency tracking.",
-      "Driver behaviour scoring and route-deviation alerts on top of historical telemetry.",
-      "Executive Power BI dashboards on fleet utilisation and maintenance costs.",
+    summary: "Real-time IoT analytics tracking a live vehicle fleet: health, geofencing, fuel efficiency and driver behaviour.",
+    result: "Vehicle health, location, fuel and driver behaviour are visible live, with alerts raised as events happen.",
+    problem:
+      "A logistics operator found out about vehicle faults, route deviations and fuel waste after the fact, from reports run days later. They needed a live view of the fleet and alerts while there was still time to act.",
+    role: "Built the streaming path from IoT Hub to Eventhouse, the Activator alert rules and the Power BI dashboards.",
+    architecture: [
+      { id: "sources", label: "Sources", items: ["Vehicle telemetry", "GPS + engine data"] },
+      { id: "ingest", label: "Streaming ingestion", items: ["Azure IoT Hub", "Fabric Eventstream"] },
+      { id: "store", label: "Real-time store", items: ["Fabric Eventhouse", "KQL databases", "Historical telemetry"] },
+      { id: "logic", label: "Rules & scoring", items: ["Fabric Activator", "Geofencing rules", "Driver scoring (KQL)"] },
+      { id: "use", label: "Used by", items: ["Power BI dashboards", "Real-time alerts", "Operations & leadership"] },
     ],
-    outcome: [
-      "Maintenance planned from telemetry, reducing unplanned downtime.",
+    highlights: [
+      { stage: "ingest", text: "Streaming ingestion from Azure IoT Hub into Fabric Eventstream and Eventhouse, with Fabric Activator for real-time alerts." },
+      { stage: "logic", text: "Vehicle health monitoring, geofencing alerts and fuel-efficiency tracking." },
+      { stage: "store", text: "Driver behaviour scoring and route-deviation alerts on top of historical telemetry." },
+      { stage: "use", text: "Executive Power BI dashboards on fleet utilisation and maintenance costs." },
+    ],
+    results: [
+      "Alerts for vehicle health, geofence breaches and route deviations fire while the vehicle is still on the road.",
       "Operations and leadership see utilisation and maintenance cost in one place.",
     ],
     stack: ["Azure IoT Hub", "Fabric Eventstream", "Eventhouse", "Fabric Activator", "KQL", "Power BI"],
@@ -312,20 +348,26 @@ export const projects: Project[] = [
     name: "Enterprise Performance Analytics Platform",
     sector: "Banking",
     summary: "Governed Medallion platform on Fabric Direct Lake unifying core banking, treasury and CRM data.",
-    description:
-      "Built an enterprise analytics platform on Microsoft Fabric Direct Lake, consolidating core banking, treasury and CRM data into a governed Medallion Architecture.",
-    context:
-      "A bank's core banking, treasury and CRM data lived in separate systems, which made branch performance and regulatory reporting slow and hard to trust.",
-    role: "I designed and built it end to end as the Data Engineer / BI Developer at Innolytix.",
-    highlights: [
-      "A governed Medallion platform on Microsoft Fabric Direct Lake consolidating core banking, treasury and CRM data.",
-      "Automated Data Factory quality controls, and identity-based RLS mapped to branch and regional hierarchies.",
-      "Enterprise Power BI semantic models with incremental refresh and DAX KPI reporting for branch managers and executives.",
-      "Azure DevOps CI/CD pipelines for analytics and BI releases.",
+    result: "One governed source for branch performance and regulatory reporting, with access scoped by branch and region.",
+    problem:
+      "A bank's core banking, treasury and CRM data lived in separate systems that didn't agree with each other. Branch performance and regulatory reports were slow to produce and hard to trust, and access to sensitive figures wasn't tied to the branch hierarchy.",
+    role: "Owned the Fabric Medallion layers, the Data Factory quality checks and the Power BI semantic models, plus their CI/CD in Azure DevOps.",
+    architecture: [
+      { id: "sources", label: "Sources", items: ["Core banking", "Treasury", "CRM"] },
+      { id: "ingest", label: "Ingestion", items: ["Data Factory pipelines", "Automated quality checks"] },
+      { id: "store", label: "Medallion lakehouse", items: ["Bronze: raw", "Silver: cleaned", "Gold: modelled"] },
+      { id: "model", label: "Semantic layer", items: ["Direct Lake models", "DAX KPIs", "Identity-based RLS"] },
+      { id: "use", label: "Used by", items: ["Branch managers", "Executives", "Regulatory reporting"] },
     ],
-    outcome: [
+    highlights: [
+      { stage: "store", text: "A governed Medallion platform on Microsoft Fabric Direct Lake consolidating core banking, treasury and CRM data." },
+      { stage: "ingest", text: "Automated Data Factory quality controls, and identity-based RLS mapped to branch and regional hierarchies." },
+      { stage: "model", text: "Enterprise Power BI semantic models with incremental refresh and DAX KPI reporting for branch managers and executives." },
+      { stage: "use", text: "Azure DevOps CI/CD pipelines for analytics and BI releases." },
+    ],
+    results: [
       "One governed source for audit and regulatory reporting, with access scoped to each branch and region.",
-      "Standardised deployments and faster reporting turnaround for compliance reviews.",
+      "Analytics and BI changes ship through the same reviewed CI/CD pipeline instead of manual deployments.",
     ],
     stack: ["Microsoft Fabric", "Direct Lake", "Data Factory", "Medallion", "Power BI", "RLS", "Azure DevOps"],
     hue: 220,
@@ -337,18 +379,24 @@ export const projects: Project[] = [
     name: "Cross-Cloud Revenue Intelligence Platform",
     sector: "Retail & e-commerce",
     summary: "Secure analytics across AWS, Snowflake and Fabric unifying sales, inventory and customer data, with CLV segmentation.",
-    description:
-      "Built a secure cross-cloud analytics solution across AWS, Snowflake and Microsoft Fabric to unify sales, inventory and customer data for a multi-channel retailer.",
-    context:
-      "A multi-channel retailer's sales, inventory and customer data was split across clouds, so revenue and customer value couldn't be reported in one place.",
-    role: "I designed and built it end to end as the Data Engineer / BI Developer at Innolytix.",
-    highlights: [
-      "A secure analytics layer across AWS, Snowflake and Microsoft Fabric.",
-      "Automated daily ingestion pipelines from POS and e-commerce systems.",
-      "Governed semantic models for unified revenue and CLV reporting, with RLS and CLS restricting regional margin data by role.",
-      "Merchandising dashboards that segment customers by lifetime value.",
+    result: "Revenue and customer lifetime value reported in one place across store and online channels.",
+    problem:
+      "A multi-channel retailer's sales, inventory and customer data was split across AWS, Snowflake and Microsoft Fabric. Revenue and customer value couldn't be reported in one place, and regional margin data needed tighter access control.",
+    role: "Built the daily POS and e-commerce ingestion and the governed semantic models with RLS and CLS behind the merchandising dashboards.",
+    architecture: [
+      { id: "sources", label: "Sources", items: ["POS systems", "E-commerce", "Inventory"] },
+      { id: "ingest", label: "Ingestion", items: ["Daily automated pipelines"] },
+      { id: "store", label: "Cross-cloud storage", items: ["AWS", "Snowflake", "Microsoft Fabric"] },
+      { id: "model", label: "Semantic layer", items: ["Revenue + CLV models", "RLS by role", "CLS on margin"] },
+      { id: "use", label: "Used by", items: ["Merchandising dashboards", "Promotions & inventory planning"] },
     ],
-    outcome: [
+    highlights: [
+      { stage: "store", text: "A secure analytics layer across AWS, Snowflake and Microsoft Fabric." },
+      { stage: "ingest", text: "Automated daily ingestion pipelines from POS and e-commerce systems." },
+      { stage: "model", text: "Governed semantic models for unified revenue and CLV reporting, with RLS and CLS restricting regional margin data by role." },
+      { stage: "use", text: "Merchandising dashboards that segment customers by lifetime value." },
+    ],
+    results: [
       "Unified revenue and CLV reporting across channels.",
       "CLV segments guide targeted promotions and inventory allocation.",
     ],
@@ -362,18 +410,24 @@ export const projects: Project[] = [
     name: "Cloud-Based Predictive Maintenance",
     sector: "Final year project",
     summary: "Cloud platform on AWS predicting remaining useful life and failure probability from sensor telemetry.",
-    description:
-      "Built a cloud data platform using AWS S3, EC2, SageMaker and Power BI to monitor industrial equipment health and predict maintenance requirements.",
-    context:
-      "Industrial equipment is usually serviced on a fixed schedule or after it fails. The goal was to predict failures early from sensor data.",
-    role: "I designed and built it end to end as my final-year BSCS project at Dawood University of Engineering & Technology.",
-    highlights: [
-      "Cloud data platform on AWS S3, EC2 and SageMaker for equipment telemetry.",
-      "Time-series and vibration features, and models estimating remaining useful life and failure probability.",
-      "The best-performing model deployed behind a lightweight API.",
-      "Automated ingestion pipelines and executive Power BI dashboards.",
+    result: "Remaining useful life and failure probability predicted from sensor data, checked against historical failure logs.",
+    problem:
+      "Industrial equipment is usually serviced on a fixed schedule or after it breaks. The goal was to predict failures early from sensor telemetry, so maintenance could be planned before a breakdown.",
+    role: "My final-year BSCS project at Dawood University of Engineering & Technology: I built the data platform, the models and the dashboards.",
+    architecture: [
+      { id: "sources", label: "Sources", items: ["Equipment sensors", "Vibration + time series"] },
+      { id: "ingest", label: "Ingestion", items: ["Automated pipelines", "AWS S3"] },
+      { id: "store", label: "Processing", items: ["AWS EC2", "Feature engineering (Python)"] },
+      { id: "model", label: "Models", items: ["AWS SageMaker", "RUL + failure probability", "Prediction API"] },
+      { id: "use", label: "Used by", items: ["Power BI dashboards", "Maintenance planning"] },
     ],
-    outcome: [
+    highlights: [
+      { stage: "ingest", text: "Cloud data platform on AWS S3, EC2 and SageMaker for equipment telemetry." },
+      { stage: "store", text: "Time-series and vibration features, and models estimating remaining useful life and failure probability." },
+      { stage: "model", text: "The best-performing model deployed behind a lightweight API." },
+      { stage: "use", text: "Automated ingestion pipelines and executive Power BI dashboards." },
+    ],
+    results: [
       "Predictions validated against historical failure logs.",
       "Dashboards that support proactive maintenance planning.",
     ],
@@ -396,11 +450,10 @@ export const skills: { group: string; items: string[] }[] = [
       "Star schema modelling",
       "SCD Type 1 & 2",
       "Data warehouse design",
-      "Data virtualization",
     ],
   },
   {
-    group: "BI & visualization",
+    group: "BI & visualisation",
     items: ["Power BI", "DAX", "Semantic modelling", "KPI framework design", "Incremental refresh", "RLS", "CLS"],
   },
   {
@@ -409,13 +462,13 @@ export const skills: { group: string; items: string[] }[] = [
   },
   {
     group: "Languages",
-    items: ["Python", "SQL", "PySpark", "Spark SQL", "KQL", "Java", "C++"],
+    items: ["Python", "SQL", "PySpark", "Spark SQL", "KQL"],
   },
   {
     group: "Tools",
-    items: ["Azure Data Factory", "Fabric Data Factory", "Apache Airflow", "Apache NiFi", "Kafka", "Docker", "Git", "Linux", "Jupyter"],
+    items: ["Fabric Data Factory", "Apache Airflow", "Docker", "Git"],
   },
-  { group: "AWS", items: ["S3", "EC2", "RDS", "Redshift", "Athena", "Glue", "IAM", "CloudWatch", "SageMaker"] },
+  { group: "AWS", items: ["S3", "EC2", "SageMaker"] },
   {
     group: "Enterprise content",
     items: ["IBM FileNet", "IBM Content Navigator", "IBM Datacap", "IBM Content Assistant", "CMIS", "IBM DB2", "Records management"],
@@ -442,7 +495,6 @@ export const marquee = [
   "SQL",
   "PySpark",
   "Airflow",
-  "Kafka",
   "Docker",
   "RAG",
 ];
@@ -456,7 +508,7 @@ export const experience = [
     points: [
       "Built Medallion analytics platforms on Microsoft Fabric and Azure, integrating ERP, CRM and operational systems into one governed source for reporting.",
       "Built metadata-driven ELT pipelines and star-schema models, so new sources are onboarded through configuration rather than new code.",
-      "Applied partitioning and query optimization to high-volume datasets to shorten processing and refresh times.",
+      "Applied partitioning and query optimisation to high-volume datasets to shorten processing and refresh times.",
       "Delivered Power BI semantic models with complex DAX (time intelligence, variance, rolling KPIs), incremental refresh and RLS for executive reporting.",
       "Set up Azure DevOps CI/CD for analytics and BI, standardising how analytics and BI changes are deployed.",
     ],
@@ -468,7 +520,7 @@ export const experience = [
     points: [
       "Built and tested ELT pipelines and data-validation workflows with the Data Engineering team to check data quality before it reached reports.",
       "Developed Power BI reports and dashboards for internal stakeholders.",
-      "Worked hands-on with Microsoft Fabric and Azure data tools, which led to a full-time offer after three months.",
+      "Worked hands-on with Microsoft Fabric and Azure data tools.",
     ],
   },
   {
@@ -488,20 +540,38 @@ export const certifications = [
   { code: "Coursera", name: "Microsoft Power BI & Power Platform for Productivity", issuer: "Coursera", featured: false },
 ];
 
+// Prices are starting points suggested on 2026-11-25 for a Karachi-based freelancer selling to international
+// clients; the owner can change them here. Every project still gets a fixed quote after the free call.
 export const services = [
   {
     title: "Data platforms on Fabric & Azure",
-    body: "Medallion lakehouses, metadata-driven ELT and governed models that turn scattered ERP, CRM and operational data into one trusted source.",
+    body: "I bring your ERP, CRM and operational data into one Fabric or Azure lakehouse, cleaned and modelled so every report reads from the same numbers.",
     points: ["Microsoft Fabric & Azure", "Metadata-driven pipelines", "Star schemas & SCD", "CI/CD with Azure DevOps"],
+    scope: "Up to 5 sources into bronze, silver and gold layers, one semantic model, deployment pipeline",
+    timeline: "4 to 8 weeks",
+    from: "From $2,500",
   },
   {
     title: "Power BI dashboards",
-    body: "Executive-ready semantic models and dashboards with the DAX, security and refresh strategy done properly from day one.",
+    body: "Semantic models and dashboards your managers can read at a glance, with row-level security and scheduled refresh set up from the start.",
     points: ["Semantic models & DAX", "RLS / CLS security", "Incremental refresh", "KPI frameworks"],
+    scope: "One semantic model and 3 to 5 report pages, with RLS and refresh configured",
+    timeline: "1 to 3 weeks",
+    from: "From $600",
   },
   {
     title: "AI & RAG document solutions",
-    body: "Document processing and natural-language search over your files, with every answer cited back to its source.",
-    points: ["OCR & classification", "RAG search", "Grounded, cited answers", "Audit-ready design"],
+    body: "Search and Q&A over your own documents. Answers show which document they came from.",
+    points: ["OCR & classification", "RAG search", "Answers with sources", "Audit log of every question"],
+    scope: "One document collection, a search and Q&A screen, source links on every answer",
+    timeline: "3 to 6 weeks",
+    from: "From $1,500",
   },
+];
+
+export const workSteps = [
+  { title: "Free 30-minute call", body: "We talk through your data, the problem and what a good result looks like." },
+  { title: "Written proposal & fixed quote", body: "Scope, timeline and one fixed price in writing, before any work starts." },
+  { title: "Build with weekly demos", body: "You see working software every week and can change direction early." },
+  { title: "Handover with docs & training", body: "Your team gets the code, documentation and a walkthrough so they can run it." },
 ];

@@ -9,6 +9,7 @@ import FeatureArt from "@/components/ui/FeatureArt";
 import SectionLabel from "@/components/ui/SectionLabel";
 import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
+import ProductLinks from "@/components/ui/ProductLinks";
 
 const features = homeFeatures;
 
@@ -18,7 +19,7 @@ function Visual({ i, media }: { i: number; media: Record<string, boolean> }) {
   return file ? (
     <Image
       src={`/projects/banksphere/${file}`}
-      alt={`BankSphere AI — ${f.title}`}
+      alt={`BankSphere AI: ${f.title}`}
       fill
       sizes="(min-width: 1024px) 50vw, 100vw"
       className="object-cover object-left-top"
@@ -81,7 +82,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
           />
         ))}
       </div>
-      <div className="mx-auto max-w-[1440px] px-4 pt-20 sm:px-6 md:px-10 md:pt-28">
+      <div className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 pt-20 sm:px-6 md:px-10 md:pt-28">
         <SectionLabel index="02">Featured product</SectionLabel>
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
           <div>
@@ -93,24 +94,21 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
             >
               BankSphere AI
             </RevealText>
-            <span id="bs-title" className="sr-only">BankSphere AI — featured project</span>
+            <span id="bs-title" className="sr-only">BankSphere AI, featured project</span>
           </div>
           <div className="space-y-5">
             <p className="text-pretty text-lg leading-relaxed text-muted md:text-xl">
               <span className="text-text">{banksphere.tagline}</span> It onboards customers, screens for financial crime and explains each
               decision to the officer who makes the final call.
             </p>
-            <p className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
-              {banksphere.honesty}
-            </p>
+            <ProductLinks product={banksphere} />
           </div>
         </div>
       </div>
 
       {/* Pinned storytelling (desktop) / stacked cards (mobile + reduced motion) */}
       <div ref={pin} className="relative">
-        <div className={`mx-auto grid max-w-[1440px] gap-10 px-4 py-14 sm:px-6 md:px-10 lg:grid-cols-[minmax(0,0.62fr)_minmax(0,1.38fr)] lg:gap-14 ${pinned ? "lg:min-h-[100svh] lg:items-center lg:py-0" : ""}`}>
+        <div className={`mx-auto grid max-w-[1440px] 2xl:max-w-[1600px] gap-10 px-4 py-14 sm:px-6 md:px-10 lg:grid-cols-[minmax(0,0.62fr)_minmax(0,1.38fr)] lg:gap-14 ${pinned ? "lg:min-h-[100svh] lg:items-center lg:py-0" : ""}`}>
           {/* Feature list */}
           <ol
             {...(!pinned && { tabIndex: 0, "aria-label": "BankSphere features, scroll sideways" })}
@@ -200,7 +198,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
       </div>
 
       {/* See-all link + guided-tour card (the full tour lives on the case study) */}
-      <div className="mx-auto grid max-w-[1440px] gap-4 px-4 pb-14 sm:px-6 md:grid-cols-[1fr_auto] md:items-center md:px-10">
+      <div className="mx-auto grid max-w-[1440px] 2xl:max-w-[1600px] gap-4 px-4 pb-14 sm:px-6 md:grid-cols-[1fr_auto] md:items-center md:px-10">
         <Link
           href={`/work/${banksphere.slug}#tour`}
           data-cursor="view"
@@ -217,7 +215,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
           </span>
           <span>
             <span className="block font-display text-xl font-medium tracking-tight md:text-2xl">Watch the guided tour</span>
-            <span className="mt-1 block text-base text-muted">10 short lessons · English &amp; اردو · AI presenter</span>
+            <span className="mt-1 block text-base text-muted">10 short lessons · AI presenter</span>
           </span>
           <span aria-hidden className="ml-auto text-accent transition-transform group-hover:translate-x-1">→</span>
         </Link>
@@ -230,7 +228,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
       </div>
 
       {/* Stack + video + CTA */}
-      <div className="mx-auto max-w-[1440px] px-4 pb-24 sm:px-6 md:px-10 md:pb-32">
+      <div className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 pb-24 sm:px-6 md:px-10 md:pb-32">
         <div className="grid gap-10 border-t border-line pt-12 lg:grid-cols-[1fr_auto] lg:items-center">
           <ul className="flex flex-wrap gap-2" aria-label="BankSphere tech stack">
             {banksphere.stack.map((s) => (
@@ -246,11 +244,6 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
                 className="inline-flex items-center gap-3 rounded-full border border-line px-6 py-3.5 text-text transition-colors hover:border-text"
               >
                 Read the case study
-              </Link>
-            </Magnetic>
-            <Magnetic>
-              <Link href="/#contact" className="inline-flex items-center gap-3 btn-glow rounded-full bg-accent px-6 py-3.5 font-medium text-accent-ink">
-                Request a walkthrough <span aria-hidden>→</span>
               </Link>
             </Magnetic>
           </div>

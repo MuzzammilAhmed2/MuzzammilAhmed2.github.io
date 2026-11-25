@@ -1,10 +1,10 @@
-# Muzzammil Ahmed — Portfolio
+# Muzzammil Ahmed: portfolio
 
 Personal site for a Data Engineer · BI Developer · Data & AI Consultant: live at
 <https://muzzammilahmed2.github.io>.
 
 **Stack:** Next.js 15 (App Router, TypeScript, static export) · Tailwind CSS 4.1 · GSAP + ScrollTrigger · Lenis · SplitType.
-**Theme:** *Aura* — cinematic black `#050507`, electric blue `#5B9DFF`, cyan `#22D3EE`, fire-orange `#FF9D4D` edge;
+**Theme:** *Aura*: cinematic black `#050507`, electric blue `#5B9DFF`, cyan `#22D3EE`, fire-orange `#FF9D4D` edge;
 Space Grotesk / Inter / JetBrains Mono.
 
 ## Run locally
@@ -30,11 +30,20 @@ npx serve out                   # http://localhost:3000
 - **All copy** lives in [`src/data/content.ts`](src/data/content.ts): hero, about stats, BankSphere, PlantMind,
   client projects, skills, experience, certifications and services. The CV is the source of truth: don't add
   claims, numbers or client names that aren't in it.
+- **Product links:** `banksphere.links` and `plantmind.links` in `content.ts` (`demo`, `repo`, `video`). A button
+  appears only for a link that exists. With no `repo`, a "Code walkthrough on request" button opens the contact form
+  with the product prefilled (`/?enquiry=...#contact`).
+- **Client case studies:** each project in `projects` has `problem`, `result`, `role`, `architecture` (the diagram
+  stages) and `highlights` tied to a stage. `team`, `duration`, `decisions` and `hardProblem` are optional: their
+  rows and sections stay hidden until filled in. `results` holds only numbers the owner has confirmed.
+- **Services:** scope, timeline and starting price per service, plus the "How I work" steps (`workSteps`).
 - **Case-study list** (static params, share images): [`src/data/work.ts`](src/data/work.ts) is derived from `content.ts`.
+- **Guided tour:** English clips in `public/projects/banksphere/tour/en/` (the Urdu clips were removed to keep the
+  repo small; their script is still in `src/data/tour.ts`).
 - **Screenshots:** `public/projects/banksphere/` and `public/projects/plantmind/`. How to add BankSphere media:
   [`docs/media-guide.md`](docs/media-guide.md).
 - **Photo:** add `public/me.jpg` and the hero shows it automatically.
-- **CV:** `public/Muzzammil-Ahmed-CV.pdf` (a copy with the phone number removed). The download links appear only
+- **CV:** `public/Muzzammil-Ahmed-CV.pdf`, two pages, built from the same facts as the site, no phone number. The download links appear only
   when the file exists.
 - **Share images** are rendered at build time from [`src/app/og/[file]/route.tsx`](src/app/og/%5Bfile%5D/route.tsx).
 

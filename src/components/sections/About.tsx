@@ -49,7 +49,7 @@ export default function About() {
   return (
     <section id="about" ref={root} aria-labelledby="about-title" className="relative isolate overflow-hidden border-y border-line bg-band">
       <Ambient variant="a" />
-      <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-24 xl:py-32">
+      <div className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 py-20 sm:px-6 md:px-10 md:py-24 xl:py-32">
       <SectionLabel index="01">About</SectionLabel>
       <div className="grid gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-24">
         <RevealText
@@ -71,17 +71,20 @@ export default function About() {
 
       {/* Stats strip */}
       <div className="border-t border-line bg-bg/50">
-        <dl data-stats className="mx-auto grid max-w-[1440px] grid-cols-2 gap-3 px-4 py-10 sm:px-6 md:gap-4 md:px-10 md:py-14 lg:grid-cols-4">
+        <dl data-stats className="mx-auto grid max-w-[1440px] 2xl:max-w-[1600px] grid-cols-2 gap-3 px-4 py-10 sm:px-6 md:gap-4 md:px-10 md:py-14 lg:grid-cols-4">
           {about.stats.map((s) => (
             <div
               key={s.label}
               data-stat
-              className="glow-card flex flex-col-reverse gap-3 rounded-2xl border border-line bg-surface p-5 md:p-7"
+              className="glow-card flex flex-col-reverse justify-end gap-3 rounded-2xl border border-line bg-surface p-5 md:p-7"
             >
               <dt className="max-w-[24ch] text-[15px] leading-snug text-muted md:text-base">{s.label}</dt>
-              <dd className="font-display text-[2.6rem] font-medium leading-none tracking-tight min-[360px]:text-5xl sm:text-6xl md:text-7xl">
-                <span data-count={s.value} className="grad-text">{s.value.toLocaleString("en-US")}</span>
-                <span className="text-accent">{s.suffix}</span>
+              <dd className="flex min-h-[2.6rem] items-start font-display text-[2.6rem] font-medium leading-none tracking-tight min-[360px]:min-h-12 min-[360px]:text-5xl sm:min-h-[3.75rem] sm:text-6xl md:min-h-[4.5rem] md:text-7xl">
+                {s.value !== undefined ? (
+                  <span data-count={s.value} className="grad-text">{s.value.toLocaleString("en-US")}</span>
+                ) : (
+                  <span className="grad-text text-[1.6rem] leading-tight min-[360px]:text-3xl md:text-4xl">{s.text}</span>
+                )}
               </dd>
             </div>
           ))}

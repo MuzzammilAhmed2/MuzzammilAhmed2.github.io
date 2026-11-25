@@ -3,12 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { tourLessons, type TourLang } from "@/data/tour";
 
+// English only: the Urdu clips were removed from the repo to keep it small (the Urdu script stays in tour.ts).
+const lang: TourLang = "en";
+
 const src = (lang: TourLang, id: string, step: number) => `/projects/banksphere/tour/${lang}/${id}-${step + 1}.mp4`;
 
 export default function GuidedTour() {
   const [lesson, setLesson] = useState(0);
   const [step, setStep] = useState(0);
-  const [lang, setLang] = useState<TourLang>("en");
   const [playing, setPlaying] = useState(false);
   const [started, setStarted] = useState(false);
   const video = useRef<HTMLVideoElement>(null);
@@ -23,7 +25,7 @@ export default function GuidedTour() {
     if (!v) return;
     v.load();
     if (started) v.play().catch(() => setPlaying(false));
-  }, [lesson, step, lang, started]);
+  }, [lesson, step, started]);
 
   const go = (l: number, s = 0) => {
     setLesson(l);
@@ -52,21 +54,8 @@ export default function GuidedTour() {
             <p className="mb-3 font-mono text-[13px] uppercase tracking-[0.2em] text-accent">Guided tour</p>
             <h2 className="font-display text-3xl font-medium tracking-[-0.03em] md:text-4xl">Walk through BankSphere in 10 short lessons</h2>
             <p className="mt-3 max-w-2xl text-muted">
-              Narrated by an AI presenter from the project&apos;s own reviewed tour script, in English and Urdu. All data in the product is synthetic.
+              Narrated by an AI presenter from the project&apos;s own reviewed tour script, All data in the product is synthetic.
             </p>
-          </div>
-          <div role="group" aria-label="Narration language" className="inline-flex rounded-full border border-line p-1 font-mono text-[13px]">
-            {(["en", "ur"] as const).map((l) => (
-              <button
-                key={l}
-                type="button"
-                onClick={() => setLang(l)}
-                aria-pressed={lang === l}
-                className={`rounded-full px-4 py-2 transition-colors ${lang === l ? "bg-accent text-accent-ink" : "text-muted hover:text-text"}`}
-              >
-                {l === "en" ? "English" : "اردو"}
-              </button>
-            ))}
           </div>
         </div>
 

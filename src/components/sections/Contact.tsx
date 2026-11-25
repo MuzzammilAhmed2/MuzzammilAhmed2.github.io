@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { site } from "@/data/content";
+import { PREFILL_EVENT, readEnquiry } from "@/lib/contact-prefill";
 import SectionLabel from "@/components/ui/SectionLabel";
 import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
@@ -17,6 +18,22 @@ const label =
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
   const [kind, setKind] = useState("Freelance project");
+  const message = useRef<HTMLTextAreaElement>(null);
+
+  // "Walkthrough on request" buttons arrive with the topic already filled in.
+  useEffect(() => {
+    const fill = (topic: string) => {
+      const el = message.current;
+      if (!el) return;
+      el.value = `${topic}: I'd like to see this. `;
+      setKind("Something else");
+    };
+    const initial = readEnquiry();
+    if (initial) fill(initial);
+    const onPrefill = (e: Event) => fill((e as CustomEvent<string>).detail);
+    window.addEventListener(PREFILL_EVENT, onPrefill);
+    return () => window.removeEventListener(PREFILL_EVENT, onPrefill);
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -26,8 +43,8 @@ export default function Contact() {
 
     // No Formspree ID configured yet → fall back to the user's mail app
     if (!FORMSPREE_ID) {
-      const subject = encodeURIComponent(`${kind} — from ${data.get("name")}`);
-      const body = encodeURIComponent(`${data.get("message")}\n\n— ${data.get("name")} (${data.get("email")})`);
+      const subject = encodeURIComponent(`${kind}: message from ${data.get("name")}`);
+      const body = encodeURIComponent(`${data.get("message")}\n\n${data.get("name")} (${data.get("email")})`);
       window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
       setStatus("mailto");
       return;
@@ -51,7 +68,7 @@ export default function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden border-t border-line">
       <div aria-hidden className="pointer-events-none absolute -bottom-1/2 left-1/2 h-[80vmax] w-[80vmax] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgb(var(--accent-rgb)/0.18),rgb(var(--accent-2-rgb)/0.08)_40%,transparent_62%)]" />
-      <div className="relative mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-24 xl:py-32">
+      <div className="relative mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 py-20 sm:px-6 md:px-10 md:py-24 xl:py-32">
         <div className="flex flex-col items-center text-center">
           <SectionLabel index="09">Contact</SectionLabel>
           <RevealText
@@ -135,7 +152,7 @@ export default function Contact() {
               </div>
             </div>
             <div className="relative">
-              <textarea id="message" name="message" required rows={4} placeholder="Message" className={`${field} resize-none`} />
+              <textarea ref={message} id="message" name="message" required rows={4} placeholder="Message" className={`${field} resize-none`} />
               <label htmlFor="message" className={label}>What are you working on?</label>
             </div>
             <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />
@@ -150,7 +167,7 @@ export default function Contact() {
                 </button>
               </Magnetic>
               <p role="status" aria-live="polite" className="text-base">
-                {status === "sent" && <span className="text-accent">Thanks — your message is in. I&apos;ll get back to you soon.</span>}
+                {status === "sent" && <span className="text-accent">Thanks, your message is in. I&apos;ll get back to you soon.</span>}
                 {status === "mailto" && <span className="text-text">Your email app should now be open with the message ready to send.</span>}
                 {status === "error" && (
                   <span className="text-[color:var(--danger)]">
@@ -161,7 +178,7 @@ export default function Contact() {
             </div>
             {!FORMSPREE_ID && (
               <p className="text-base text-muted">
-                This opens your email app — or email me directly at the address in this card.
+                This opens your email app. You can also email me directly at the address in this card.
               </p>
             )}
           </form>

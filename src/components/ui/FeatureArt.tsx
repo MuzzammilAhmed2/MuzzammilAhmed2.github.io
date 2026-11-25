@@ -31,7 +31,7 @@ export default function FeatureArt({ art }: { art: Feature["art"] }) {
   switch (art) {
     case "decision":
       return (
-        <svg viewBox="0 0 400 300" className="h-full w-full" role="img" aria-label="Diagram: ID OCR, card checks and watchlist screening feed a risk score that routes to approve, officer review or resubmit">
+        <svg viewBox="0 0 400 300" className="h-full w-full" aria-hidden="true" focusable="false">
           <Box x={16} y={40} w={104} h={40} label="ID-card OCR" />
           <Box x={16} y={130} w={104} h={40} label="Card checks" />
           <Box x={16} y={220} w={104} h={40} label="Watchlist" />
@@ -51,7 +51,7 @@ export default function FeatureArt({ art }: { art: Feature["art"] }) {
       );
     case "detective":
       return (
-        <svg viewBox="0 0 400 300" className="h-full w-full" role="img" aria-label="Diagram: an officer question answered by the AI with numbered citations to evidence">
+        <svg viewBox="0 0 400 300" className="h-full w-full" aria-hidden="true" focusable="false">
           <rect x={150} y={24} width={230} height={44} rx={14} fill={S} stroke={L} />
           <text x={166} y={51} fontSize="12" fill={T} fontFamily="var(--font-inter)">Why was this case flagged?</text>
           <rect x={20} y={88} width={290} height={110} rx={14} fill={S} stroke={A} />
@@ -76,7 +76,7 @@ export default function FeatureArt({ art }: { art: Feature["art"] }) {
       );
     case "challenge":
       return (
-        <svg viewBox="0 0 400 300" className="h-full w-full" role="img" aria-label="Diagram: officer challenges an AI conclusion and the AI defends or revises it">
+        <svg viewBox="0 0 400 300" className="h-full w-full" aria-hidden="true" focusable="false">
           <rect x={20} y={30} width={240} height={60} rx={14} fill={S} stroke={L} />
           <text x={36} y={56} fontSize="13" fill={M} fontFamily="var(--font-jetbrains)">AI CONCLUSION</text>
           <text x={36} y={76} fontSize="13" fill={T} fontFamily="var(--font-inter)">Recommend: officer review</text>
@@ -93,7 +93,7 @@ export default function FeatureArt({ art }: { art: Feature["art"] }) {
       );
     case "timemachine":
       return (
-        <svg viewBox="0 0 400 300" className="h-full w-full" role="img" aria-label="Diagram: a case timeline that can be replayed step by step">
+        <svg viewBox="0 0 400 300" className="h-full w-full" aria-hidden="true" focusable="false">
           <line x1={30} y1={150} x2={370} y2={150} stroke={L} strokeWidth="2" />
           <line x1={30} y1={150} x2={250} y2={150} stroke={A} strokeWidth="2" />
           {["Submitted", "OCR", "Screened", "Scored", "Reviewed", "Decided"].map((s, i) => {
@@ -121,7 +121,7 @@ export default function FeatureArt({ art }: { art: Feature["art"] }) {
       );
     case "twin":
       return (
-        <svg viewBox="0 0 400 300" className="h-full w-full" role="img" aria-label="Diagram: knowledge graph linking customers, cases, rules and evidence">
+        <svg viewBox="0 0 400 300" className="h-full w-full" aria-hidden="true" focusable="false">
           {[
             [200, 150, 200, 60], [200, 150, 90, 100], [200, 150, 310, 100], [200, 150, 100, 230], [200, 150, 300, 230],
             [90, 100, 200, 60], [310, 100, 300, 230], [100, 230, 300, 230],
@@ -141,7 +141,7 @@ export default function FeatureArt({ art }: { art: Feature["art"] }) {
       );
     case "fourEyes":
       return (
-        <svg viewBox="0 0 400 300" className="h-full w-full" role="img" aria-label="Diagram: a screening decision needs two independent approvals before it takes effect">
+        <svg viewBox="0 0 400 300" className="h-full w-full" aria-hidden="true" focusable="false">
           <Box x={20} y={128} w={110} h={44} label="Screening hit" />
           <Flow d="M130 150 C160 150 160 80 190 80" />
           <Flow d="M130 150 C160 150 160 220 190 220" />
@@ -159,7 +159,7 @@ export default function FeatureArt({ art }: { art: Feature["art"] }) {
       );
     case "audit":
       return (
-        <svg viewBox="0 0 400 300" className="h-full w-full" role="img" aria-label="Diagram: hash-chained audit records with write-once checkpoints">
+        <svg viewBox="0 0 400 300" className="h-full w-full" aria-hidden="true" focusable="false">
           {[0, 1, 2, 3].map((i) => {
             const x = 16 + i * 96;
             return (
@@ -181,7 +181,7 @@ export default function FeatureArt({ art }: { art: Feature["art"] }) {
       );
     case "redteam":
       return (
-        <svg viewBox="0 0 400 300" className="h-full w-full" role="img" aria-label="Diagram: red-team, evaluation and automated test suites">
+        <svg viewBox="0 0 400 300" className="h-full w-full" aria-hidden="true" focusable="false">
           {[
             ["Automated tests", 1],
             ["Evaluation suite", 1],

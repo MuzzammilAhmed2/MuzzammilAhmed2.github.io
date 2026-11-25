@@ -69,25 +69,32 @@ export default function Hero() {
           </div>
         ) : (
           <div data-hero-fade className="float-y relative flex w-[86%] max-w-[480px] flex-col items-stretch gap-3">
-          <Link
-            href={`/work/${banksphere.slug}`}
-            className="pointer-events-auto relative w-full max-w-[480px] rounded-[1.75rem] border border-line bg-surface/70 p-4 shadow-[var(--stage-shadow)] backdrop-blur-md transition-colors hover:border-accent/50"
-          >
+          <div className="group/card pointer-events-auto relative w-full max-w-[480px] rounded-[1.75rem] border border-line bg-surface/70 p-4 shadow-[var(--stage-shadow)] backdrop-blur-md transition-colors hover:border-accent/50">
             <div className="flex items-center justify-between px-1 pb-3">
               <span className="font-mono text-[13px] uppercase tracking-[0.14em] text-muted">Featured project</span>
-              <span className="inline-flex items-center gap-1.5 font-mono text-[13px] text-accent">
-                Case study <span aria-hidden>→</span>
+              <span aria-hidden className="inline-flex items-center gap-1.5 font-mono text-[13px] text-accent">
+                Case study <span>→</span>
               </span>
             </div>
             <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-line bg-bg">
-              <Image src="/projects/banksphere/kyc.webp" alt="BankSphere AI officer review screen" fill priority={false} sizes="480px" className="object-cover object-left-top" />
+              <Image src="/projects/banksphere/kyc.webp" alt="" fill priority={false} sizes="480px" className="object-cover object-left-top" />
             </div>
             <div className="px-1 pt-4">
-              <p className="font-display text-2xl font-medium tracking-tight">{banksphere.name}</p>
+              {/* The title link stretches over the whole card; the demo button sits above it. */}
+              <Link href={`/work/${banksphere.slug}`} className="font-display text-2xl font-medium tracking-tight after:absolute after:inset-0 after:rounded-[1.75rem] after:content-['']">
+                {banksphere.name}
+              </Link>
               <p className="mt-1 text-base text-muted">{banksphere.tagline}</p>
             </div>
-            <p className="mt-3 px-1 pb-1 font-mono text-[12px] uppercase tracking-[0.12em] text-muted">Working product · synthetic data</p>
-          </Link>
+            <div className="relative z-10 mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 px-1 pb-1">
+              {banksphere.links.demo && (
+                <a href={banksphere.links.demo} target="_blank" rel="noopener" className="inline-flex min-h-10 items-center gap-2 whitespace-nowrap rounded-full bg-accent px-4 py-2 text-[15px] font-medium text-accent-ink transition-transform hover:scale-[1.03]">
+                  Open live demo <span aria-hidden>↗</span><span className="sr-only">(opens in a new tab)</span>
+                </a>
+              )}
+              <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-muted">{banksphere.honesty}</span>
+            </div>
+          </div>
           <Link
             href="/#plantmind"
             className="group pointer-events-auto flex items-center gap-3 self-start rounded-full border border-line bg-surface/70 py-1.5 pl-1.5 pr-4 backdrop-blur-md transition-colors hover:border-accent-2/60"
@@ -100,7 +107,7 @@ export default function Hero() {
         )}
       </div>
 
-      <div data-hero-content className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-end px-4 pb-10 pt-32 sm:px-6 md:px-10 md:pb-14 lg:pr-[44%]">
+      <div data-hero-content className="mx-auto flex w-full max-w-[1440px] 2xl:max-w-[1600px] flex-1 flex-col justify-end px-4 pb-10 pt-32 sm:px-6 md:px-10 md:pb-14 lg:pr-[44%]">
         <div data-hero-fade className="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-line bg-surface/70 px-4 py-2 backdrop-blur">
           <span className="pulse-dot relative block h-2 w-2 rounded-full bg-accent text-accent" aria-hidden />
           <span className="font-mono text-[13px] uppercase tracking-[0.16em] text-text">Available for freelance &amp; full‑time</span>
@@ -176,6 +183,11 @@ export default function Hero() {
               </span>
             </span>
           </Link>
+          {banksphere.links.demo && (
+            <a href={banksphere.links.demo} target="_blank" rel="noopener" className="inline-flex min-h-11 w-fit items-center gap-2 whitespace-nowrap rounded-full bg-accent px-5 py-2.5 text-[15px] font-medium text-accent-ink">
+              Open the BankSphere live demo <span aria-hidden>↗</span><span className="sr-only">(opens in a new tab)</span>
+            </a>
+          )}
           <Link
             href="/#plantmind"
             className="group flex w-fit items-center gap-3 rounded-full border border-line bg-surface/70 py-1.5 pl-1.5 pr-4 backdrop-blur-md transition-colors hover:border-accent-2/60"

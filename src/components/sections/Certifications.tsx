@@ -39,7 +39,7 @@ export default function Certifications() {
   return (
     <section ref={root} id="certifications" aria-labelledby="cert-title" className="relative isolate overflow-hidden border-y border-line bg-band">
       <Ambient variant="c" />
-      <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-24 xl:py-32">
+      <div className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 py-20 sm:px-6 md:px-10 md:py-24 xl:py-32">
       <SectionLabel index="07">Certifications</SectionLabel>
       <h2 id="cert-title" className="mb-14 max-w-3xl font-display text-[clamp(2.2rem,4.8vw,4.5rem)] font-medium leading-[1] tracking-[-0.03em] text-balance">
         Certified on the <span className="grad-text">platforms</span> I build with.
@@ -69,14 +69,12 @@ export default function Certifications() {
           </article>
         ))}
       </div>
-      <ul className="mt-5 grid gap-5 md:grid-cols-2">
-        {other.map((c) => (
-          <li key={c.name} data-cert className="flex items-center justify-between gap-6 rounded-2xl border border-line px-6 py-5">
-            <span className="text-text">{c.name}</span>
-            <span className="shrink-0 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">{c.issuer}</span>
-          </li>
-        ))}
-      </ul>
+      {other.length > 0 && (
+        <p data-cert className="mt-6 text-base text-muted">
+          <span className="mr-2 font-mono text-[13px] uppercase tracking-[0.16em]">Courses</span>
+          {other.map((c) => `${c.name} (${c.issuer})`).join(" · ")}
+        </p>
+      )}
       </div>
     </section>
   );

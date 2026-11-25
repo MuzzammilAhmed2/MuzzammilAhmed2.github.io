@@ -4,7 +4,7 @@ import { site, nav } from "@/data/content";
 export default function Footer() {
   return (
     <footer className="border-t border-line">
-      <div className="mx-auto flex max-w-[1440px] flex-col gap-8 px-4 py-10 sm:px-6 md:flex-row md:items-center md:justify-between md:px-10">
+      <div className="mx-auto flex max-w-[1440px] 2xl:max-w-[1600px] flex-col gap-8 px-4 py-10 sm:px-6 md:flex-row md:items-center md:justify-between md:px-10">
         <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-muted">
           © {new Date().getFullYear()} {site.name} · {site.location}
           <span className="mt-1 block normal-case tracking-normal">Content and CV © {site.name}. All rights reserved.</span>

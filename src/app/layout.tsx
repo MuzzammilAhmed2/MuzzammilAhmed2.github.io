@@ -17,8 +17,8 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains", 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Data Engineer & BI Developer`,
-    template: `%s — ${site.name}`,
+    default: `${site.name} | Data Engineer & BI Developer`,
+    template: `%s | ${site.name}`,
   },
   description: site.description,
   keywords: [
@@ -32,14 +32,14 @@ export const metadata: Metadata = {
     type: "website",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — Data Engineer & BI Developer`,
+    title: `${site.name} | Data Engineer & BI Developer`,
     description: site.description,
     locale: "en_US",
-    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: `${site.name} — ${site.role}` }],
+    images: [{ url: "/og/home.png", width: 1200, height: 630, alt: `${site.name}, ${site.role}` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Data Engineer & BI Developer`,
+    title: `${site.name} | Data Engineer & BI Developer`,
     description: site.description,
     images: ["/og/home.png"],
   },
