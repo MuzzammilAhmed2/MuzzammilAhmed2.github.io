@@ -23,7 +23,7 @@ export default function AuraCursor() {
     <div
       ref={ref}
       aria-hidden
-      className="pointer-events-none fixed left-0 top-0 z-[1] h-[520px] w-[520px] rounded-full mix-blend-screen will-change-transform"
+      className="pointer-events-none fixed left-0 top-0 z-[1] h-[520px] w-[520px] rounded-full"
       style={{ background: "radial-gradient(circle, rgb(var(--aura-pink) / 0.16), rgb(var(--aura-blue) / 0.08) 40%, transparent 68%)", opacity: 0 }}
     />
   );

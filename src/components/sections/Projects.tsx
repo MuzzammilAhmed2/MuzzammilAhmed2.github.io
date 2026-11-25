@@ -99,11 +99,11 @@ export default function Projects() {
                 <div data-mask className="absolute inset-0 origin-top bg-bg motion-reduce:hidden md:origin-right" aria-hidden />
                 <span className="absolute left-3 right-16 top-3 flex flex-wrap gap-2">
                   {p.academic && (
-                    <span className="rounded-full border border-dashed border-line bg-bg/80 px-3 py-1 font-mono text-[13px] uppercase tracking-[0.16em] text-muted backdrop-blur">
+                    <span className="rounded-full border border-dashed border-line bg-bg/90 px-3 py-1 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">
                       Academic
                     </span>
                   )}
-                  <span className="rounded-full border border-line bg-bg/70 px-3 py-1 font-mono text-[12px] uppercase tracking-[0.12em] text-text backdrop-blur">
+                  <span className="rounded-full border border-line bg-bg/90 px-3 py-1 font-mono text-[12px] uppercase tracking-[0.12em] text-text">
                     {p.sector}
                   </span>
                 </span>

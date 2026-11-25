@@ -6,6 +6,7 @@ import SmoothScroll from "@/components/providers/SmoothScroll";
 import Loader from "@/components/ui/Loader";
 import Cursor from "@/components/ui/Cursor";
 import AuraCursor from "@/components/ui/AuraCursor";
+import AmbientPause from "@/components/ui/AmbientPause";
 import Nav from "@/components/ui/Nav";
 import Footer from "@/components/ui/Footer";
 import Analytics from "@/components/ui/Analytics";
@@ -80,6 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SmoothScroll>
           <Loader />
           <AuraCursor />
+          <AmbientPause />
           <Cursor />
           <Nav />
           <main id="main">{children}</main>
