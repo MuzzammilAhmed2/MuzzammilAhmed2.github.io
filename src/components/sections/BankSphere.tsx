@@ -215,7 +215,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
           </span>
           <span>
             <span className="block font-display text-xl font-medium tracking-tight md:text-2xl">Watch the guided tour</span>
-            <span className="mt-1 block text-base text-muted">10 short lessons · English &amp; اردو · AI presenter</span>
+            <span className="mt-1 block text-base text-muted">10 short lessons · AI presenter</span>
           </span>
           <span aria-hidden className="ml-auto text-accent transition-transform group-hover:translate-x-1">→</span>
         </Link>
