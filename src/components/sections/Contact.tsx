@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { site } from "@/data/content";
+import { PREFILL_EVENT, readEnquiry } from "@/lib/contact-prefill";
 import SectionLabel from "@/components/ui/SectionLabel";
 import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
@@ -17,6 +18,22 @@ const label =
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
   const [kind, setKind] = useState("Freelance project");
+  const message = useRef<HTMLTextAreaElement>(null);
+
+  // "Walkthrough on request" buttons arrive with the topic already filled in.
+  useEffect(() => {
+    const fill = (topic: string) => {
+      const el = message.current;
+      if (!el) return;
+      el.value = `${topic}: I'd like to see this. `;
+      setKind("Something else");
+    };
+    const initial = readEnquiry();
+    if (initial) fill(initial);
+    const onPrefill = (e: Event) => fill((e as CustomEvent<string>).detail);
+    window.addEventListener(PREFILL_EVENT, onPrefill);
+    return () => window.removeEventListener(PREFILL_EVENT, onPrefill);
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -135,7 +152,7 @@ export default function Contact() {
               </div>
             </div>
             <div className="relative">
-              <textarea id="message" name="message" required rows={4} placeholder="Message" className={`${field} resize-none`} />
+              <textarea ref={message} id="message" name="message" required rows={4} placeholder="Message" className={`${field} resize-none`} />
               <label htmlFor="message" className={label}>What are you working on?</label>
             </div>
             <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden />

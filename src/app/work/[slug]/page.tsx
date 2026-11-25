@@ -8,6 +8,7 @@ import { banksphereMedia } from "@/lib/media";
 import GuidedTour from "@/components/ui/GuidedTour";
 import ProjectVisual from "@/components/ui/ProjectVisual";
 import FeatureArt from "@/components/ui/FeatureArt";
+import ProductLinks from "@/components/ui/ProductLinks";
 
 export function generateStaticParams() {
   return allWork.map((w) => ({ slug: w.slug }));
@@ -53,6 +54,8 @@ function Block({ title, children }: { title: string; children: React.ReactNode }
 function Shell({
   kicker,
   title,
+  pitch,
+  actions,
   lead,
   stack,
   next,
@@ -60,19 +63,24 @@ function Shell({
 }: {
   kicker: string;
   title: string;
+  /** One line, shown with the action buttons above the fold. */
+  pitch?: string;
+  actions?: React.ReactNode;
   lead: string;
   stack: string[];
   next: { href: string; name: string };
   children: React.ReactNode;
 }) {
   return (
-    <article className="mx-auto max-w-[1440px] px-4 pb-24 pt-36 sm:px-6 md:px-10 md:pt-44">
-      <Link href="/#work" className="mb-12 inline-flex min-h-6 items-center gap-2 py-2 font-mono pointer-coarse:min-h-11 text-[13px] uppercase tracking-[0.18em] text-muted hover:text-text">
+    <article className="mx-auto max-w-[1440px] px-4 pb-24 pt-28 sm:px-6 md:px-10 md:pt-36 2xl:max-w-[1600px]">
+      <Link href="/#work" className="mb-8 inline-flex min-h-6 items-center gap-2 py-2 font-mono pointer-coarse:min-h-11 text-[13px] uppercase tracking-[0.18em] text-muted hover:text-text">
         <span aria-hidden>←</span> All work
       </Link>
       <p className="mb-5 font-mono text-[13px] uppercase tracking-[0.2em] text-accent">{kicker}</p>
       <h1 className="max-w-5xl font-display text-[clamp(2.6rem,7vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.04em] text-balance">{title}</h1>
-      <p className="mt-8 max-w-3xl text-pretty text-xl leading-relaxed text-muted md:text-2xl">{lead}</p>
+      {pitch && <p className="mt-5 max-w-3xl text-pretty text-xl leading-snug text-text md:text-2xl">{pitch}</p>}
+      {actions && <div className="mt-6">{actions}</div>}
+      <p className="mt-8 max-w-3xl text-pretty text-lg leading-relaxed text-muted md:text-xl">{lead}</p>
       {stack.length > 0 && (
         <ul className="mt-10 flex flex-wrap gap-2" aria-label="Tech stack">
           {stack.map((s) => (
@@ -110,17 +118,15 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
       <Shell
         kicker="Featured · Banking · KYC & compliance"
         title={banksphere.name}
-        lead={`${banksphere.tagline} ID-card OCR, card checks, watchlist screening and a risk score decide approve / officer review / resubmit — with a human officer making every final call.`}
+        pitch={banksphere.tagline}
+        actions={<ProductLinks product={banksphere} />}
+        lead={`ID-card OCR, card checks, watchlist screening and a risk score decide approve / officer review / resubmit — with a human officer making every final call.`}
         stack={banksphere.stack}
         next={{ href: `/work/${plantmind.slug}`, name: plantmind.name }}
       >
-        <p className="mb-10 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-muted">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
-          {banksphere.honesty}
-        </p>
 
         {media[banksphere.video] && (
-          <div className="relative mb-20 aspect-video overflow-hidden rounded-3xl border border-line bg-surface">
+          <div id="demo" className="relative mb-20 aspect-video scroll-mt-28 overflow-hidden rounded-3xl border border-line bg-surface">
             <video
               src={`/projects/banksphere/${banksphere.video}`}
               controls
@@ -165,14 +171,12 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
       <Shell
         kicker={`Product · ${plantmind.sectors}`}
         title={plantmind.name}
-        lead={`${plantmind.tagline} ${plantmind.lead}`}
+        pitch={plantmind.tagline}
+        actions={<ProductLinks product={plantmind} />}
+        lead={plantmind.lead}
         stack={plantmind.stack}
         next={{ href: `/work/${first.slug}`, name: first.name }}
       >
-        <p className="mb-10 inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-muted">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent-2" aria-hidden />
-          {plantmind.honesty}
-        </p>
 
         <div className="relative mb-12 aspect-[16/10] overflow-hidden rounded-3xl border border-white/15 bg-surface shadow-[var(--stage-shadow)]">
           <Image src={`/projects/plantmind/${plantmind.showcase[0].media}`} alt={`PlantMind — ${plantmind.showcase[0].title}`} fill priority sizes="(min-width: 1440px) 1360px, 100vw" className="object-cover object-left-top" />

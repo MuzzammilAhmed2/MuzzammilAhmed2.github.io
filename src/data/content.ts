@@ -43,6 +43,9 @@ export const about = {
   ],
 };
 
+/** Public links for a product. Only links that exist are rendered; never add a placeholder. */
+export type ProductLinks = { demo?: string; repo?: string; video?: string };
+
 export type Feature = {
   id: string;
   kicker: string;
@@ -57,7 +60,10 @@ export const banksphere = {
   slug: "banksphere-ai",
   name: "BankSphere AI",
   tagline: "Governed AI for KYC & compliance in banking.",
-  honesty: "Working product on synthetic data · Code walkthrough on request",
+  honesty: "Synthetic data, no real customers",
+  // Repo is private, so code is shown on request instead of linked.
+  links: { demo: "https://app.spherekyc.dpdns.org", video: "/work/banksphere-ai/#demo" } as ProductLinks,
+  walkthrough: "BankSphere walkthrough",
   stack: [
     "Python",
     "FastAPI",
@@ -163,7 +169,11 @@ export const plantmind = {
   name: "PlantMind",
   tagline: "An AI operations layer for manufacturing.",
   lead: "One workspace where maintenance, quality, customer care and leadership share a private knowledge engine, live plant data, human approval gates and a hash-linked audit trail.",
-  honesty: "Working product on synthetic data · Walkthrough on request",
+  honesty: "Synthetic data, no real customers",
+  // The hosted demo opens on a sign-in screen; logins are handed out on request.
+  links: { demo: "https://plantmind.spherekyc.dpdns.org" } as ProductLinks,
+  demoNote: "Demo login on request",
+  walkthrough: "PlantMind walkthrough",
   sectors: "Manufacturing · Maintenance · Quality · Azure AI",
   stack: [
     "Python",

@@ -9,6 +9,7 @@ import FeatureArt from "@/components/ui/FeatureArt";
 import SectionLabel from "@/components/ui/SectionLabel";
 import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
+import ProductLinks from "@/components/ui/ProductLinks";
 
 const features = homeFeatures;
 
@@ -100,10 +101,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
               <span className="text-text">{banksphere.tagline}</span> It onboards customers, screens for financial crime and explains each
               decision to the officer who makes the final call.
             </p>
-            <p className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-muted">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
-              {banksphere.honesty}
-            </p>
+            <ProductLinks product={banksphere} />
           </div>
         </div>
       </div>
@@ -246,11 +244,6 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
                 className="inline-flex items-center gap-3 rounded-full border border-line px-6 py-3.5 text-text transition-colors hover:border-text"
               >
                 Read the case study
-              </Link>
-            </Magnetic>
-            <Magnetic>
-              <Link href="/#contact" className="inline-flex items-center gap-3 btn-glow rounded-full bg-accent px-6 py-3.5 font-medium text-accent-ink">
-                Request a walkthrough <span aria-hidden>→</span>
               </Link>
             </Magnetic>
           </div>

@@ -8,6 +8,7 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
 import Ambient from "@/components/ui/Ambient";
+import ProductLinks from "@/components/ui/ProductLinks";
 
 const shots = plantmind.showcase;
 const STEP_MS = 6500;
@@ -52,13 +53,7 @@ export default function PlantMind() {
             <p className="text-pretty text-lg leading-relaxed text-muted md:text-xl">
               <span className="text-text">{plantmind.tagline}</span> {plantmind.lead}
             </p>
-            <p className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-[13px] uppercase tracking-[0.14em] text-muted">
-              <span className="relative flex h-1.5 w-1.5" aria-hidden>
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-2 opacity-70 motion-reduce:hidden" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent-2" />
-              </span>
-              {plantmind.honesty}
-            </p>
+            <ProductLinks product={plantmind} />
           </div>
         </div>
 
@@ -184,11 +179,6 @@ export default function PlantMind() {
                 className="inline-flex items-center gap-3 rounded-full border border-line px-6 py-3.5 text-text transition-colors hover:border-text"
               >
                 Read the case study
-              </Link>
-            </Magnetic>
-            <Magnetic>
-              <Link href="/#contact" className="btn-glow inline-flex items-center gap-3 rounded-full bg-accent px-6 py-3.5 font-medium text-accent-ink">
-                Request a walkthrough <span aria-hidden>→</span>
               </Link>
             </Magnetic>
           </div>
