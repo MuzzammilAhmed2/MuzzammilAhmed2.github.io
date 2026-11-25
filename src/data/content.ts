@@ -540,20 +540,38 @@ export const certifications = [
   { code: "Coursera", name: "Microsoft Power BI & Power Platform for Productivity", issuer: "Coursera", featured: false },
 ];
 
+// Prices are starting points suggested on 2026-11-25 for a Karachi-based freelancer selling to international
+// clients; the owner can change them here. Every project still gets a fixed quote after the free call.
 export const services = [
   {
     title: "Data platforms on Fabric & Azure",
-    body: "Medallion lakehouses, metadata-driven ELT and governed models that turn scattered ERP, CRM and operational data into one trusted source.",
+    body: "I bring your ERP, CRM and operational data into one Fabric or Azure lakehouse, cleaned and modelled so every report reads from the same numbers.",
     points: ["Microsoft Fabric & Azure", "Metadata-driven pipelines", "Star schemas & SCD", "CI/CD with Azure DevOps"],
+    scope: "Up to 5 sources into bronze, silver and gold layers, one semantic model, deployment pipeline",
+    timeline: "4 to 8 weeks",
+    from: "From $2,500",
   },
   {
     title: "Power BI dashboards",
-    body: "Executive-ready semantic models and dashboards with the DAX, security and refresh strategy done properly from day one.",
+    body: "Semantic models and dashboards your managers can read at a glance, with row-level security and scheduled refresh set up from the start.",
     points: ["Semantic models & DAX", "RLS / CLS security", "Incremental refresh", "KPI frameworks"],
+    scope: "One semantic model and 3 to 5 report pages, with RLS and refresh configured",
+    timeline: "1 to 3 weeks",
+    from: "From $600",
   },
   {
     title: "AI & RAG document solutions",
-    body: "Document processing and natural-language search over your files, with every answer cited back to its source.",
-    points: ["OCR & classification", "RAG search", "Grounded, cited answers", "Audit-ready design"],
+    body: "Search and Q&A over your own documents. Answers show which document they came from.",
+    points: ["OCR & classification", "RAG search", "Answers with sources", "Audit log of every question"],
+    scope: "One document collection, a search and Q&A screen, source links on every answer",
+    timeline: "3 to 6 weeks",
+    from: "From $1,500",
   },
+];
+
+export const workSteps = [
+  { title: "Free 30-minute call", body: "We talk through your data, the problem and what a good result looks like." },
+  { title: "Written proposal & fixed quote", body: "Scope, timeline and one fixed price in writing, before any work starts." },
+  { title: "Build with weekly demos", body: "You see working software every week and can change direction early." },
+  { title: "Handover with docs & training", body: "Your team gets the code, documentation and a walkthrough so they can run it." },
 ];

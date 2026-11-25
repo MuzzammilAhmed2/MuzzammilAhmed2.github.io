@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { gsap, MOTION_OK } from "@/lib/gsap";
-import { services } from "@/data/content";
+import { services, workSteps } from "@/data/content";
 import SectionLabel from "@/components/ui/SectionLabel";
 import RevealText from "@/components/ui/RevealText";
 import Magnetic from "@/components/ui/Magnetic";
@@ -55,9 +55,43 @@ export default function Services() {
                 </li>
               ))}
             </ul>
+            <dl className="mt-6 space-y-3 border-t border-line pt-6 text-base">
+              <div>
+                <dt className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Typical scope</dt>
+                <dd className="mt-1 text-pretty leading-snug text-text">{s.scope}</dd>
+              </div>
+              <div className="flex flex-wrap gap-x-8 gap-y-3">
+                <div>
+                  <dt className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Timeline</dt>
+                  <dd className="mt-1 text-text">{s.timeline}</dd>
+                </div>
+                <div>
+                  <dt className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Starting from</dt>
+                  <dd className="mt-1 font-display text-xl font-medium text-accent">{s.from.replace("From ", "")}</dd>
+                </div>
+              </div>
+            </dl>
           </article>
         ))}
       </div>
+      <p className="mt-6 text-base text-muted">Every project gets a fixed-price quote after a free 30-minute call. Prices in US dollars.</p>
+
+      <div className="mt-16 md:mt-20">
+        <h3 className="font-mono text-[13px] uppercase tracking-[0.16em] text-muted">How I work</h3>
+        <ol className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {workSteps.map((st, i) => (
+            <li key={st.title} className="relative rounded-2xl border border-line bg-surface/60 p-6">
+              <span className="font-mono text-[13px] text-accent-2">{String(i + 1).padStart(2, "0")}</span>
+              <p className="mt-3 font-display text-xl font-medium leading-tight tracking-tight">{st.title}</p>
+              <p className="mt-2 text-pretty text-base leading-relaxed text-muted">{st.body}</p>
+              {i < workSteps.length - 1 && (
+                <span aria-hidden className="absolute -right-3 top-1/2 hidden -translate-y-1/2 text-accent lg:block">→</span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+
       <div data-svc className="mt-16 flex justify-center md:mt-20">
         <Magnetic>
           <Link href="/#contact" className="inline-flex items-center gap-3 btn-glow rounded-full bg-accent px-8 py-4 text-base font-medium text-accent-ink">
