@@ -1,5 +1,5 @@
 /**
- * Aura-photo style haze: soft colour fields blended with `screen`, drifting slowly,
+ * Aura-photo style haze: soft colour fields drifting slowly,
  * plus a rotating conic halo. Transform-only animation; no filters, so it stays cheap.
  */
 export default function Aura({ halo = true, className = "" }: { halo?: boolean; className?: string }) {
@@ -10,17 +10,17 @@ export default function Aura({ halo = true, className = "" }: { halo?: boolean; 
     { cls: "aura-2 right-[15%] bottom-[-30%] h-[55vmax] w-[55vmax]", c: "--aura-violet", o: 0.45 },
   ];
   return (
-    <div aria-hidden className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>
+    <div aria-hidden data-ambient className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}>
       {fields.map((f, i) => (
         <div
           key={i}
-          className={`absolute rounded-full mix-blend-screen will-change-transform ${f.cls}`}
+          className={`absolute rounded-full ${f.cls}`}
           style={{ background: `radial-gradient(circle at center, rgb(var(${f.c}) / ${f.o}), rgb(var(${f.c}) / ${f.o * 0.35}) 35%, transparent 68%)` }}
         />
       ))}
       {halo && (
         <div className="absolute right-[-6%] top-1/2 hidden aspect-square w-[58vw] max-w-[900px] -translate-y-1/2 lg:block">
-          <div className="aura-halo h-full w-full rounded-full will-change-transform" />
+          <div className="aura-halo h-full w-full rounded-full" />
         </div>
       )}
     </div>

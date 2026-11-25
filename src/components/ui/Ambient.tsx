@@ -15,11 +15,11 @@ export default function Ambient({ variant = "a" }: { variant?: "a" | "b" | "c" }
     ],
   }[variant];
   return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+    <div aria-hidden data-ambient className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       {spots.map((s, i) => (
         <div
           key={i}
-          className={`absolute rounded-full mix-blend-screen will-change-transform ${s.cls}`}
+          className={`absolute rounded-full ${s.cls}`}
           style={{ background: `radial-gradient(circle at center, rgb(var(${s.c}) / ${s.o}), transparent 65%)` }}
         />
       ))}
