@@ -19,7 +19,7 @@ function Visual({ i, media }: { i: number; media: Record<string, boolean> }) {
   return file ? (
     <Image
       src={`/projects/banksphere/${file}`}
-      alt={`BankSphere AI — ${f.title}`}
+      alt={`BankSphere AI: ${f.title}`}
       fill
       sizes="(min-width: 1024px) 50vw, 100vw"
       className="object-cover object-left-top"
@@ -94,7 +94,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
             >
               BankSphere AI
             </RevealText>
-            <span id="bs-title" className="sr-only">BankSphere AI — featured project</span>
+            <span id="bs-title" className="sr-only">BankSphere AI, featured project</span>
           </div>
           <div className="space-y-5">
             <p className="text-pretty text-lg leading-relaxed text-muted md:text-xl">

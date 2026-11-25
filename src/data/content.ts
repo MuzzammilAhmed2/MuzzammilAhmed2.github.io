@@ -1,5 +1,5 @@
 // Single source of truth for all site copy.
-// Everything here comes from the CV or the portfolio brief — do not add claims that aren't in either.
+// Everything here comes from the CV or the portfolio brief. Do not add claims that aren't in either.
 
 export const site = {
   name: "Muzzammil Ahmed",
@@ -12,7 +12,7 @@ export const site = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://muzzammilahmed2.github.io",
   heroLine: "I turn messy enterprise data into decisions.",
   heroSub: "And build AI designed for regulated industries.",
-  // TODO: add a professional photo at public/me.jpg; the hero shows it automatically once it exists.
+  // The hero shows public/me.jpg automatically once it exists.
   photo: process.env.NEXT_PUBLIC_HAS_PHOTO === "1" ? "/me.jpg" : null,
   // Shown only when public/Muzzammil-Ahmed-CV.pdf exists (see next.config.ts). Use a copy without the phone number.
   cv: process.env.NEXT_PUBLIC_HAS_CV === "1" ? "/Muzzammil-Ahmed-CV.pdf" : null,
@@ -31,16 +31,17 @@ export const about = {
   heading: "Data that leadership trusts. AI whose every decision can be traced.",
   story: [
     "I'm a Data Engineer, BI Developer and Data & AI Consultant. I take ERP, CRM, core-banking and operational data that doesn't agree with itself and turn it into governed, high-performance platforms people actually trust.",
-    "I started at Innolytix as a Data Engineering intern in September 2025 and was offered a full-time role three months later. Since then I've built Medallion platforms on Microsoft Fabric and Azure, built enterprise Power BI semantic models, and delivered AI-powered document and search solutions across banking, insurance, logistics and retail.",
+    "I joined Innolytix as a Data Engineering intern in September 2025 and now work there as a Data Engineer / BI Developer. I've built a governed Medallion platform on Microsoft Fabric for a bank, real-time fleet analytics for a logistics operator, cross-cloud revenue reporting for a retailer, and an AI document and search platform for an insurer.",
     "On the side, I build products: BankSphere AI for KYC in banking, and PlantMind, an AI operations layer for manufacturing. Both start from the same rule: AI in serious industries has to explain itself before it's clever.",
   ],
+  // `value` counts up; `text` is shown as-is (for things that aren't a count).
   stats: [
-    { value: 4, suffix: "", label: "Client platforms delivered" },
-    { value: 4, suffix: "", label: "Sectors: banking, insurance, logistics, retail" },
-    { value: 4, suffix: "", label: "Cloud platforms: Fabric, Azure, AWS, Snowflake" },
     // 1,041 = `pytest --collect-only` on the BankSphere repo, 2026-11-18. Tests aren't tagged unit/integration/eval, so no split is shown.
-    { value: 1041, suffix: "", label: "Automated tests on BankSphere AI" },
-  ],
+    { value: 1041, label: "Automated tests on BankSphere AI" },
+    { value: 2, label: "AI products built and shipped: BankSphere AI and PlantMind" },
+    { value: 4, label: "Client platforms delivered" },
+    { text: "DP‑700 + PL‑300", label: "Microsoft certified" },
+  ] as { value?: number; text?: string; label: string }[],
 };
 
 /** Public links for a product. Only links that exist are rendered; never add a placeholder. */
@@ -74,13 +75,12 @@ export const banksphere = {
     "AI Content Safety",
     "AI Foundry",
     "AI Search",
-    "GSAP UI",
   ],
   video: "demo.mp4",
   features: [
     {
       id: "kyc",
-      kicker: "01 — Onboarding",
+      kicker: "01 · Onboarding",
       title: "KYC decisions in one pass",
       body: "ID-card OCR, card checks, watchlist screening and a risk score decide the outcome: approve, send to officer review, or ask the customer to resubmit.",
       art: "decision",
@@ -88,43 +88,43 @@ export const banksphere = {
     },
     {
       id: "detective",
-      kicker: "02 — Officer desk",
+      kicker: "02 · Officer desk",
       title: "AI Compliance Detective",
-      body: "Officers ask questions about a case and get grounded answers with citations back to the evidence — not free-floating model output.",
+      body: "Officers ask questions about a case and get answers that cite the evidence they came from.",
       art: "detective",
       media: "detective.webp",
     },
     {
       id: "challenge",
-      kicker: "03 — Human oversight",
+      kicker: "03 · Human oversight",
       title: "Challenge the AI",
-      body: "An officer can push back on any AI conclusion and make it defend — or revise — its reasoning before a decision is made.",
+      body: "An officer can push back on any AI conclusion and make it defend or revise its reasoning before a decision is made.",
       art: "challenge",
     },
     {
       id: "timemachine",
-      kicker: "04 — Replay",
+      kicker: "04 · Replay",
       title: "Time Machine case replay",
       body: "Replay any case step by step to see exactly what the system knew and decided at each point in time.",
       art: "timemachine",
     },
     {
       id: "twin",
-      kicker: "05 — Regulation",
+      kicker: "05 · Regulation",
       title: "Regulatory Digital Twin & knowledge graph",
       body: "A digital twin of the regulatory rulebook plus a compliance knowledge graph that links customers, cases, rules and evidence.",
       art: "twin",
     },
     {
       id: "fourEyes",
-      kicker: "06 — Financial crime",
+      kicker: "06 · Financial crime",
       title: "Screening with four-eyes approval",
       body: "Financial-crime screening where sensitive decisions need a second, independent approver before they take effect.",
       art: "fourEyes",
     },
     {
       id: "audit",
-      kicker: "07 — Evidence",
+      kicker: "07 · Evidence",
       title: "Tamper-evident audit trail",
       body: "Every action lands in a hash-chained audit log with write-once checkpoints, so any after-the-fact edit is detectable.",
       art: "audit",
@@ -132,7 +132,7 @@ export const banksphere = {
     },
     {
       id: "redteam",
-      kicker: "08 — Proof",
+      kicker: "08 · Proof",
       title: "Red-team & evaluation suites",
       body: "Adversarial red-team and evaluation suites run alongside 1,000+ automated tests to keep the AI honest as it changes.",
       art: "redteam",
@@ -143,15 +143,15 @@ export const banksphere = {
 // Homepage shows 4 of the 8 features; the case study shows all of them.
 const byId = (id: string) => banksphere.features.find((f) => f.id === id)!;
 export const homeFeatures: Feature[] = [
-  { ...byId("kyc"), kicker: "01 — Onboarding" },
+  { ...byId("kyc"), kicker: "01 · Onboarding" },
   {
     ...byId("detective"),
-    kicker: "02 — Officer desk",
-    title: "Ask the AI — then challenge it",
+    kicker: "02 · Officer desk",
+    title: "Ask the AI, then challenge it",
     body: "Officers get answers with citations back to the evidence, and can push back on any conclusion before they make the call.",
   },
-  { ...byId("audit"), kicker: "03 — Evidence" },
-  { ...byId("redteam"), kicker: "04 — Proof" },
+  { ...byId("audit"), kicker: "03 · Evidence" },
+  { ...byId("redteam"), kicker: "04 · Proof" },
 ];
 
 export type Showcase = {
@@ -450,11 +450,10 @@ export const skills: { group: string; items: string[] }[] = [
       "Star schema modelling",
       "SCD Type 1 & 2",
       "Data warehouse design",
-      "Data virtualization",
     ],
   },
   {
-    group: "BI & visualization",
+    group: "BI & visualisation",
     items: ["Power BI", "DAX", "Semantic modelling", "KPI framework design", "Incremental refresh", "RLS", "CLS"],
   },
   {
@@ -463,13 +462,13 @@ export const skills: { group: string; items: string[] }[] = [
   },
   {
     group: "Languages",
-    items: ["Python", "SQL", "PySpark", "Spark SQL", "KQL", "Java", "C++"],
+    items: ["Python", "SQL", "PySpark", "Spark SQL", "KQL"],
   },
   {
     group: "Tools",
-    items: ["Azure Data Factory", "Fabric Data Factory", "Apache Airflow", "Apache NiFi", "Kafka", "Docker", "Git", "Linux", "Jupyter"],
+    items: ["Fabric Data Factory", "Apache Airflow", "Docker", "Git"],
   },
-  { group: "AWS", items: ["S3", "EC2", "RDS", "Redshift", "Athena", "Glue", "IAM", "CloudWatch", "SageMaker"] },
+  { group: "AWS", items: ["S3", "EC2", "SageMaker"] },
   {
     group: "Enterprise content",
     items: ["IBM FileNet", "IBM Content Navigator", "IBM Datacap", "IBM Content Assistant", "CMIS", "IBM DB2", "Records management"],
@@ -496,7 +495,6 @@ export const marquee = [
   "SQL",
   "PySpark",
   "Airflow",
-  "Kafka",
   "Docker",
   "RAG",
 ];
@@ -510,7 +508,7 @@ export const experience = [
     points: [
       "Built Medallion analytics platforms on Microsoft Fabric and Azure, integrating ERP, CRM and operational systems into one governed source for reporting.",
       "Built metadata-driven ELT pipelines and star-schema models, so new sources are onboarded through configuration rather than new code.",
-      "Applied partitioning and query optimization to high-volume datasets to shorten processing and refresh times.",
+      "Applied partitioning and query optimisation to high-volume datasets to shorten processing and refresh times.",
       "Delivered Power BI semantic models with complex DAX (time intelligence, variance, rolling KPIs), incremental refresh and RLS for executive reporting.",
       "Set up Azure DevOps CI/CD for analytics and BI, standardising how analytics and BI changes are deployed.",
     ],
@@ -522,7 +520,7 @@ export const experience = [
     points: [
       "Built and tested ELT pipelines and data-validation workflows with the Data Engineering team to check data quality before it reached reports.",
       "Developed Power BI reports and dashboards for internal stakeholders.",
-      "Worked hands-on with Microsoft Fabric and Azure data tools, which led to a full-time offer after three months.",
+      "Worked hands-on with Microsoft Fabric and Azure data tools.",
     ],
   },
   {

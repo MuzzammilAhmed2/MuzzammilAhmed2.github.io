@@ -7,7 +7,7 @@ const isStatic = process.env.STATIC_EXPORT === "1";
 
 // The "Download CV" links only render once the PDF exists in /public.
 const hasCv = fs.existsSync(path.join(process.cwd(), "public", "Muzzammil-Ahmed-CV.pdf"));
-// The hero portrait only renders once /public/me.jpg exists. TODO: add a professional photo at public/me.jpg.
+// The hero portrait only renders once /public/me.jpg exists.
 const hasPhoto = fs.existsSync(path.join(process.cwd(), "public", "me.jpg"));
 
 const nextConfig: NextConfig = {

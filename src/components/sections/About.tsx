@@ -79,9 +79,12 @@ export default function About() {
               className="glow-card flex flex-col-reverse justify-end gap-3 rounded-2xl border border-line bg-surface p-5 md:p-7"
             >
               <dt className="max-w-[24ch] text-[15px] leading-snug text-muted md:text-base">{s.label}</dt>
-              <dd className="font-display text-[2.6rem] font-medium leading-none tracking-tight min-[360px]:text-5xl sm:text-6xl md:text-7xl">
-                <span data-count={s.value} className="grad-text">{s.value.toLocaleString("en-US")}</span>
-                <span className="text-accent">{s.suffix}</span>
+              <dd className="flex min-h-[2.6rem] items-start font-display text-[2.6rem] font-medium leading-none tracking-tight min-[360px]:min-h-12 min-[360px]:text-5xl sm:min-h-[3.75rem] sm:text-6xl md:min-h-[4.5rem] md:text-7xl">
+                {s.value !== undefined ? (
+                  <span data-count={s.value} className="grad-text">{s.value.toLocaleString("en-US")}</span>
+                ) : (
+                  <span className="grad-text text-[1.6rem] leading-tight min-[360px]:text-3xl md:text-4xl">{s.text}</span>
+                )}
               </dd>
             </div>
           ))}

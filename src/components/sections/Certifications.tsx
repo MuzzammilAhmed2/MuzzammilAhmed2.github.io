@@ -69,14 +69,12 @@ export default function Certifications() {
           </article>
         ))}
       </div>
-      <ul className="mt-5 grid gap-5 md:grid-cols-2">
-        {other.map((c) => (
-          <li key={c.name} data-cert className="flex items-center justify-between gap-6 rounded-2xl border border-line px-6 py-5">
-            <span className="text-text">{c.name}</span>
-            <span className="shrink-0 font-mono text-[13px] uppercase tracking-[0.16em] text-muted">{c.issuer}</span>
-          </li>
-        ))}
-      </ul>
+      {other.length > 0 && (
+        <p data-cert className="mt-6 text-base text-muted">
+          <span className="mr-2 font-mono text-[13px] uppercase tracking-[0.16em]">Courses</span>
+          {other.map((c) => `${c.name} (${c.issuer})`).join(" · ")}
+        </p>
+      )}
       </div>
     </section>
   );

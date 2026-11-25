@@ -43,8 +43,8 @@ export default function Contact() {
 
     // No Formspree ID configured yet → fall back to the user's mail app
     if (!FORMSPREE_ID) {
-      const subject = encodeURIComponent(`${kind} — from ${data.get("name")}`);
-      const body = encodeURIComponent(`${data.get("message")}\n\n— ${data.get("name")} (${data.get("email")})`);
+      const subject = encodeURIComponent(`${kind}: message from ${data.get("name")}`);
+      const body = encodeURIComponent(`${data.get("message")}\n\n${data.get("name")} (${data.get("email")})`);
       window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
       setStatus("mailto");
       return;
@@ -167,7 +167,7 @@ export default function Contact() {
                 </button>
               </Magnetic>
               <p role="status" aria-live="polite" className="text-base">
-                {status === "sent" && <span className="text-accent">Thanks — your message is in. I&apos;ll get back to you soon.</span>}
+                {status === "sent" && <span className="text-accent">Thanks, your message is in. I&apos;ll get back to you soon.</span>}
                 {status === "mailto" && <span className="text-text">Your email app should now be open with the message ready to send.</span>}
                 {status === "error" && (
                   <span className="text-[color:var(--danger)]">
@@ -178,7 +178,7 @@ export default function Contact() {
             </div>
             {!FORMSPREE_ID && (
               <p className="text-base text-muted">
-                This opens your email app — or email me directly at the address in this card.
+                This opens your email app. You can also email me directly at the address in this card.
               </p>
             )}
           </form>

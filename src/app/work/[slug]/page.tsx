@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       ? "Governed AI for KYC and compliance in banking: ID-card OCR, watchlist screening and risk scoring, with an officer making every final call."
       : projects.find((p) => p.slug === slug)!.summary;
   const url = `/work/${slug}/`;
-  const title = `${w.name} — ${site.name}`;
+  const title = `${w.name} | ${site.name}`;
   return {
     title: { absolute: title },
     description,
@@ -131,7 +131,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
         title={banksphere.name}
         pitch={banksphere.tagline}
         actions={<ProductLinks product={banksphere} />}
-        lead={`ID-card OCR, card checks, watchlist screening and a risk score decide approve / officer review / resubmit — with a human officer making every final call.`}
+        lead={`ID-card OCR, card checks, watchlist screening and a risk score decide approve, officer review or resubmit. A human officer makes every final call.`}
         stack={banksphere.stack}
         next={{ href: `/work/${plantmind.slug}`, name: plantmind.name }}
       >
@@ -158,7 +158,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
             <section key={f.id} aria-labelledby={`f-${f.id}`}>
               <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-2xl border border-line bg-surface">
                 {f.media && media[f.media] ? (
-                  <Image src={`/projects/banksphere/${f.media}`} alt={`BankSphere AI — ${f.title}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-left-top" />
+                  <Image src={`/projects/banksphere/${f.media}`} alt={`BankSphere AI: ${f.title}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-left-top" />
                 ) : (
                   <div className="absolute inset-0 p-6">
                     <FeatureArt art={f.art} />
@@ -190,7 +190,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
       >
 
         <div className="relative mb-12 aspect-[16/10] overflow-hidden rounded-3xl border border-white/15 bg-surface shadow-[var(--stage-shadow)]">
-          <Image src={`/projects/plantmind/${plantmind.showcase[0].media}`} alt={`PlantMind — ${plantmind.showcase[0].title}`} fill priority sizes="(min-width: 1440px) 1360px, 100vw" className="object-cover object-left-top" />
+          <Image src={`/projects/plantmind/${plantmind.showcase[0].media}`} alt={`PlantMind: ${plantmind.showcase[0].title}`} fill priority sizes="(min-width: 1440px) 1360px, 100vw" className="object-cover object-left-top" />
         </div>
 
         <ul aria-label="PlantMind in numbers" className="mb-24 grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -220,7 +220,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
           {plantmind.showcase.slice(1).map((f) => (
             <section key={f.id} aria-labelledby={`pm-${f.id}`}>
               <div className="relative mb-6 aspect-[16/10] overflow-hidden rounded-2xl border border-line bg-surface">
-                <Image src={`/projects/plantmind/${f.media}`} alt={`PlantMind — ${f.title}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-left-top" />
+                <Image src={`/projects/plantmind/${f.media}`} alt={`PlantMind: ${f.title}`} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover object-left-top" />
               </div>
               <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-accent-2">{f.kicker}</p>
               <h2 id={`pm-${f.id}`} className="mt-2 font-display text-2xl font-medium tracking-tight md:text-3xl">{f.title}</h2>

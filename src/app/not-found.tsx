@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: { absolute: "Page not found — Muzzammil Ahmed" },
+  title: { absolute: "Page not found | Muzzammil Ahmed" },
   robots: { index: false },
   alternates: { canonical: null },
 };

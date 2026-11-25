@@ -47,7 +47,7 @@ export default function PlantMind() {
             <RevealText as="h2" by="chars" className="font-display text-[clamp(3rem,8.4vw,8.25rem)] font-medium leading-[0.88] tracking-[-0.045em]">
               PlantMind
             </RevealText>
-            <span id="pm-title" className="sr-only">PlantMind — AI operations layer for manufacturing</span>
+            <span id="pm-title" className="sr-only">PlantMind: AI operations layer for manufacturing</span>
           </div>
           <div className="space-y-5">
             <p className="text-pretty text-lg leading-relaxed text-muted md:text-xl">
@@ -141,7 +141,7 @@ export default function PlantMind() {
                 >
                   <Image
                     src={`/projects/plantmind/${s.media}`}
-                    alt={`PlantMind — ${s.title}`}
+                    alt={`PlantMind: ${s.title}`}
                     fill
                     sizes="(min-width: 1024px) 60vw, 100vw"
                     className="object-cover object-left-top"

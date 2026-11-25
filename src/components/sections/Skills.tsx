@@ -46,7 +46,7 @@ export default function Skills() {
         </RevealText>
         <span id="skills-title" className="sr-only">Skills and stack</span>
         <p className="text-pretty text-base leading-[1.6] text-muted lg:text-lg">
-          The whole path — ingestion, modelling, governance, BI and AI — so there&apos;s no hand-off gap between the data team and the people
+          The whole path, from ingestion and modelling to governance, BI and AI, so there&apos;s no hand-off gap between the data team and the people
           who need the answer.
         </p>
       </div>
