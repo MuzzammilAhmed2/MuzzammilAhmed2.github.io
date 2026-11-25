@@ -107,7 +107,7 @@ export default function Hero() {
         )}
       </div>
 
-      <div data-hero-content className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-end px-4 pb-10 pt-32 sm:px-6 md:px-10 md:pb-14 lg:pr-[44%]">
+      <div data-hero-content className="mx-auto flex w-full max-w-[1440px] 2xl:max-w-[1600px] flex-1 flex-col justify-end px-4 pb-10 pt-32 sm:px-6 md:px-10 md:pb-14 lg:pr-[44%]">
         <div data-hero-fade className="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-line bg-surface/70 px-4 py-2 backdrop-blur">
           <span className="pulse-dot relative block h-2 w-2 rounded-full bg-accent text-accent" aria-hidden />
           <span className="font-mono text-[13px] uppercase tracking-[0.16em] text-text">Available for freelance &amp; full‑time</span>

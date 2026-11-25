@@ -30,7 +30,7 @@ export default function Experience() {
   return (
     <section ref={root} id="experience" aria-labelledby="exp-title" className="relative isolate overflow-hidden">
       <Ambient variant="c" />
-      <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
+      <div className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
         <SectionLabel index="06">Experience</SectionLabel>
         <div className="grid gap-16 lg:grid-cols-[1fr_1.5fr]">
           <div className="lg:sticky lg:top-32 lg:self-start">

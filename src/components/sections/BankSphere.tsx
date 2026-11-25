@@ -82,7 +82,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
           />
         ))}
       </div>
-      <div className="mx-auto max-w-[1440px] px-4 pt-20 sm:px-6 md:px-10 md:pt-28">
+      <div className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 pt-20 sm:px-6 md:px-10 md:pt-28">
         <SectionLabel index="02">Featured product</SectionLabel>
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
           <div>
@@ -108,7 +108,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
 
       {/* Pinned storytelling (desktop) / stacked cards (mobile + reduced motion) */}
       <div ref={pin} className="relative">
-        <div className={`mx-auto grid max-w-[1440px] gap-10 px-4 py-14 sm:px-6 md:px-10 lg:grid-cols-[minmax(0,0.62fr)_minmax(0,1.38fr)] lg:gap-14 ${pinned ? "lg:min-h-[100svh] lg:items-center lg:py-0" : ""}`}>
+        <div className={`mx-auto grid max-w-[1440px] 2xl:max-w-[1600px] gap-10 px-4 py-14 sm:px-6 md:px-10 lg:grid-cols-[minmax(0,0.62fr)_minmax(0,1.38fr)] lg:gap-14 ${pinned ? "lg:min-h-[100svh] lg:items-center lg:py-0" : ""}`}>
           {/* Feature list */}
           <ol
             {...(!pinned && { tabIndex: 0, "aria-label": "BankSphere features, scroll sideways" })}
@@ -198,7 +198,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
       </div>
 
       {/* See-all link + guided-tour card (the full tour lives on the case study) */}
-      <div className="mx-auto grid max-w-[1440px] gap-4 px-4 pb-14 sm:px-6 md:grid-cols-[1fr_auto] md:items-center md:px-10">
+      <div className="mx-auto grid max-w-[1440px] 2xl:max-w-[1600px] gap-4 px-4 pb-14 sm:px-6 md:grid-cols-[1fr_auto] md:items-center md:px-10">
         <Link
           href={`/work/${banksphere.slug}#tour`}
           data-cursor="view"
@@ -228,7 +228,7 @@ export default function BankSphere({ media }: { media: Record<string, boolean> }
       </div>
 
       {/* Stack + video + CTA */}
-      <div className="mx-auto max-w-[1440px] px-4 pb-24 sm:px-6 md:px-10 md:pb-32">
+      <div className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 pb-24 sm:px-6 md:px-10 md:pb-32">
         <div className="grid gap-10 border-t border-line pt-12 lg:grid-cols-[1fr_auto] lg:items-center">
           <ul className="flex flex-wrap gap-2" aria-label="BankSphere tech stack">
             {banksphere.stack.map((s) => (

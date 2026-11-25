@@ -24,7 +24,7 @@ export default function Services() {
   }, []);
 
   return (
-    <section ref={root} id="services" aria-labelledby="svc-title" className="relative isolate mx-auto max-w-[1440px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
+    <section ref={root} id="services" aria-labelledby="svc-title" className="relative isolate mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 py-20 sm:px-6 md:px-10 md:py-40">
       <Ambient variant="a" />
       <SectionLabel index="08">Freelance services</SectionLabel>
       <div className="mb-16 grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-end">

@@ -96,7 +96,7 @@ function Shell({
   children: React.ReactNode;
 }) {
   return (
-    <article className="mx-auto max-w-[1440px] px-4 pb-24 pt-28 sm:px-6 md:px-10 md:pt-36 2xl:max-w-[1600px]">
+    <article className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 pb-24 pt-28 sm:px-6 md:px-10 md:pt-36">
       <Link href="/#work" className="mb-8 inline-flex min-h-6 items-center gap-2 py-2 font-mono pointer-coarse:min-h-11 text-[13px] uppercase tracking-[0.18em] text-muted hover:text-text">
         <span aria-hidden>←</span> All work
       </Link>
@@ -271,7 +271,7 @@ export default async function WorkPage({ params }: { params: Promise<{ slug: str
   ];
 
   return (
-    <article className="mx-auto max-w-[1440px] px-4 pb-24 pt-28 sm:px-6 md:px-10 md:pt-36 2xl:max-w-[1600px]">
+    <article className="mx-auto max-w-[1440px] 2xl:max-w-[1600px] px-4 pb-24 pt-28 sm:px-6 md:px-10 md:pt-36">
       <Link href="/#work" className="mb-8 inline-flex min-h-6 items-center gap-2 py-2 font-mono pointer-coarse:min-h-11 text-[13px] uppercase tracking-[0.18em] text-muted hover:text-text">
         <span aria-hidden>←</span> All work
       </Link>
