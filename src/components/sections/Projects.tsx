@@ -88,11 +88,9 @@ export default function Projects() {
         <div className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:-mx-6 sm:scroll-px-6 sm:px-6 md:contents">
         {projects.map((p) => (
           <article key={p.slug} data-card className="group relative w-[85%] shrink-0 snap-start sm:w-[70%] md:w-auto md:motion-safe:h-[33rem] md:motion-safe:w-[clamp(340px,33vw,460px)] 2xl:motion-safe:h-[36rem] 2xl:motion-safe:w-[520px]">
-            <Link
-              href={`/work/${p.slug}`}
-              aria-labelledby={`card-${p.slug}`}
+            <div
               data-cursor="view"
-              className="glow-card flex h-full flex-col rounded-3xl border border-line bg-surface p-3 transition-colors duration-500 hover:border-[color:var(--accent)]/40"
+              className="glow-card relative flex h-full flex-col rounded-3xl border border-line bg-surface p-3 transition-colors duration-500 focus-within:border-[color:var(--accent)]/60 hover:border-[color:var(--accent)]/40"
             >
               <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
                 <div data-img className="absolute inset-0 transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] will-change-transform">
@@ -112,7 +110,12 @@ export default function Projects() {
                 <span className="absolute right-4 top-3 font-display text-3xl font-medium text-text/80">{p.index}</span>
               </div>
               <div className="flex flex-1 flex-col px-2 pb-3 pt-5">
-                <h3 id={`card-${p.slug}`} className="font-display text-xl font-medium leading-tight tracking-tight md:text-[1.4rem]">{p.name}</h3>
+                <h3 className="font-display text-xl font-medium leading-tight tracking-tight md:text-[1.4rem]">
+                  {/* The title is the link; its ::after stretches over the whole card so the card stays clickable. */}
+                  <Link href={`/work/${p.slug}`} className="after:absolute after:inset-0 after:rounded-3xl after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-accent">
+                    {p.name}
+                  </Link>
+                </h3>
                 <p className="mt-2 line-clamp-3 text-pretty text-[15px] leading-relaxed text-muted">{p.summary}</p>
                 <ul className="mt-auto flex flex-wrap gap-2 pt-4" aria-label="Stack">
                   {p.stack.slice(0, 4).map((s) => (
@@ -120,7 +123,7 @@ export default function Projects() {
                   ))}
                 </ul>
               </div>
-            </Link>
+            </div>
           </article>
         ))}
 

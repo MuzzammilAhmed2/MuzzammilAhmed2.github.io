@@ -55,20 +55,18 @@ export default function Services() {
                 </li>
               ))}
             </ul>
-            <dl className="mt-6 space-y-3 border-t border-line pt-6 text-base">
-              <div>
+            <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-line pt-6 text-base">
+              <div className="col-span-2">
                 <dt className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Typical scope</dt>
                 <dd className="mt-1 text-pretty leading-snug text-text">{s.scope}</dd>
               </div>
-              <div className="flex flex-wrap gap-x-8 gap-y-3">
-                <div>
-                  <dt className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Timeline</dt>
-                  <dd className="mt-1 text-text">{s.timeline}</dd>
-                </div>
-                <div>
-                  <dt className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Starting from</dt>
-                  <dd className="mt-1 font-display text-xl font-medium text-accent">{s.from.replace("From ", "")}</dd>
-                </div>
+              <div>
+                <dt className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Timeline</dt>
+                <dd className="mt-1 text-text">{s.timeline}</dd>
+              </div>
+              <div>
+                <dt className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">Starting from</dt>
+                <dd className="mt-1 font-display text-xl font-medium text-accent">{s.from.replace("From ", "")}</dd>
               </div>
             </dl>
           </article>
