@@ -247,22 +247,36 @@ export const plantmind = {
   ],
 };
 
+/** One column of a case-study architecture diagram, left to right (top to bottom on phones). */
+export type ArchStage = { id: string; label: string; items: string[] };
+
 export type Project = {
   slug: string;
   index: string;
   name: string;
   sector: string;
   summary: string;
-  description: string;
-  /** Case-study structure: Context → My role → What I built → Stack → Outcome. */
-  context: string;
+  /** One-line result for the case-study hero. Qualitative unless the owner gives a number. */
+  result: string;
+  /** 2–3 concrete sentences. */
+  problem: string;
+  /** What Muzzammil personally owned. Worded per project. */
   role: string;
-  highlights: string[];
-  outcome: string[];
+  /** Only set from the owner's answers. Rows without a value are hidden. */
+  team?: string;
+  duration?: string;
+  architecture: ArchStage[];
+  /** Each highlight points at the diagram stage it lives in. */
+  highlights: { stage: string; text: string }[];
+  /** "I chose X over Y because Z." Only from the owner; the section is hidden until set. */
+  decisions?: string[];
+  /** One paragraph from the owner; hidden until set. */
+  hardProblem?: string;
+  results: string[];
   academic?: boolean;
   stack: string[];
   hue: number; // accent hue for the card visual
-  nodes: string[]; // pipeline drawn in the card visual
+  nodes: string[]; // pipeline drawn in the homepage card visual
 };
 
 export const projects: Project[] = [
@@ -272,19 +286,25 @@ export const projects: Project[] = [
     name: "Intelligent Document Processing & Compliance Platform",
     sector: "Insurance",
     summary: "AI-powered classification, OCR and routing of claims and policy documents, with RAG search over historical cases.",
-    description:
-      "Built an AI-powered document platform using IBM FileNet, IBM Datacap and IBM Watsonx.ai to automate classification, OCR extraction and routing of claims and policy documents.",
-    context:
-      "An insurer handled claims and policy documents by hand: classifying them, keying in their data and routing them, with no quick way to search past cases.",
-    role: "I designed and built it end to end as the Data Engineer / BI Developer at Innolytix.",
-    highlights: [
-      "Classification, OCR extraction and routing of claims and policy documents with IBM Datacap, FileNet and Watsonx.ai.",
-      "A RAG search layer so claims officers can query historical case files in natural language, with full audit and records-management compliance.",
-      "CMIS-based records lifecycle management to enforce retention policies.",
-      "Automatic routing of high-priority cases based on document content and risk indicators.",
+    result: "Claims and policy documents are classified, read and routed automatically, and officers search past cases in plain language.",
+    problem:
+      "An insurer classified claims and policy documents by hand, keyed in their data and routed them to the right team. Past cases sat in a records system with no quick way to search them, and every change had to respect records-management rules.",
+    role: "Built the capture, routing and RAG search pipeline on IBM Datacap, FileNet and Watsonx.ai as the Data Engineer at Innolytix.",
+    architecture: [
+      { id: "sources", label: "Sources", items: ["Claims documents", "Policy documents"] },
+      { id: "capture", label: "Capture", items: ["IBM Datacap", "OCR extraction", "Classification"] },
+      { id: "store", label: "Records store", items: ["IBM FileNet", "CMIS lifecycle", "Retention policies"] },
+      { id: "ai", label: "AI layer", items: ["IBM Watsonx.ai", "RAG over case files", "Risk-based routing"] },
+      { id: "use", label: "Used by", items: ["Claims officers", "Priority queues", "Audit"] },
     ],
-    outcome: [
-      "Less manual claims triage: high-priority cases reach the right people automatically.",
+    highlights: [
+      { stage: "capture", text: "Classification, OCR extraction and routing of claims and policy documents with IBM Datacap, FileNet and Watsonx.ai." },
+      { stage: "ai", text: "A RAG search layer so claims officers can query historical case files in natural language, with full audit and records-management compliance." },
+      { stage: "store", text: "CMIS-based records lifecycle management to enforce retention policies." },
+      { stage: "ai", text: "Automatic routing of high-priority cases based on document content and risk indicators." },
+    ],
+    results: [
+      "High-priority cases are routed automatically from their content and risk indicators, so they no longer wait in a manual triage queue.",
       "Officers can search years of case files in plain language without breaking records compliance.",
     ],
     stack: ["IBM FileNet", "IBM Datacap", "IBM Watsonx.ai", "RAG", "OCR", "CMIS"],
@@ -296,20 +316,26 @@ export const projects: Project[] = [
     index: "02",
     name: "Real-Time Fleet Control Tower",
     sector: "Logistics & transportation",
-    summary: "Real-time IoT analytics tracking a live vehicle fleet — health, geofencing, fuel efficiency and driver behaviour.",
-    description:
-      "Engineered a real-time IoT analytics platform on Azure IoT Hub, Microsoft Fabric Eventstream, Eventhouse and Fabric Activator to track a live vehicle fleet.",
-    context:
-      "A logistics operator needed a live view of its vehicle fleet (health, location, fuel and driver behaviour) instead of finding out about problems after the fact.",
-    role: "I designed and built it end to end as the Data Engineer / BI Developer at Innolytix.",
-    highlights: [
-      "Streaming ingestion from Azure IoT Hub into Fabric Eventstream and Eventhouse, with Fabric Activator for real-time alerts.",
-      "Vehicle health monitoring, geofencing alerts and fuel-efficiency tracking.",
-      "Driver behaviour scoring and route-deviation alerts on top of historical telemetry.",
-      "Executive Power BI dashboards on fleet utilisation and maintenance costs.",
+    summary: "Real-time IoT analytics tracking a live vehicle fleet: health, geofencing, fuel efficiency and driver behaviour.",
+    result: "Vehicle health, location, fuel and driver behaviour are visible live, with alerts raised as events happen.",
+    problem:
+      "A logistics operator found out about vehicle faults, route deviations and fuel waste after the fact, from reports run days later. They needed a live view of the fleet and alerts while there was still time to act.",
+    role: "Built the streaming path from IoT Hub to Eventhouse, the Activator alert rules and the Power BI dashboards.",
+    architecture: [
+      { id: "sources", label: "Sources", items: ["Vehicle telemetry", "GPS + engine data"] },
+      { id: "ingest", label: "Streaming ingestion", items: ["Azure IoT Hub", "Fabric Eventstream"] },
+      { id: "store", label: "Real-time store", items: ["Fabric Eventhouse", "KQL databases", "Historical telemetry"] },
+      { id: "logic", label: "Rules & scoring", items: ["Fabric Activator", "Geofencing rules", "Driver scoring (KQL)"] },
+      { id: "use", label: "Used by", items: ["Power BI dashboards", "Real-time alerts", "Operations & leadership"] },
     ],
-    outcome: [
-      "Maintenance planned from telemetry, reducing unplanned downtime.",
+    highlights: [
+      { stage: "ingest", text: "Streaming ingestion from Azure IoT Hub into Fabric Eventstream and Eventhouse, with Fabric Activator for real-time alerts." },
+      { stage: "logic", text: "Vehicle health monitoring, geofencing alerts and fuel-efficiency tracking." },
+      { stage: "store", text: "Driver behaviour scoring and route-deviation alerts on top of historical telemetry." },
+      { stage: "use", text: "Executive Power BI dashboards on fleet utilisation and maintenance costs." },
+    ],
+    results: [
+      "Alerts for vehicle health, geofence breaches and route deviations fire while the vehicle is still on the road.",
       "Operations and leadership see utilisation and maintenance cost in one place.",
     ],
     stack: ["Azure IoT Hub", "Fabric Eventstream", "Eventhouse", "Fabric Activator", "KQL", "Power BI"],
@@ -322,20 +348,26 @@ export const projects: Project[] = [
     name: "Enterprise Performance Analytics Platform",
     sector: "Banking",
     summary: "Governed Medallion platform on Fabric Direct Lake unifying core banking, treasury and CRM data.",
-    description:
-      "Built an enterprise analytics platform on Microsoft Fabric Direct Lake, consolidating core banking, treasury and CRM data into a governed Medallion Architecture.",
-    context:
-      "A bank's core banking, treasury and CRM data lived in separate systems, which made branch performance and regulatory reporting slow and hard to trust.",
-    role: "I designed and built it end to end as the Data Engineer / BI Developer at Innolytix.",
-    highlights: [
-      "A governed Medallion platform on Microsoft Fabric Direct Lake consolidating core banking, treasury and CRM data.",
-      "Automated Data Factory quality controls, and identity-based RLS mapped to branch and regional hierarchies.",
-      "Enterprise Power BI semantic models with incremental refresh and DAX KPI reporting for branch managers and executives.",
-      "Azure DevOps CI/CD pipelines for analytics and BI releases.",
+    result: "One governed source for branch performance and regulatory reporting, with access scoped by branch and region.",
+    problem:
+      "A bank's core banking, treasury and CRM data lived in separate systems that didn't agree with each other. Branch performance and regulatory reports were slow to produce and hard to trust, and access to sensitive figures wasn't tied to the branch hierarchy.",
+    role: "Owned the Fabric Medallion layers, the Data Factory quality checks and the Power BI semantic models, plus their CI/CD in Azure DevOps.",
+    architecture: [
+      { id: "sources", label: "Sources", items: ["Core banking", "Treasury", "CRM"] },
+      { id: "ingest", label: "Ingestion", items: ["Data Factory pipelines", "Automated quality checks"] },
+      { id: "store", label: "Medallion lakehouse", items: ["Bronze: raw", "Silver: cleaned", "Gold: modelled"] },
+      { id: "model", label: "Semantic layer", items: ["Direct Lake models", "DAX KPIs", "Identity-based RLS"] },
+      { id: "use", label: "Used by", items: ["Branch managers", "Executives", "Regulatory reporting"] },
     ],
-    outcome: [
+    highlights: [
+      { stage: "store", text: "A governed Medallion platform on Microsoft Fabric Direct Lake consolidating core banking, treasury and CRM data." },
+      { stage: "ingest", text: "Automated Data Factory quality controls, and identity-based RLS mapped to branch and regional hierarchies." },
+      { stage: "model", text: "Enterprise Power BI semantic models with incremental refresh and DAX KPI reporting for branch managers and executives." },
+      { stage: "use", text: "Azure DevOps CI/CD pipelines for analytics and BI releases." },
+    ],
+    results: [
       "One governed source for audit and regulatory reporting, with access scoped to each branch and region.",
-      "Standardised deployments and faster reporting turnaround for compliance reviews.",
+      "Analytics and BI changes ship through the same reviewed CI/CD pipeline instead of manual deployments.",
     ],
     stack: ["Microsoft Fabric", "Direct Lake", "Data Factory", "Medallion", "Power BI", "RLS", "Azure DevOps"],
     hue: 220,
@@ -347,18 +379,24 @@ export const projects: Project[] = [
     name: "Cross-Cloud Revenue Intelligence Platform",
     sector: "Retail & e-commerce",
     summary: "Secure analytics across AWS, Snowflake and Fabric unifying sales, inventory and customer data, with CLV segmentation.",
-    description:
-      "Built a secure cross-cloud analytics solution across AWS, Snowflake and Microsoft Fabric to unify sales, inventory and customer data for a multi-channel retailer.",
-    context:
-      "A multi-channel retailer's sales, inventory and customer data was split across clouds, so revenue and customer value couldn't be reported in one place.",
-    role: "I designed and built it end to end as the Data Engineer / BI Developer at Innolytix.",
-    highlights: [
-      "A secure analytics layer across AWS, Snowflake and Microsoft Fabric.",
-      "Automated daily ingestion pipelines from POS and e-commerce systems.",
-      "Governed semantic models for unified revenue and CLV reporting, with RLS and CLS restricting regional margin data by role.",
-      "Merchandising dashboards that segment customers by lifetime value.",
+    result: "Revenue and customer lifetime value reported in one place across store and online channels.",
+    problem:
+      "A multi-channel retailer's sales, inventory and customer data was split across AWS, Snowflake and Microsoft Fabric. Revenue and customer value couldn't be reported in one place, and regional margin data needed tighter access control.",
+    role: "Built the daily POS and e-commerce ingestion and the governed semantic models with RLS and CLS behind the merchandising dashboards.",
+    architecture: [
+      { id: "sources", label: "Sources", items: ["POS systems", "E-commerce", "Inventory"] },
+      { id: "ingest", label: "Ingestion", items: ["Daily automated pipelines"] },
+      { id: "store", label: "Cross-cloud storage", items: ["AWS", "Snowflake", "Microsoft Fabric"] },
+      { id: "model", label: "Semantic layer", items: ["Revenue + CLV models", "RLS by role", "CLS on margin"] },
+      { id: "use", label: "Used by", items: ["Merchandising dashboards", "Promotions & inventory planning"] },
     ],
-    outcome: [
+    highlights: [
+      { stage: "store", text: "A secure analytics layer across AWS, Snowflake and Microsoft Fabric." },
+      { stage: "ingest", text: "Automated daily ingestion pipelines from POS and e-commerce systems." },
+      { stage: "model", text: "Governed semantic models for unified revenue and CLV reporting, with RLS and CLS restricting regional margin data by role." },
+      { stage: "use", text: "Merchandising dashboards that segment customers by lifetime value." },
+    ],
+    results: [
       "Unified revenue and CLV reporting across channels.",
       "CLV segments guide targeted promotions and inventory allocation.",
     ],
@@ -372,18 +410,24 @@ export const projects: Project[] = [
     name: "Cloud-Based Predictive Maintenance",
     sector: "Final year project",
     summary: "Cloud platform on AWS predicting remaining useful life and failure probability from sensor telemetry.",
-    description:
-      "Built a cloud data platform using AWS S3, EC2, SageMaker and Power BI to monitor industrial equipment health and predict maintenance requirements.",
-    context:
-      "Industrial equipment is usually serviced on a fixed schedule or after it fails. The goal was to predict failures early from sensor data.",
-    role: "I designed and built it end to end as my final-year BSCS project at Dawood University of Engineering & Technology.",
-    highlights: [
-      "Cloud data platform on AWS S3, EC2 and SageMaker for equipment telemetry.",
-      "Time-series and vibration features, and models estimating remaining useful life and failure probability.",
-      "The best-performing model deployed behind a lightweight API.",
-      "Automated ingestion pipelines and executive Power BI dashboards.",
+    result: "Remaining useful life and failure probability predicted from sensor data, checked against historical failure logs.",
+    problem:
+      "Industrial equipment is usually serviced on a fixed schedule or after it breaks. The goal was to predict failures early from sensor telemetry, so maintenance could be planned before a breakdown.",
+    role: "My final-year BSCS project at Dawood University of Engineering & Technology: I built the data platform, the models and the dashboards.",
+    architecture: [
+      { id: "sources", label: "Sources", items: ["Equipment sensors", "Vibration + time series"] },
+      { id: "ingest", label: "Ingestion", items: ["Automated pipelines", "AWS S3"] },
+      { id: "store", label: "Processing", items: ["AWS EC2", "Feature engineering (Python)"] },
+      { id: "model", label: "Models", items: ["AWS SageMaker", "RUL + failure probability", "Prediction API"] },
+      { id: "use", label: "Used by", items: ["Power BI dashboards", "Maintenance planning"] },
     ],
-    outcome: [
+    highlights: [
+      { stage: "ingest", text: "Cloud data platform on AWS S3, EC2 and SageMaker for equipment telemetry." },
+      { stage: "store", text: "Time-series and vibration features, and models estimating remaining useful life and failure probability." },
+      { stage: "model", text: "The best-performing model deployed behind a lightweight API." },
+      { stage: "use", text: "Automated ingestion pipelines and executive Power BI dashboards." },
+    ],
+    results: [
       "Predictions validated against historical failure logs.",
       "Dashboards that support proactive maintenance planning.",
     ],
